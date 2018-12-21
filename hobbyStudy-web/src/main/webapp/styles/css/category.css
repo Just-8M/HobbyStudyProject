@@ -1,0 +1,175 @@
+.classify_wrap {
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  width: 1180px;
+  margin: 0 auto;
+  height: auto;
+  max-height: 330px;
+  border-bottom: 1px solid #EAEAEA;
+}
+.classify_wrap .classify {
+  width: 100%;
+}
+.classify_wrap .classify .nav_title {
+  height: 50px;
+  line-height: 50px;
+}
+.classify_wrap .classify .nav_title span {
+  width: 50px;
+  height: 50px;
+  float: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+.classify_wrap .classify .nav_title ul {
+  padding-left: 70px;
+}
+.classify_wrap .classify .nav_title ul li {
+  float: left;
+  margin-right: 35px;
+}
+.classify_wrap .classify .nav_title ul li a {
+  font-size: 14px;
+}
+.classify_wrap .classify .nav_classify span {
+  display: block;
+  width: 60px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 10px;
+}
+.classify_wrap .classify .nav_classify ul {
+  margin-left: 60px;
+  margin-top: -45px;
+  padding-top: 10px;
+  min-height: 35px;
+  max-height: 125px;
+  overflow:hidden;
+  padding-left: 10px;
+}
+.classify_wrap .classify .nav_classify ul:hover{
+	max-height: 500px;
+	overflow:auto;
+}
+/*================循环样式=======================*/
+.course-nav-item{
+	height:30px;
+	line-height:30px;
+	float: left;
+	margin-right: 20px;
+	border-radius:8px;
+	margin-top: 10px;
+}
+.cur-course-nav{
+	padding:0px 10px;
+	background-color: #FFFACD;;
+}
+.cur-course-nav a{
+		color:#FFD700;
+}
+/*=======================================*/
+.classify_wrap .classify .nav_classify ul li {
+  min-width: 30px;
+  text-align: center;
+  float: left;
+  line-height: 30px;
+  margin-right: 35px;
+}
+.classify_wrap .classify .nav_classify ul li a {
+  font-size: 14px;
+}
+.classify_wrap .classify .nav_classify ul:first-child {
+  width: 1110px;
+  padding-left: 10px;
+  height: 100px;
+  overflow: hidden;
+}
+.classify_wrap .classify .nav_classify ul:first-child:hover {
+  height: auto;
+  overflow: auto;
+  background: #FAFAFA;
+  border-radius: 8px;
+}
+
+.classify_wrap .classify .rank {
+  padding-top: 20px;
+  height: 30px;
+  line-height: 30px;
+}
+.classify_wrap .classify .rank .title {
+  width: 70px;
+  float: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+.classify_wrap .classify .rank .new,
+.classify_wrap .classify .rank .hot {
+  display: inline-block;
+  width: 35px;
+  text-align: center;
+  margin-right: 10px;
+  cursor: pointer;
+} 
+/*===============新增的==============================*/
+.color-oc{
+	color:#0089D2;
+	}
+/*=============================================*/
+.classify_wrap .classify .rank .active {
+  color: #ffd700;
+  background: #fffacd;
+  border-radius: 5px;
+}
+.recommend .addcart {
+  z-index: 1002;
+  display: none;
+  width: 350px;
+  height: 180px;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -120px;
+  margin-left: -150px;
+  border-radius: 8px;
+  text-align: center;
+  padding: 15px 30px;
+}
+.recommend .addcart .success {
+  font-size: 20px;
+  height: 80px;
+  line-height: 80px;
+}
+.recommend .addcart .sure {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 8px;
+  background: #fdd102;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: -110px;
+}
+.ad {
+  width: 1200px;
+  margin: 0 auto;
+}
+.ad a{
+	width: 550px;
+	display:inline-block;
+	margin: 20px 0;
+	
+}
+.ad img {
+  width: 550px;
+  height: 120px;
+  border-radius: 8px;
+}
+.ad a:nth-child(2) {
+  margin-left: 90px;
+}
+.page {
+  width: 770px;
+  margin: 0 auto;
+}

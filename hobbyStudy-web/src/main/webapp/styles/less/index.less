@@ -1,0 +1,420 @@
+@import './variable.less';
+
+/*兴趣选择浮框*/
+.choose{
+    width: 1110px;
+    height: 570px;
+    background: #fff;
+    position: fixed;
+    left: 120px;
+    top: 40px;
+    z-index:99;
+    display: none;
+    .modal-title{
+        font-size: 20px;
+    }
+    .choose_tip{
+        color: #999;
+        font-size:14px;
+        padding-left: 15px;
+    }
+    .choose_content{
+        width: 1000px;
+        height: 420px;
+        margin:0 auto;
+        padding-top:20px; 
+        border:1px solid red;
+    }
+    .choose_ok{
+        text-align: center;
+        .btn{
+            width: 150px;
+            text-align: center;
+            margin:20px 35px;
+        }
+        a{
+            color:  @text-color;
+            font-size: 14px;
+        }
+    }    
+}
+/*头部开始*/
+header{
+    background: #000;
+    position: relative;
+    box-shadow: 0 0 10px @shadow;
+    .w{
+        width:@w;
+        height: @headH;
+        margin:0 auto;
+    }
+    .location{
+        width:auto; 
+        display:inline-block !important; 
+        display:inline; 
+        height: @headH;
+        line-height: @headH;
+        color: #fff;
+        .current_city{
+            padding-left: 25px; 
+            .location_icon{
+                display: block;
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                top: 10px;
+                left: 70px;
+                background: url('../../images/iconfont/location.png') no-repeat;
+                background-position: 0 -25px;
+                background-size: 100%;
+            }  
+            .city_name{
+                color: rgb(207, 201, 201);
+            }
+            .change_city_btn{
+                cursor: pointer;
+                margin-left: 5px;
+            } 
+            .change_city_btn:hover{
+                color: @color-hover;
+            }
+        }
+        .choose_city{
+            width:auto; 
+            position: absolute;
+            top: 10px;
+            left: 290px;
+            display: none;
+            select,input{
+                width: 100px;
+                height: 20px;
+                float: left;
+                margin-right: 5px;
+                text-align:center;
+            }
+            input{
+                width: 40px;
+                border-radius: 2px;
+                text-align: center;
+            }
+            input:first-of-type{
+                background: #436EEE;
+                color: #fff;
+            } 
+        }     
+    }
+    .header_nav{
+        position: absolute;
+        top:0;
+        right: 50px;
+        float:right;        
+        li{
+            color:#fff;
+            width: 140px;
+            line-height: @headH;
+            text-align: center;
+            list-style: none;
+            float: left;  
+            a{
+                color:#fff;
+                display: inline-block;
+                padding: 0 5px;
+                i, i:hover{
+                    margin-right: 5px;
+                    color: #fff;
+                }
+            }
+            a:hover{
+                color: @color-hover;
+            }
+        }
+        .login_link{
+            display: block;
+        }
+        .avatar{
+            display: none;
+            a{
+                color: @text-color;
+                img{
+                    display: inline-block;
+                    margin-left: 10px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 25px;
+                    border: 1px solid #4A4A4A;
+                }
+            }
+        }
+    }
+}
+/*头部结束*/
+
+/*logo和搜索部分开始*/
+.logo{
+    width: @w;
+    margin:0 auto;
+    height: 110px;
+    line-height: 110px;
+    .logoImg{
+        height: 80px;
+    }
+    .search{
+        float: right;
+        i{
+            position: absolute;
+            font-size: 20px;
+            margin:45px 0 0 20px;
+        }
+        input{
+            width: 500px;
+            height: 50px;
+            border:1px solid @mainColor;
+            border-radius: 25px;
+            text-indent: 45px;
+        }
+    }
+}
+/*logo和搜索部分结束*/
+
+/*导航部分*/
+.main_nav{
+    position: relative;
+    width: @w;
+    margin:0 auto;
+    height: 480px;
+    box-shadow: 0 12px 10px -7px @shadow;  
+    .left_nav{
+        width: 220px;
+        height: auto;
+        float: left;
+        color: #fff;
+        font-size: 14px;
+        .nav_title{
+            height: 60px;
+            line-height: 60px;
+            font-size: 20px;
+            background: @mainColor;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .nav_menu{
+            padding:5px 10px;
+            height: 60px;
+            line-height: 60px;
+            cursor: pointer;
+            background: #424242;
+            i{
+                float: right;
+                line-height: 60px;
+            }
+        }
+        .nav_menu:hover{
+            background: #5C5C5C;
+        }
+    }
+    .right_content{
+        position: absolute;
+        margin-left: 220px;
+        width: 980px;
+        .head_link{
+            height: 57px;
+            line-height: 57px;
+            margin-left: 20px;
+            ul li{
+                width: 130px;
+                float: left;
+                a{
+                    color: @text-black;
+                    font-size: 20px;
+                }
+                a:hover{
+                    color: @color-hover;
+                }
+            }
+        }
+        .banner{
+            width: 990px;
+            height: 420px;
+            .slide .carousel-inner .item a img{
+                width: 990px;
+                height: 420px;
+            }
+            .carousel-control.left {
+
+                background-image:none;
+                
+                background-repeat: repeat-x;
+                
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+                
+                }
+                
+            .carousel-control.right {
+            
+            left: auto; right: 0;
+            
+            background-image:none;
+            
+            background-repeat: repeat-x;
+            
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+            
+            } 
+        }
+        .menu_content{
+            display: block;
+            width:780px;
+            background: #fff;
+            position: absolute;
+            margin-top: -417px;
+            border-top: 2px solid @mainColor;
+            .menu_detail{
+                padding: 20px 30px 10px 30px;
+                width: 780px;
+                height: 198px;
+                .hobby_title{
+                    display: block;
+                    font-size: 16px;
+                    margin: 5px 0;
+                    color: @text-color;
+                }
+                ul li{
+                    float: left;
+                    width: 80px;
+                    text-align: center;
+                    a{
+                        color: @text-black;
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 14px;
+                    }
+                    a:hover{
+                        color: @color-hover;
+                    }
+                }
+            }
+            .ad{
+                height: 220px;
+                width: 780px;
+                background: #FAFAFA;
+                padding: 10px 30px;
+                a:hover{
+                    color: @text-black;
+                }
+                .item{
+                    width: 220px;
+                    height: 200px;
+                    float: left;
+                    margin-right: 20px;
+                    img{
+                        width: 220px;
+                        height: 120px;
+                        border-radius: 8px;
+                    }
+                    .ad_title{
+                        display: block;
+                        width: 220px;
+                        height: auto;
+                        padding: 10px;
+                    }
+                    .price{
+                        display: block;
+                        padding-left: 10px;
+                        color: @text-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*推荐栏*/
+.recommend{
+    width: 1230px;
+    margin:0 auto;
+    .course{
+        .title{
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            color: #000;
+            margin: 5px 0;
+            margin-left: 50px;
+            img{
+                width: 35px;
+                height: 35px;
+            }
+        }
+        .courseList{
+            .courseInfo{
+                float: left;
+                width: 230px;
+                height: auto;
+                margin: 7px;
+                border: 1px solid #cccccc;
+                img{
+                    width: 230px;
+                    height: 160px;
+                    background: #999999;
+                }
+                .courseTitle{
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    height: 30px;
+                    font-size: 18px;
+                    color: @text-color;
+                }
+                .courseDes{
+                    height: auto;
+                    font-size: 16px;
+                    color: #969696;
+                    margin:5px 0;
+                }
+                .courseTeacher{
+                    font-size: 16px;
+                    color: #000;
+                }
+            }
+        }
+    }
+    .leader{
+        .title{
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            color: #000;
+            margin: 5px 0;
+            margin-left: 50px;
+            img{
+                width: 35px;
+                height: 35px;
+            }
+        }
+        .leaderInfo{
+            float: left;
+            width: 230px;
+            height: auto;
+            margin: 7px;
+            border: 1px solid #cccccc;
+            text-align: center;
+            .leaderImg{
+                width: 80px;
+                height: 80px;
+                border:1px solid @shadow;
+                border-radius: 40px;
+                margin: 10px 70px;
+            }
+            .teacherName{
+                font-size: 20px;
+                color: @text-color;
+                margin: 10px 0;
+            }
+            .teacherDes{
+                font-size: 16px;
+                color:#999;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,153 @@
+@charset 'utf-8';
+/*enter_head star*/
+.enter_head {
+  height: 60px;
+  background: #438eb9;
+  padding: 0 40px;
+  border-bottom: 2px solid #62d2f9;
+}
+.enter_head .head_logo {
+  line-height: 50px;
+}
+.enter_head .head_logo img {
+  width: 50px;
+  height: 50px;
+}
+.enter_head .head_logo h3 {
+  color: #fff;
+  display: inline-block;
+  margin: 0 15px;
+}
+.enter_head .headnav li {
+  float: left;
+}
+.enter_head .headnav li a {
+  display: block;
+  width: 100px;
+  color: #fff;
+  text-align: center;
+  padding: 30px 5px 4px 5px;
+  font-size: 16px;
+  background: url('../../images/ico_bg.png') no-repeat;
+}
+.enter_head .headnav .current-menu a {
+  width: 120px;
+  background-color: #62d2f9;
+}
+.enter_head .headnav li#menu_0 a {
+  background-position: center -95px;
+}
+.enter_head .headnav li#menu_1 a {
+  background-position: center -195px;
+}
+.enter_head .headnav li#menu_2 a {
+  background-position: center -295px;
+}
+.enter_head .headnav li#menu_3 a {
+  background-position: center -395px;
+}
+.enter_head .headlink li {
+  float: left;
+}
+.enter_head .headlink li a {
+  color: #fff;
+  padding: 0 25px;
+  line-height: 60px;
+  background: url('../../images/main_link_ico.png') no-repeat;
+}
+.enter_head .headlink li#link_0 a {
+  background-position: 0 0;
+}
+.enter_head .headlink li#link_1 a {
+  background-position: 0 -150px;
+}
+.enter_head .headlink li#link_2 a {
+  background-position: 0 -50px;
+}
+.enter_head .headlink li#link_3 a {
+  background-position: 0 -190px;
+}
+.enter_head .headlink li#link_4 a {
+  background-position: 0 -100px;
+}
+/*enter_head end*/
+/*leftmenu star*/
+.leftMenu {
+  width: 180px;
+  height: 570px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  overflow: hidden;
+  border-right: 1px solid #b8c8d2;
+}
+.leftMenu .menu_detail dl.collapsed dt {
+  background: #f9f9f9 url(../../images/down.png) no-repeat;
+  background-position: right center;
+  background-size: 20%;
+}
+.leftMenu .menu_detail dl dd ul li a.current_right,
+.leftMenu .menu_detail dl dd ul li a:hover {
+  color: #438eb9;
+  background: #E0EEEE url('../../images/right.png') no-repeat;
+  background-size: 10%;
+  background-position: 150px center;
+  text-decoration: none;
+  border-top: 1px solid #b8c8d2;
+  border-bottom: 1px solid #b8c8d2;
+}
+.leftMenu .menu_detail dl {
+  overflow: hidden;
+}
+.leftMenu .menu_detail dl dt {
+  width: 179px;
+  height: 35px;
+  line-height: 35px;
+  text-indent: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #585858;
+  background: #f9f9f9 url(../../images/up.png) no-repeat;
+  background-position: right center;
+  background-size: 20%;
+  cursor: pointer;
+}
+.leftMenu .menu_detail dl dd ul li {
+  line-height: 35px;
+}
+.leftMenu .menu_detail dl dd ul li a {
+  width: 180px;
+  display: block;
+  text-indent: 20px;
+  color: #333;
+}
+.leftMenu .menu_detail .collapsed {
+  height: 35px;
+}
+/*leftmenu end*/
+/*iframe star*/
+.rightmain {
+  position: absolute;
+  left: 180px;
+  top: 60px;
+  right: 0;
+  bottom: 30px;
+  overflow: hidden;
+}
+.rightmain .right_content {
+  height: 100%;
+}
+.rightmain .right_content iframe {
+  width: 100%;
+  height: 100%;
+}
+/*iframe end*/
+/*footer star*/
+footer {
+  width: 100%;
+  height: 30px;
+  background: #438eb9;
+  position: fixed;
+  bottom: 0;
+}
+/*footer end*/

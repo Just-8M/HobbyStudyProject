@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hobbyStudy.dao.CourseCommonMapper">
+
+	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.CourseComment" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="username" property="username"  jdbcType="VARCHAR" />
+		<result column="to_username" property="toUsername"  jdbcType="VARCHAR" />
+		<result column="course_id" property="courseId"  jdbcType="INTEGER" />
+		<result column="section_id" property="sectionId"  jdbcType="INTEGER" />
+		<result column="section_title" property="sectionTitle"  jdbcType="VARCHAR" />
+		<result column="content" property="content"  jdbcType="VARCHAR" />
+		<result column="ref_id" property="refId"  jdbcType="INTEGER" />
+		<result column="ref_content" property="refContent"  jdbcType="VARCHAR" />
+		<result column="type" property="type"  jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"  jdbcType="DATE" />
+		<result column="create_user" property="createUser"  jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime"  jdbcType="TIMESTAMP" />
+		<result column="update_user" property="updateUser"  jdbcType="VARCHAR" />
+		<result column="del" property="del"  jdbcType="TINYINT" />
+	</resultMap> 
+
+	<sql id="Base_Column_List">
+		username, to_username, course_id, section_id, section_title, content, 
+		ref_id, ref_content, type, create_time, create_user, update_time, 
+		update_user, del, id 
+	</sql>
+
+	<select id="getTotalCommentCount" parameterType="com.hobbyStudy.entity.CourseComment" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM hs_course_comment
+		<trim prefix="WHERE " prefixOverrides="AND |OR "> 
+			<if test="type != null">
+				AND type = #{type, jdbcType=INTEGER}
+			</if>
+			<if test="courseId != null">
+				AND course_id = #{courseId, jdbcType=INTEGER}
+			</if>
+			<if test="sectionId != null">
+				AND section_id = #{sectionId, jdbcType=INTEGER}
+			</if>
+			AND del = 0
+		</trim> 
+	</select>
+
+	<select id="queryPageCount" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM hs_course_comment
+		<trim prefix="WHERE " prefixOverrides="AND |OR "> 
+			<if test="param1.type != null">
+				AND type = #{param1.type, jdbcType=INTEGER}
+			</if>
+			<if test="param1.courseId != null">
+				AND course_id = #{param1.courseId, jdbcType=INTEGER}
+			</if>
+			<if test="param1.sectionId != null">
+				AND section_id = #{param1.sectionId, jdbcType=INTEGER}
+			</if>
+			AND del = 0
+		</trim> 
+		ORDER BY id DESC
+		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER} 
+	</select>
+</mapper>

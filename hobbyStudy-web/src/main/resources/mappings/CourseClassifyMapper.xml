@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hobbyStudy.dao.CourseClassifyMapper">
+
+	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.CourseClassify">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name"  jdbcType="VARCHAR" />
+		<result column="code" property="code"  jdbcType="VARCHAR" />
+		<result column="parent_code" property="parentCode"  jdbcType="VARCHAR" />
+		<result column="title" property="title"  jdbcType="VARCHAR" />
+		<result column="sort" property="sort"  jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime"  jdbcType="DATE" />
+		<result column="create_user" property="createUser"  jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime"  jdbcType="TIMESTAMP" />
+		<result column="update_user" property="updateUser"  jdbcType="VARCHAR" />
+		<result column="del" property="del"  jdbcType="TINYINT" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		 id ,name, code, parent_code, title,sort, create_time, create_user, update_time, 
+		update_user, del
+	</sql>
+	<!-- 查询所有分类 -->
+	<select id="getAllClassify"  resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM hs_course_classify 
+		WHERE del = 0
+		ORDER BY parent_code , sort
+	</select>
+	<!-- 得到code -->
+	<!-- <select id="getByCode" parameterType="java.lang.String" resultType="com.hobbyStudy.entity.CourseClassify">
+		SELECT 
+		<include refid="Base_Column_List"  />
+		FROM hs_course_classify
+		WHERE code = #{code, jdbcType=VARCHAR}
+		AND del = 0
+	</select> -->
+	<select id="queryByCondition"  parameterType="com.hobbyStudy.entity.CourseClassify" resultMap="BaseResultMap"  >
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM hs_course_classify
+		<trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			 del = 0
+			<if test="code != null">
+				AND code = #{code}
+			</if>
+			<if test="parentCode != null">
+				AND parent_code = #{parentCode}
+			</if>
+		</trim>
+		ORDER BY parent_code , sort
+	</select>
+	
+</mapper>

@@ -1,0 +1,139 @@
+.common_header .leftnav ul li:last-child a {
+  color: #ffc125 !important;
+}
+.choose_school {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+}
+.choose_school .school_content {
+  width: 1150px;
+  margin: 0 auto;
+}
+.choose_school .school_content .rows {
+  float: left;
+  width: 350px;
+  height: 42px;
+  border-radius: 14px;
+  margin-right: 30px;
+}
+.choose_school .school_content .rows .label {
+  display: inline-block;
+  padding: 10px;
+  color: #ffc125;
+  letter-spacing: 10px;
+  font-size: 16px;
+}
+.choose_school .school_content .rows .text {
+  display: inline-block;
+  width: 70%;
+  color: #3a3838;
+}
+.choose_school .school_content .rows .text select {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  font-size: 14px;
+  letter-spacing: 5px;
+  outline: 0;
+}
+.search-list-wrap {
+  width: 100%;
+  min-height: 500px;
+  background: #F0F0F0;
+}
+.search-list-wrap .search-list {
+  width: 1210px;
+  margin: 0 auto;
+}
+.search-list-wrap .search-list .school_name {
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  letter-spacing: 10px;
+}
+.search-list-wrap .search-list .school_team {
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  letter-spacing: 8px;
+}
+.search-list-wrap .search-list .school_team img {
+  width: 25px;
+  margin: 0 5px;
+}
+.search-list-wrap .search-list ul li {
+  position: relative;
+  float: left;
+  width: 370px;
+  height: 420px;
+  background: #fff;
+  border-radius: 10px;
+  margin: 20px 15px;
+  padding: 15px 25px;
+}
+.search-list-wrap .search-list ul li .profile_photo {
+  display: block;
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+}
+.search-list-wrap .search-list ul li .profile_photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 25px;
+}
+.search-list-wrap .search-list ul li .leader_name {
+  width: 100%;
+  float: left;
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  color: #ffc125;
+  font-size: 18px;
+  margin-left: -30px;
+  margin-bottom: 5px;
+}
+.search-list-wrap .search-list ul li .leader_name .favarite_gz {
+  position: absolute;
+  font-size: 14px;
+  float: right;
+  cursor: pointer;
+  text-align: center;
+  min-width: 50px;
+  padding: 0 10px;
+  line-height: 25px;
+  border: 1px solid #bdb8b8;
+  color: #E5224C;
+  border-radius: 8px;
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 3px;
+}
+.search-list-wrap .search-list ul li .leader_name .favarite_gz:hover {
+  background: #F5F5F5;
+}
+.search-list-wrap .search-list ul li .lebel-words {
+  width: auto;
+  max-height: 70px;
+}
+.search-list-wrap .search-list ul li .lebel-words span {
+  display: inline-block;
+  line-height: 30px;
+  min-width: 30px;
+  padding: 0 10px;
+  text-align: center;
+  background: #FFF68F;
+  border-radius: 25px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+.search-list-wrap .search-list ul li .person_info {
+  margin-top: 15px;
+  text-align: justify;
+  width: 320px;
+  max-height: 130px;
+  overflow: hidden;
+  font-size: 14px;
+}

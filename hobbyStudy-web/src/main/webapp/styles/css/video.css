@@ -1,0 +1,105 @@
+.video_wrap {
+  width: 1100px;
+  margin: 20px auto;
+  display: flex;
+}
+.video_wrap .video_box {
+  width: 670px;
+}
+.video_wrap .video_box video {
+  width: 670px;
+  height: 380px;
+}
+.video_wrap .video_box .video_info {
+  font-size: 18px;
+  min-height: 30px;
+}
+.video_wrap .video_box .video_info .video_title {
+  line-height: 25px;
+}
+.video_wrap .video_box .video_info .share_btn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
+}
+.video_wrap .video_box .video_info .video_user {
+  width: auto;
+  display: block;
+  margin: 5px 0;
+}
+.video_wrap .video_box .video_info .video_user .profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+.video_wrap .video_box .video_info .video_user .user_name {
+  line-height: 30px;
+  font-size: 16px;
+  margin-left: 10px;
+  color: #666;
+}
+.video_wrap .video_box .video_info .video_user:hover {
+  text-decoration: none;
+}
+.video_wrap .video_box .video_info .video_user:hover .user_name {
+  color: #ffc125;
+}
+.video_wrap .video_box .pl {
+  width: 100%;
+  height: 350px;
+  background: blue;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+.video_wrap .other_video {
+  flex: 1;
+  margin-left: 30px;
+}
+.video_wrap .other_video h4 {
+  padding-left: 15px;
+  border-left: 5px solid #fdd102;
+  color: #ffc125;
+}
+.video_wrap .other_video .other_video_list li {
+  width: 480px;
+  float: left;
+}
+.video_wrap .other_video .other_video_list li .video_box {
+  width: 160px;
+  height: 120px;
+}
+.video_wrap .other_video .other_video_list li .video_box .video_link {
+  width: 160px;
+  height: 120px;
+}
+.video_wrap .other_video .other_video_list li .video_info {
+  margin-left: 20px;
+  padding: 10px 0;
+}
+.video_wrap .other_video .other_video_list li .video_info .video_name {
+  width: 270px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  font-size: 16px;
+  line-height: 30px;
+  color: #000;
+}
+.video_wrap .other_video .other_video_list li .video_info .user_name {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+  line-height: 30px;
+}
+.video_wrap .other_video .other_video_list li .video_info .play_num {
+  display: block;
+  color: #666;
+}
+.video_wrap .other_video .other_video_list li .video_info .play_num i {
+  padding: 5px;
+}

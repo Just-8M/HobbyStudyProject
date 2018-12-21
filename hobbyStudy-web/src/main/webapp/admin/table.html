@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选</title>
+    <style>
+    th,td{
+        width: 80px;
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+    <table id="tablelist">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" name="chooseAll" id="chooseAll">全选
+                </th>
+                <th>编号</th>
+                <th>项目名</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>choose_01</td>
+                <td>project_01</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>choose_02</td>
+                <td>project_01</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>choose_03</td>
+                <td>project_01</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>choose_04</td>
+                <td>project_01</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="../script/bootstrap/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function() {
+            $('#chooseAll').click(function() {
+                if($(this).prop('checked')){
+                    $('#tablelist :checkbox').prop('checked',true)
+                }else{
+                    $('#tablelist :checkbox').prop('checked',false)
+                }
+            })
+        })
+    </script>
+</body>
+</html>
