@@ -24,7 +24,7 @@ public class CourseCommentController {
 
 	//  加载课程的评论和答疑
 	@RequestMapping("/courseComment")
-	public ModelAndView CourseComment(CourseComment courseComment , TailPage<CourseComment> page){
+	public ModelAndView courseComment(CourseComment courseComment , TailPage<CourseComment> page){
 		ModelAndView mv = new ModelAndView("forward:/comment.jsp");
 		if(null == courseComment.getCourseId() || courseComment.getType() == null)
 			return new ModelAndView("forward:/common/404"); 

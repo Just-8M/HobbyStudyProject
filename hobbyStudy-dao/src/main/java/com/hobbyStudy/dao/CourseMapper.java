@@ -27,7 +27,7 @@ public interface CourseMapper {
 	/**
 	*分页获取
 	**/
-	public List<Course> queryPage(Course queryEntity , TailPage<Course> page);
+	public List<Course> queryPage(Course queryEntity, TailPage<Course> page);
 	/**  
 	* @Title: getCourseById  
 	* @Description: (获取课程详情页)  
@@ -66,5 +66,14 @@ public interface CourseMapper {
 	* @throws  
 	*/  
 	public Course querySingleCourseDetalis(Integer id);
+	/**
+	 * @Title: querySelectionCourse
+	 * @Description: (查询精选课程)
+	 * @param
+	 * @return Course
+	 * @throws
+	 */
+	public  List<Course> querySelectionCourse();
+		
 	
 }

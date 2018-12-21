@@ -42,7 +42,7 @@
             <select class="form-control" id="ecityName" data-city="---- 选择市 ----" name="cityName"></select>
         </div>
         <div class="district_select lf">
-            <select class="form-control" id="edistrictName" data-district="---- 选择区 ----" name="districtName"></select>
+            <select class="form-control" id="edistrictName"   data-district="---- 选择区 ----" name="districtName"></select>
         </div>
     </div>
 
@@ -147,7 +147,32 @@
     <script type="text/javascript">
         $(function(){
             $('.video-back').vidbacking();
+            $('#edistrictName').change(function() {
+            var area=$(this).val();
+            if (area == null || area == "" ) {
+				
+			}else{
+				alert(area);
+	              $.ajax({
+		                url: "${pageContext.request.contextPath}/areaSelectCourse",        //后台url
+		                data: {                          //数据
+		                	school : area,
+		                },
+		                type: "POST",                   //类型，POST或者GET
+		                dataType: 'json',              //数据返回类型，可以是xml、json等
+		                success: function (data) {      //成功，回调函数
+		                	alert("success");
+		                    alert(data);
+		                },
+		                error: function (er) {          //失败，回调函数
+		                    alert("fail");
+		                }
+		            });  
+			}
+          
+         })
         });
+
     </script>
 </body>
 </html>

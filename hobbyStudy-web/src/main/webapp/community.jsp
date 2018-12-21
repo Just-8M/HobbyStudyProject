@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,177 +33,27 @@
         <!-- 作品排行 -->
         <section class="works_wrap cf"> 
             <ul class="works_list">
+            <c:forEach items="${selectionCourseList}" var="sc">
                 <li class="work_item">
                     <a href="video.html">
                         <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
                         <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
+                            <span class="work_item_name">${sc.name}</span>
                         </div>
                         <!-- 鼠标移入显示视频介绍 -->
                         <div class="work_item_img_hover">
                             <span class="work_item_intro">{{视频介绍}}</span>
                         </div>
                     </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
+                    <span class="work_item_time">${sc.updateTime}</span>
                     <div class="work_user">
                          <a href="leader.html">
                             <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
+                            <span class="user_name">${sc.username}</span>
                         </a>
                     </div> 
-                </li>
-                <li class="work_item">
-                    <a href="video.html">
-                        <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                        <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                        </div>
-                        <!-- 鼠标移入显示视频介绍 -->
-                        <div class="work_item_img_hover">
-                            <span class="work_item_intro">{{视频介绍}}</span>
-                        </div>
-                    </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
-                    <div class="work_user">
-                            <a href="leader.html">
-                            <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
-                        </a>
-                    </div> 
-                </li>
-                <li class="work_item">
-                    <a href="video.html">
-                        <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                        <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                        </div>
-                        <!-- 鼠标移入显示视频介绍 -->
-                        <div class="work_item_img_hover">
-                            <span class="work_item_intro">{{视频介绍}}</span>
-                        </div>
-                    </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
-                    <div class="work_user">
-                            <a href="leader.html">
-                            <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
-                        </a>
-                    </div> 
-                </li>
-                <li class="work_item">
-                    <a href="video.html">
-                        <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                        <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                        </div>
-                        <!-- 鼠标移入显示视频介绍 -->
-                        <div class="work_item_img_hover">
-                            <span class="work_item_intro">{{视频介绍}}</span>
-                        </div>
-                    </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
-                    <div class="work_user">
-                            <a href="leader.html">
-                            <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
-                        </a>
-                    </div> 
-                </li>
-                <li class="work_item">
-                    <a href="video.html">
-                        <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                        <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                        </div>
-                        <!-- 鼠标移入显示视频介绍 -->
-                        <div class="work_item_img_hover">
-                            <span class="work_item_intro">{{视频介绍}}</span>
-                        </div>
-                    </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
-                    <div class="work_user">
-                            <a href="leader.html">
-                            <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
-                        </a>
-                    </div> 
-                </li>
-                <li class="work_item">
-                    <a href="video.html">
-                        <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                        <div class="work_item_info">
-                            <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                        </div>
-                        <!-- 鼠标移入显示视频介绍 默认隐藏-->
-                        <div class="work_item_img_hover">
-                            <span class="work_item_intro">{{视频介绍}}</span>
-                        </div>
-                    </a>
-                    <span class="work_item_time">2018-12-18 18:21</span>
-                    <div class="work_user">
-                            <a href="leader.html">
-                            <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">{{用户名}}</span>
-                        </a>
-                    </div> 
-                </li>
-                <li class="work_item">
-                        <a href="video.html">
-                            <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                            <div class="work_item_info">
-                                <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                            </div>
-                            <!-- 鼠标移入显示视频介绍 -->
-                            <div class="work_item_img_hover">
-                                <span class="work_item_intro">{{视频介绍}}</span>
-                            </div>
-                        </a>
-                        <span class="work_item_time">2018-12-18 18:21</span>
-                        <div class="work_user">
-                                <a href="leader.html">
-                                <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                                <span class="user_name">{{用户名}}</span>
-                            </a>
-                        </div> 
-                    </li>
-                    <li class="work_item">
-                        <a href="video.html">
-                            <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                            <div class="work_item_info">
-                                <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                            </div>
-                            <!-- 鼠标移入显示视频介绍 -->
-                            <div class="work_item_img_hover">
-                                <span class="work_item_intro">{{视频介绍}}</span>
-                            </div>
-                        </a>
-                        <span class="work_item_time">2018-12-18 18:21</span>
-                        <div class="work_user">
-                                <a href="leader.html">
-                                <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                                <span class="user_name">{{用户名}}</span>
-                            </a>
-                        </div> 
-                    </li>
-                    <li class="work_item">
-                        <a href="video.html">
-                            <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
-                            <div class="work_item_info">
-                                <span class="work_item_name">{{视频名字长度超出则隐藏显示...}}</span>
-                            </div>
-                            <!-- 鼠标移入显示视频介绍 默认隐藏-->
-                            <div class="work_item_img_hover">
-                                <span class="work_item_intro">{{视频介绍}}</span>
-                            </div>
-                        </a>
-                        <span class="work_item_time">2018-12-18 18:21</span>
-                        <div class="work_user">
-                                <a href="leader.html">
-                                <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                                <span class="user_name">{{用户名}}</span>
-                            </a>
-                        </div> 
-                    </li>
+                  </li>
+                </c:forEach>
             </ul>
         </section>
 

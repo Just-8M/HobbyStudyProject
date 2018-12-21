@@ -38,7 +38,7 @@
                 <label for="username">验证码<span class="input_error" id="verify_error"></span></label> 
                 <input type="text" name="verifycode" id="verifycode"  placeholder="请输入验证码"/> 
                 <div class="verify" id="verCode"></div>
-            </div> -->
+            </div>  -->
            
             <input type="button" value="注册" id="submit_btn"/>	
         </form>		

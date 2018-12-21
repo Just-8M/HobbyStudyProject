@@ -30,7 +30,7 @@ public interface CourseService {
 	* @return TailPage<Course>  
 	* @throws
 	 */
-	public TailPage<Course> queryCoursePage(Course course ,TailPage<Course> page);
+	public TailPage<Course> queryCoursePage(Course course, TailPage<Course> page);
 	/**
 	 * 
 	* @Title: getById  
@@ -67,4 +67,13 @@ public interface CourseService {
 	* @throws  
 	*/  
 	public Course querySingleCourseDetalis(Integer id);
+	/**
+	 * 
+	* @Title: querySelectionCourse  
+	* @Description: (查询精选课程)  
+	* @param     
+	* @return List<Course>  
+	* @throws
+	 */
+	public List<Course> querySelectionCourse();
 }

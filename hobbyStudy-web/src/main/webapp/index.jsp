@@ -136,9 +136,9 @@
 			<div class="head_link">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/recommendIndex">推荐看点</a></li>
-                    <li><a href="javascript:;">精彩社区</a></li>
-                    <li><a href="${pageContext.request.contextPath}/offline.jsp">学院</a></li>
-                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">寻Ta</a></li>
+                    <li><a href="${pageContext.request.contextPath}/communityCourse">精彩社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/offline.jsp">XX学院</a></li>
+                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">XX寻Ta</a></li>
                     <li></li>
 				</ul>
 			</div>

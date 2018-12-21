@@ -10,10 +10,9 @@
 <body>
 
 
-${SingleCourseDetalis.name} <br/>
-${SingleCourseDetalis.id}
+
 <br/>
-${recommendPhotoSlide}
+${selectionCourseList}
 <br/>
  <c:forEach items="${chaptSections}" var="cps" >
      ${cps.name}<br/>

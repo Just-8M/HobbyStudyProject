@@ -158,7 +158,14 @@
 		AND del = 0
 	</select>
 	
-	
+	<!-- 查询精彩课程 -->
+	<!-- Select * From hs_course ORDER BY weight DESC; -->
+	<select id="querySelectionCourse"  resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"  />
+		FROM hs_course
+		ORDER BY weight DESC
+	</select>
 	
 	
 	

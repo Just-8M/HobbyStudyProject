@@ -68,7 +68,6 @@ public class CourseDetailsController {
 		/*if (StringUtils.isNotEmpty(user.getHeader())) {
 			user.setHeader(QiniuStorage.getUrl(user.getHeader()));
 		}*/
-		System.out.println(user + "12312131" + course.getUsername() + " 12132 " + userService.getByUsername(course.getUsername()));
 		mv.addObject("user", user);
 
 		// 获取推荐课程

@@ -88,5 +88,9 @@ public class CourseServiceImpl implements CourseService{
 	public Course querySingleCourseDetalis(Integer id) {
 		return courseMapper.querySingleCourseDetalis(id);
 	}
+	@Override
+	public List<Course> querySelectionCourse() {
+		return courseMapper.querySelectionCourse();
+	}
 
 }

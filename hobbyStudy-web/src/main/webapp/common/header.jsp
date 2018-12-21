@@ -188,20 +188,20 @@
     </style>
 </head>
 <body>
-    <div class="common_header">
+    <div class="common_header cf">
         <div class="header_content">
             <a href="${pageContext.request.contextPath}/getIndexPage">
                 <div class="logo"></div>
             </a> 
-            <div class="leftnav">
+            <div class="leftnav cf">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/recommendIndex">推荐看点</a></li>
-                    <li><a href="javascript:;">精彩社区</a></li>
-                    <li><a href="${pageContext.request.contextPath}/offline.jsp">学院</a></li>
-                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">寻Ta</a></li>
+                    <li><a href="${pageContext.request.contextPath}/communityCourse">精彩社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/offline.jsp">XX学院</a></li>
+                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">XX寻Ta</a></li>
                 </ul>
             </div>
-            <div class="rightnav">
+            <div class="rightnav cf">
                 <ul>
                     <li><a href="javascript:;">购物车</a><span class="num">0</span></li>
                     <li>
