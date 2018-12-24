@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hobbyStudy.dao.RecommendMapper;
+import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.RecommendPhotoSlide;
 import com.hobbyStudy.service.RecommendService;
 
@@ -27,5 +28,4 @@ public class RecommendServiceImpl implements RecommendService{
 	public List<RecommendPhotoSlide> queryNavigationPhoto(Integer count) {
 		return recommendMapper.queryNavigationPhoto(count);
 	}
-
 }

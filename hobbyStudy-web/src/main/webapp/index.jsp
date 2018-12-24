@@ -136,7 +136,7 @@
 			<div class="head_link">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/recommendIndex">推荐看点</a></li>
-                    <li><a href="${pageContext.request.contextPath}/communityCourse">精彩社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/communityCourse?sort=select">精彩社区</a></li>
                     <li><a href="${pageContext.request.contextPath}/offline.jsp">XX学院</a></li>
                     <li><a href="${pageContext.request.contextPath}/queryTaBySort">XX寻Ta</a></li>
                     <li></li>
@@ -331,7 +331,7 @@
 					<img src="images/iconfont/default1.png" class="leaderImg">
 					</c:otherwise>
 				</c:choose>
-				<div class="teacherName">${recommendTeacher.username}</div>
+				<div class="teacherName">${recommendTeacher.userid}</div>
 				<!-- 当title为空时，就设置为默认简介 -->
 				<c:choose>
 					<c:when test="${!empty recommendTeacher.title}">
@@ -360,6 +360,6 @@
 		src="script/bootstrap/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="script/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="script/index.js"></script>
-	<script type="text/javascript" src="script/model/distpicker.js"></script>
+	<script type="text/javascript" src="script/model/distpicker.min.js"></script>
 </body>
 </html>

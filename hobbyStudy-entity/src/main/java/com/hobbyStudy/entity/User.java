@@ -10,8 +10,9 @@ import java.util.Date;
 public class User {
 	
 	private Integer id;    	      //  id
-	private String realname;      //  用户名
-	private String username;   	  //  真实姓名
+	private String realname;      //  用户真实姓名（领学者必填）
+	private String userid;   	  //  用户id（注册时必填项，唯一性）
+	private String nickname;   	  //  昵称（可改选项可重复）
 	private String userCategory;  //  用户类别
 	private String password;   	  //  密码
 	private Integer gender;    	  //  性别
@@ -59,12 +60,20 @@ public class User {
 		this.realname = realname;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getUserCategory() {
@@ -282,13 +291,13 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", realname=" + realname + ", username=" + username + ", userCategory=" + userCategory
-				+ ", password=" + password + ", gender=" + gender + ", Identity=" + Identity + ", header=" + header
-				+ ", mobile=" + mobile + ", status=" + status + ", birthday=" + birthday + ", education=" + education
-				+ ", collegeCode=" + collegeCode + ", collegeName=" + collegeName + ", certNo=" + certNo + ", title="
-				+ title + ", sign=" + sign + ", money=" + money + ", openId=" + openId + ", wechatId=" + wechatId
-				+ ", qq=" + qq + ", loginTime=" + loginTime + ", ip=" + ip + ", province=" + province + ", city=" + city
-				+ ", district=" + district + ", weight=" + weight + ", fans=" + fans + ", createTime=" + createTime
-				+ ", del=" + del + "]";
+		return "User [id=" + id + ", realname=" + realname + ", userid=" + userid + ", nickname=" + nickname
+				+ ", userCategory=" + userCategory + ", password=" + password + ", gender=" + gender + ", Identity="
+				+ Identity + ", header=" + header + ", mobile=" + mobile + ", status=" + status + ", birthday="
+				+ birthday + ", education=" + education + ", collegeCode=" + collegeCode + ", collegeName="
+				+ collegeName + ", certNo=" + certNo + ", title=" + title + ", sign=" + sign + ", money=" + money
+				+ ", openId=" + openId + ", wechatId=" + wechatId + ", qq=" + qq + ", loginTime=" + loginTime + ", ip="
+				+ ip + ", province=" + province + ", city=" + city + ", district=" + district + ", weight=" + weight
+				+ ", fans=" + fans + ", createTime=" + createTime + ", del=" + del + "]";
 	}
 } 

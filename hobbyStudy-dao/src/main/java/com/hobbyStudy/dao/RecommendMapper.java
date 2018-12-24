@@ -2,6 +2,7 @@ package com.hobbyStudy.dao;
 
 import java.util.List;
 
+import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.RecommendPhotoSlide;
 
 /**  
@@ -12,7 +13,6 @@ import com.hobbyStudy.entity.RecommendPhotoSlide;
 */
 public interface RecommendMapper {
 
-	
 	/**  
 	* @Title: queryNavigationPhoto  
 	* @Description: (查询轮番图 )  
@@ -21,5 +21,4 @@ public interface RecommendMapper {
 	* @throws  
 	*/  
 	public List<RecommendPhotoSlide> queryNavigationPhoto(Integer count);
-	
 }

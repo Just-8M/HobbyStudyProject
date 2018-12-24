@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="lib/css/share.css">
 </head>
 <body>
-<!--引入公共头部-->
+	<!--引入公共头部-->
 	<%@include file="../common/header.jsp"%>    
 	<span class="imgurl" style="display: none">http://y.photo.qq.com/img?s=hvm43XuUI&l=y.jpg</span>
     <!-- <button id="btn" class="btn">更换背景</button> -->

@@ -8,9 +8,9 @@ public class Course {
 	private static final long serialVersionUID = -935786327879089574L;
 	
 	private Integer id;
-	private String name;      // 课程名称
-	private String type;      //  课程类型
-	private String classify;      //课程分类
+	private String name;         	// 课程名称
+	private String type;         	//  课程类型
+	private String classify;        //课程分类
 	private String classifyName;    //  课程分类名称
 	
 	private String subClassify;      //  课程二级分类

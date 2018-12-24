@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hobbyStudy.dao.InstitutionMapper">
+	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.Institution">
+	
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="courseName" property="courseName"  jdbcType="VARCHAR" />
+		<result column="picture" property="picture"  jdbcType="VARCHAR" />
+		<result column="courseIntro" property="courseIntro"  jdbcType="VARCHAR" />
+		<result column="courseDetail" property="courseDetail"  jdbcType="VARCHAR" />
+		
+		<result column="institutionName" property="institutionName"  jdbcType="VARCHAR" />
+		<result column="type" property="type"  jdbcType="VARCHAR" />
+		<result column="level" property="level"  jdbcType="VARCHAR" />
+		<result column="timespanStart" property="timespanStart"  jdbcType="DATE" />
+		<result column="timespanEnd" property="timespanEnd"  jdbcType="DATE" />
+		<result column="periods" property="periods"  jdbcType="VARCHAR" />
+		<result column="peopleNum" property="peopleNum"  jdbcType="VARCHAR" />
+		
+		<result column="teachVideo" property="teachVideo"  jdbcType="VARCHAR" />
+		<result column="teacherIntro" property="teacherIntro"  jdbcType="VARCHAR" />
+		<result column="courseOutline" property="courseOutline"  jdbcType="VARCHAR" />
+		
+		<result column="province" property="province"  jdbcType="VARCHAR" />
+		<result column="city" property="city"  jdbcType="VARCHAR" />
+		<result column="district" property="district"  jdbcType="VARCHAR" />
+		<result column="telePhone" property="telePhone"  jdbcType="VARCHAR" />
+		<result column="institutionaddress" property="institutionaddress"  jdbcType="VARCHAR" />
+		
+		<result column="create_time" property="createTime"  jdbcType="DATE" />
+		<result column="create_user" property="createUser"  jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime"  jdbcType="DATE" />
+		<result column="update_user" property="updateUser"  jdbcType="VARCHAR" />
+		<result column="del" property="del"  jdbcType="TINYINT" />
+	</resultMap>
+	
+	<sql id="Base_Column_List"> 
+		id,courseName,picture,courseIntro,courseDetail,institutionName,type,level,timespanStart,timespanEnd,periods,peopleNum,
+		teachVideo,teacherIntro,courseOutline,province,city,district,telePhone,institutionaddress,
+		create_time,create_user,update_time,update_user,del
+	</sql>
+	<select id="queryInstitutionCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM hs_institution
+		WHERE district = #{district,jdbcType=VARCHAR}
+	</select>
+	<!--  查询机构相关课程信息-->
+	<select id="queryInstitutionDetail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM hs_institution
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+</mapper>

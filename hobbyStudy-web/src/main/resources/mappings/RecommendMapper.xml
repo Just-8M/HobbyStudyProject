@@ -26,5 +26,4 @@
 		ORDER BY weight DESC
 		LIMIT 0 , #{count}
 	</select>
-	
 </mapper>

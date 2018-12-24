@@ -92,7 +92,7 @@ public class CourseNavigationController {
 		// 首页推荐讲师
 		List<User> recommendTeacher = userService.getRecommendTeacher();
 		for (User user : recommendTeacher) {
-			System.out.println("User:  " +user.getUsername() + "   " + user.getTitle() + ",,," + user.getId() );
+			System.out.println("User:  "   + user.getTitle() + ",,," + user.getId() );
 		}
 		mv.addObject("recommendTeacher", recommendTeacher);
 		return mv;

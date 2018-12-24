@@ -76,4 +76,32 @@ public interface CourseService {
 	* @throws
 	 */
 	public List<Course> querySelectionCourse();
+	
+	/**  
+	* @Title: queryHottestCourse  
+	* @Description: (最热课程)  
+	* @param     
+	* @return List<Course>  
+	* @throws  
+	*/  
+	public List<Course> queryHottestCourse();
+	
+	/**  
+	* @Title: queryLastestCourse  
+	* @Description: (最新课程列表)  
+	* @param     
+	* @return List<Course>  
+	* @throws  
+	*/  
+	public List<Course> queryLastestCourse();
+
+	/**  
+	* @Title: queryNavCategoryCourse  
+	* @Description: (查询推荐页的子菜单分类下所有课程)  
+	* @param     
+	* @return List<Course>  
+	* @throws  
+	*/  
+	public List<Course> queryNavCategoryCourse(String subClassifyName);
+	
 }

@@ -72,7 +72,7 @@ public class UserController{
     @ResponseBody
     public JSONObject Register(User user) {
 		JSONObject json = new JSONObject();
-		System.out.println("用户名:" +user.getUsername() + "密码：" + user.getPassword());
+		System.out.println("用户名:" +user.getUserid() + "密码：" + user.getPassword());
         Boolean flag  = userService.getByUsernameAndPassword(user);
         System.out.println("flag值："+flag);
         if (flag == true) {
@@ -100,11 +100,12 @@ public class UserController{
 		ModelAndView mv = new ModelAndView("forward:/findTa.jsp");
 		List<User> userFansList = userService.queryTaBySort(null);
 	    for (User u : userFansList) {
-			System.out.println("领学者姓名：" + u.getUsername() + "id :" + u.getId());
+			System.out.println("领学者姓名：" + u.getUserid() + "id :" + u.getId());
 		}
 	    mv.addObject("userFansList", userFansList);
 		return  mv;
     }
+	//  通过学校查询领学者
 	@ResponseBody
 	@RequestMapping(value = "/Test", method = RequestMethod.POST)
     public List<User> Test(@RequestParam("schoolName") String schoolName,HttpServletRequest request) {
@@ -131,7 +132,7 @@ public class UserController{
 		return mv;
 	 }*/
 	
-	
+	//  查询个人详情
 	@RequestMapping(value = "/queryPersonDetail")   //  映射路径
     public ModelAndView queryPersonDetail(Integer id){
 		ModelAndView mv = new ModelAndView("forward:/leader.jsp");

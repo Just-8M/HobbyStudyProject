@@ -196,7 +196,7 @@
             <div class="leftnav cf">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/recommendIndex">推荐看点</a></li>
-                    <li><a href="${pageContext.request.contextPath}/communityCourse">精彩社区</a></li>
+                    <li><a href="${pageContext.request.contextPath}/communityCourse?type=0">精彩社区</a></li>
                     <li><a href="${pageContext.request.contextPath}/offline.jsp">XX学院</a></li>
                     <li><a href="${pageContext.request.contextPath}/queryTaBySort">XX寻Ta</a></li>
                 </ul>

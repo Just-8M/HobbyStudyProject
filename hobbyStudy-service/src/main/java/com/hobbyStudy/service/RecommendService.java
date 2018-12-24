@@ -2,6 +2,7 @@ package com.hobbyStudy.service;
 
 import java.util.List;
 
+import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.RecommendPhotoSlide;
 
 /**  
@@ -21,5 +22,7 @@ public interface RecommendService {
 	* @throws  
 	*/  
 	public List<RecommendPhotoSlide> queryNavigationPhoto(Integer count);
+
+	
 	
 }

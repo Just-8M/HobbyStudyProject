@@ -4,7 +4,8 @@
 	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.User">
 		<id column="id" property="id" jdbcType="INTEGER"/>
 		<result column="realname" property="realname"  jdbcType="VARCHAR" />
-		<result column="username" property="username"  jdbcType="VARCHAR" />
+		<result column="userid" property="userid"  jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname"  jdbcType="VARCHAR" />
 		<result column="userCategory" property="userCategory"  jdbcType="VARCHAR" />
 		<result column="password" property="password"  jdbcType="VARCHAR" />
 		<result column="gender" property="gender"  jdbcType="INTEGER" />
@@ -34,7 +35,7 @@
 		<result column="del" property="del"  jdbcType="TINYINT" />
 	</resultMap>
 	<sql id="Base_Column_List"> 
-		id,realname,username,userCategory,password,gender,Identity,header,mobile,status,
+		id,realname,userid,nickname,userCategory,password,gender,Identity,header,mobile,status,
 		birthday,education,college_code,college_name ,cert_no,title,sign,money,open_id,wechat_id,qq,
 		login_time,ip,province,city,district,weight,fans,create_time,del
 	</sql>
@@ -43,7 +44,7 @@
 		select
 		count(1) cnt
 		from hs_user
-		where username = #{username,jdbcType=VARCHAR}
+		where userid = #{userid,jdbcType=VARCHAR}
 	</select>
 	<!-- 
 		flushCache="true":
@@ -60,8 +61,11 @@
 			<if test="realname != null ">
 			realname,
 			</if>
-			<if test="username != null ">
-			username,
+			<if test="userid != null ">
+			userid,
+			</if>
+			<if test="nickname != null ">
+			nickname,
 			</if>
 			<if test="userCategory != null ">
 			userCategory,
@@ -150,8 +154,11 @@
 			<if test="realname != null ">
 			#{realname, jdbcType=VARCHAR},
 			</if>
-			<if test="username != null ">
-			#{username, jdbcType=VARCHAR},
+			<if test="userid != null ">
+			#{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null ">
+			#{nickname, jdbcType=VARCHAR},
 			</if>
 			<if test="userCategory != null ">
 			#{userCategory, jdbcType=VARCHAR},
@@ -242,7 +249,7 @@
 		select
 		count(1) cnt
 		from hs_user
-		where username = #{username,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
+		where userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
 	</select> -->
 	
 	<!-- 首页推荐讲师 -->
@@ -257,7 +264,7 @@
 		SELECT 
 		<include refid="Base_Column_List"/>
 		FROM hs_user
-		WHERE username = #{username, jdbcType=VARCHAR}
+		WHERE userid = #{userid, jdbcType=VARCHAR}
 		AND DEL = 0
 	</select>
 	<select id="queryTaBySort" parameterType="com.hobbyStudy.entity.User"  resultMap="BaseResultMap"> 

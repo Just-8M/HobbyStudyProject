@@ -167,10 +167,29 @@
 		ORDER BY weight DESC
 	</select>
 	
+		<!-- 查询最热课程 -->
+	<select id="queryHottestCourse"  resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"  />
+		FROM hs_course
+		ORDER BY study_count DESC
+	</select>
 	
-	
-	
-	
+		<!-- 查询最新课程 -->
+	<select id="queryLastestCourse"  resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"  />
+		FROM hs_course
+		ORDER BY create_time DESC
+	</select>
+	<!-- 查询推荐页的子菜单分类下所有课程  -->
+	<select id="queryNavCategoryCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"  />
+		FROM hs_course
+		WHERE  sub_classify= #{subClassifyName, jdbcType=VARCHAR}
+		AND del = 0
+	</select>
 	
 	
 	
