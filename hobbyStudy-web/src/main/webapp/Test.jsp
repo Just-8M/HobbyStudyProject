@@ -11,13 +11,19 @@
 
 
 
+
 <br/>
-${selectionCourseList}
-<br/>
- <c:forEach items="${chaptSections}" var="cps" >
+ <c:forEach items="${selectionCourseList}" var="cps" >
      ${cps.name}<br/>
 </c:forEach>
-
+----------------------
+ <c:forEach items="${HottestCourseList}" var="cps" >
+     ${cps.name}<br/>
+</c:forEach>
+-----------------------------
+ <c:forEach items="${LastestCourseList}" var="cps" >
+     ${cps.name}<br/>
+</c:forEach>
 <br/>
 ${user.username}
 <br/>

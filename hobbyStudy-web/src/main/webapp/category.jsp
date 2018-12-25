@@ -100,7 +100,6 @@
                 		</c:otherwise>
                 	</c:choose>
                 </a>
-                <!-- <span class="hot">最热</span> -->
             </div>
         </div>
     </div>
@@ -245,7 +244,6 @@
 		var _subCode = '${curSubCode}';
 		var _sort = '${sort}';
 			function _queryPage(pageNum,code,sort){
-				/*  alert(_code + '  ' +_subCode ); */
 				var params = '?pageNum='+pageNum;
 				//分类，参数没有就用页面缓存 
 				if(code == undefined){   //来自于分页按钮
@@ -261,8 +259,6 @@
 				if(code != '-1' && code != ''){  
 					params += '&code='+code;
 				}
-				/* alert(params); */
-				
 				  //排序，函数参数没有就用页面缓存 
 				if(sort == undefined && _sort != ''){
 					sort = _sort;

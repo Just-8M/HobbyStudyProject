@@ -64,7 +64,7 @@ public class CourseNavigationController {
 
 		List<Course> CourseList = this.courseService.getList(courseQuery);
 		for (Course c : CourseList) {
-			System.out.println("精选课程         " + c.getName() + c.getWeight());
+			System.out.println("精选课程         " + c.getName());
 		}
 		System.out.println("CourseList==" + CourseList);
 		mv.addObject("CourseList", CourseList);
@@ -73,22 +73,20 @@ public class CourseNavigationController {
 		courseQuery.setFree(CourseEnum.FREE.value());// 免费
 		List<Course> freeCourse = this.courseService.getList(courseQuery);
 		for (Course course : freeCourse) {
-			System.out.println("course:" + course.getName() + "   图片地址：" + course.getPicture() + "   "
-					+ course.getPrice() + "   " + course.getWeight());
+			System.out.println("最热课程:" + course.getName());
 		}
 		mv.addObject("freeCourse", freeCourse);
 
 		// 获取4门最新课程，学习数量studyCount进行排序
 		courseQuery.setCount(4);
 		courseQuery.setFree(null);// 不分实战和免费类别
-		courseQuery.setSubClassify("knowledge");// java分类
 		courseQuery.descSortField("studyCount");// 按照studyCount降序排列
-		List<Course> javaCourseList = this.courseService.getList(courseQuery);
-		for (Course course1 : javaCourseList) {
-			System.out.println("course:" + course1.getName() + "   图片地址：" + course1.getPicture() + "   "
-					+ course1.getPrice() + "   " + course1.getWeight());
+     	List<Course> UpdateCourseList = this.courseService.getList(courseQuery);
+		System.out.println("UpdateCourseList:" + UpdateCourseList);
+		for (Course course1 : UpdateCourseList) {
+			System.out.println("最新课程:" + course1.getName());
 		}
-		mv.addObject("javaCourseList", javaCourseList);
+		mv.addObject("UpdateCourseList", UpdateCourseList);
 		// 首页推荐讲师
 		List<User> recommendTeacher = userService.getRecommendTeacher();
 		for (User user : recommendTeacher) {

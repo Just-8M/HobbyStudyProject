@@ -1,0 +1,188 @@
+body {
+  background: #f7f7f7;
+  position: relative;
+}
+.banner .banner_img {
+  width: 100%;
+  height: 460px;
+}
+.banner .banner_bottom {
+  margin-top: -10px;
+  width: 100%;
+  height: 40px;
+  background: #ededed;
+}
+.banner .banner_bottom .crumbs {
+  width: 1120px;
+  margin: 0 auto;
+}
+.banner .banner_bottom .crumbs .crumbs_wrap li {
+  float: left;
+  line-height: 40px;
+  min-width: 80px;
+  font-size: 12px;
+}
+.banner .banner_bottom .crumbs .crumbs_wrap li a {
+  color: #333;
+  padding-right: 15px;
+}
+.banner .banner_bottom .crumbs .crumbs_wrap li:last-child {
+  margin-left: 15px;
+}
+.container {
+  width: 1120px;
+  margin: 0 auto;
+  position: relative;
+}
+.container .left_aside {
+  width: 200px;
+  background-color: #fff;
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  bottom: auto;
+}
+.container .left_aside .nav_left_list {
+  margin-bottom: 0 !important;
+}
+.container .left_aside .nav_left_list li {
+  width: 200px;
+  text-indent: 30px;
+  line-height: 50px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.container .left_aside .nav_left_list li a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: #333;
+}
+.container .left_aside .nav_left_list li a:hover {
+  text-decoration: none;
+  background: #EAEAEA;
+}
+.container .left_aside .nav_left_list li .sub-list li {
+  text-indent: 45px;
+  width: 100%;
+  font-size: 12px;
+  line-height: 30px;
+  border-bottom: none;
+}
+.container .left_aside .nav_left_list li .sub-list li a {
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.container .left_aside .nav_left_list li .sub-list li a.clicked {
+  color: #ffc125;
+}
+.container .left_aside .nav_left_list li.active a {
+  color: #ffc125;
+  font-weight: bold;
+}
+.container .left_aside .nav_left_list li:last-child {
+  border-bottom: none;
+}
+.container .nav_fix {
+  width: 200px;
+  background-color: #fff;
+  position: fixed;
+  top: 30px;
+  left: 110px;
+}
+.container .nav_fix .nav_left_list {
+  margin-bottom: 0 !important;
+}
+.container .nav_fix .nav_left_list li {
+  width: 200px;
+  text-indent: 30px;
+  line-height: 50px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.container .nav_fix .nav_left_list li a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: #333;
+}
+.container .nav_fix .nav_left_list li a:hover {
+  text-decoration: none;
+  background: #EAEAEA;
+}
+.container .nav_fix .nav_left_list li .sub-list li {
+  text-indent: 45px;
+  width: 100%;
+  font-size: 12px;
+  line-height: 30px;
+  border-bottom: none;
+}
+.container .nav_fix .nav_left_list li .sub-list li a {
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.container .nav_fix .nav_left_list li .sub-list li.clicked a {
+  color: #ffc125;
+}
+.container .nav_fix .nav_left_list li.active a {
+  color: #ffc125;
+  font-weight: bold;
+}
+.container .nav_fix .nav_left_list li:last-child {
+  border-bottom: none;
+}
+.container .right_content {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 230px;
+}
+.container .right_content .right_item_module {
+  margin-bottom: 30px;
+}
+.container .right_content .right_item_module .item_box {
+  background: #fff;
+  padding: 15px 30px;
+}
+.container .right_content .right_item_module .item_box .public-text {
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+  font-family: initial;
+}
+.container .right_content .right_item_module .item_box .public-text:last-child {
+  margin-bottom: 0;
+}
+.container .right_content .right_item_module .item_box video {
+  width: 100%;
+  height: 460;
+}
+.container .right_content .right_item_module .item_box img {
+  width: 100%;
+}
+.container .right_content .right_item_module .schedule .registration-list li {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.container .right_content .right_item_module .schedule .registration-list li span {
+  float: left;
+  width: 33.3%;
+  display: block;
+  font-size: 14px;
+}
+.container .right_content .right_item_module .schedule .registration-list li span:first-child {
+  padding-left: 30px;
+}
+.container .right_content .right_item_module .schedule .registration-list li span:last-child {
+  text-align: center;
+}
+.container .right_content .right_item_module .schedule .registration-list li:last-child {
+  border-bottom: none;
+}

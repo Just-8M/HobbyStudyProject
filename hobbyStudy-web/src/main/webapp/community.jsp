@@ -21,9 +21,42 @@
         <!-- 发布作品 -->
         <section class="rank_wrap">
             <div class="rank_left left">
-                <span class="active">精选</span>
-                <span>最热</span>
-                <span>最新</span>
+                <span class="active">
+	                 <a href="javascript:;" style="display: inline-block;margin-right:20px;" onclick="_queryPage(1,'select')">
+		                 <c:choose>
+	                		<c:when test="${!empty sort && sort=='select'}">
+								 <span class="new active">精选1</span>                		
+	                		</c:when>
+	                		<c:otherwise>
+								 <span>精选2</span>                		
+	                		</c:otherwise>
+	                	</c:choose>
+	                 </a>
+                </span>
+                <span>
+                	 <a href="javascript:;" style="display: inline-block;margin-right:20px;" onclick="_queryPage(1,'last')">
+		                 <c:choose>
+	                		<c:when test="${!empty sort && sort=='last'}">
+								 <span class="new active">最新1</span>                		
+	                		</c:when>
+	                		<c:otherwise>
+								 <span>最新2</span>                		
+	                		</c:otherwise>
+	                	</c:choose>
+	                 </a>
+                </span>
+                <span>
+                	<a href="javascript:;" style="display: inline-block;margin-right:20px;" onclick="_queryPage(1,'hot')">
+		                 <c:choose>
+	                		<c:when test="${!empty sort && sort=='hot'}">
+								 <span class="new active">最热1</span>                		
+	                		</c:when>
+	                		<c:otherwise>
+								 <span>最热2</span>                		
+	                		</c:otherwise>
+	                	</c:choose>
+	                 </a>
+                </span>
             </div>
             <div class="publish_btn right">
                 <button>发布作品</button>
@@ -33,32 +66,40 @@
         <!-- 作品排行 -->
         <section class="works_wrap cf"> 
             <ul class="works_list">
-            <c:forEach items="${selectionCourseList}" var="sc">
+            <c:if test="${!empty page.items}">
+            <c:forEach items="${page.items}" var="pi">
                 <li class="work_item">
                     <a href="video.html">
                         <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
                         <div class="work_item_info">
-                            <span class="work_item_name">${sc.name}</span>
+                            <span class="work_item_name">${pi.name}</span>
                         </div>
                         <!-- 鼠标移入显示视频介绍 -->
                         <div class="work_item_img_hover">
                             <span class="work_item_intro">{{视频介绍}}</span>
                         </div>
                     </a>
-                    <span class="work_item_time">${sc.updateTime}</span>
+                    <span class="work_item_time">${pi.updateTime}</span>
                     <div class="work_user">
                          <a href="leader.html">
                             <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">${sc.username}</span>
+                            <span class="user_name">${pi.username}</span>
                         </a>
                     </div> 
                   </li>
                 </c:forEach>
+                </c:if>
             </ul>
         </section>
-
-        <!-- 分页 -->
-        <h1 class="page" style="text-align:center">分页</h1>
+ 		<!-- 分页 -->
+       <%@ include file="../common/pages.jsp" %>
+       <%--  <!--pagehelper 分页 -->
+        <a href="${pageContext.request.contextPath}/communityCourse?pageIndex=1">首页</a>
+		<c:forEach begin="1" end="${pages}"  var="sc">
+			<a href="${pageContext.request.contextPath}/communityCourse?pageIndex=${sc}"> ${sc}</a>
+		</c:forEach>
+		<a href="${pageContext.request.contextPath}/communityCourse?pageIndex=${pages}">尾页</a> --%>
+		
     </section>
 
     <!--回到顶部-->
@@ -81,6 +122,19 @@
         $('.work_item_img_hover').mouseleave(function() {
             $(this).css('display','none');
         })
+        // 课程精选部分
+        var _sort = '${sort}';
+        function _queryPage(pageNum,sort){
+			var params = '?pageNum='+pageNum;
+			  //排序，函数参数没有就用页面缓存 
+			if(sort == undefined && _sort != ''){
+				sort = _sort;
+			}
+			if(sort != undefined){
+				params += '&sort='+sort;
+			} 
+			 window.location.href='${pageContext.request.contextPath}/communityCourse'+params;
+		} 
     </script>
 </body>
 </html>

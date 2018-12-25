@@ -14,7 +14,7 @@
   margin: 0 10px;
 }
 .no_offline {
-  display: none;
+  /* display: none; */
   width: 1120px;
   margin: 0 auto;
   height: 420px;
@@ -81,6 +81,7 @@
 .offline_list .offline_item_wrap .offline_item .item_bottom .item_label {
   line-height: 22px;
   min-height: 22px;
+  margin-top:10px;
 }
 .offline_list .offline_item_wrap .offline_item .item_bottom .item_label .type_list .type_item {
   float: left;

@@ -195,9 +195,19 @@
 							<ul>
 								<li><a href="javascript:;">${c.name}</a></li>  <!-- 二级导航名称 -->
 							</ul>
-							<a
-								href="https://detail.tmall.com/item.htm?spm=a230r.1.14.6.13dd7e2eHxRLnm&id=560724123949&cm_id=140105335569ed55e27b&abbucket=18">
 						</c:forEach>
+					</div>
+					<!-- 首页二级导航下广告 -->
+					<div  class="ad">
+					<c:forEach items="${cs.subClassifyList}" var="c" begin="1" end="3" step="1">
+						<a href="https://detail.tmall.com/item.htm?spm=a230r.1.14.6.13dd7e2eHxRLnm&id=560724123949&cm_id=140105335569ed55e27b&abbucket=18">
+							<div class="item">
+								<img src="images/ad/kq.jpg">
+								<span class="ad_title">${c.name}</span>
+								<%-- <span class="price">￥${c} </span> --%>
+							</div>
+						</a>		
+					</c:forEach>
 					</div>
 				</div>
 
@@ -290,12 +300,12 @@
 			</div>
 			<div class="courseList">
 			<!-- foreach循环最新课程 -->
-			 <c:forEach items="${javaCourseList}" var="javaCourseList">
+			 <c:forEach items="${UpdateCourseList}" var="UpdateCourseList">
 						<div class="courseInfo">
-							<img src="${javaCourseList.picture}"> <a href="course.html">
-							<div class="courseTitle">${javaCourseList.name}</div></a>
+							<img src="${UpdateCourseList.picture}"> <a href="course.html">
+							<div class="courseTitle">${UpdateCourseList.name}</div></a>
 							<div class="courseDes">
-								${javaCourseList.brief}<br>
+								${UpdateCourseList.brief}<br>
 							</div>
 							<div class="priceWrap">
 								<span class="price">￥ 29.9</span>

@@ -41,18 +41,47 @@
 			                <ul class="nav_detail">    
 		                	<!-- 二级分类具体分类课程 -->
 				                <c:forEach items="${classifys.subClassifyList}" var="cs">
-					               <li><a href="javascript:;">${cs.name}</a></li>
+					               <li><a href="${pageContext.request.contextPath}/recommend_navCategory?name=${cs.name}">${cs.name}</a></li>
 				                </c:forEach>
 			                </ul>
 		                <a href="javascript:;" class="nav_detail_more">更多</a>
 		            </div>
 		            <!-- 二级导航具体分类课程 -->
 		            <div class="video_list">
-			            <!-- 左边 -->
-			             <c:forEach items="${classifyCourseList}" var="ccl" >
-			            	 <c:if test="${classifys.title == ccl.classifyName}" >
-				              	       <a href="${pageContext.request.contextPath}/SingleCourseDetails?id=${ccl.id}" style="font-size: 25px;">${ccl.name}</a><br/>
-			            	 </c:if>
+			            <!-- 左边 --><%int count = 0; %>
+			             <c:forEach items="${classifyCourseList}" var="ccl" >  
+			            	<c:if test="${classifys.title == ccl.classifyName}" >
+			            	 <% count = count+1;request.setAttribute("count", count);%>
+			            	<!-- 左边循环一个 -->
+			            	 <c:if test="${requestScope.count == 1}"> 
+				            	<div class="video_list_left lf">
+				                    <a href="video.html">
+				                        <span class="img_wrap">
+				                        <img src="./images/findTa-banner/pexels-photo-1629020.png" class="video_img">
+				                        </span>
+				                        <span class="video_title">${ccl.name}</span>
+				                    </a>
+				                    <span class="play_video_num"><i class="glyphicon glyphicon-expand"></i> 6958</span>
+	              			   </div>
+              			   </c:if>
+              			   <!-- 右边循环6个 -->
+              			   <div class="video_list_right rt">
+                    			<ul class="video_list_right_item">
+							       <c:if test="${requestScope.count != 1 && requestScope.count <= 7}"> 
+		              			   	  <li>
+			              			   	  <a href="video.html" class="item_link">
+			              			   	  	<span class="img_wrap">
+                                   				 <img src="./images/findTa-banner/pexels-photo-1629020.png" class="video_img">
+                                			</span>
+                                			<span class="video_title">${ccl.name}</span>
+			              			   	  </a>
+		              			   	  	 <span class="play_video_num"><i class="glyphicon glyphicon-expand"></i> 6958</span>
+		              			   	 </li>
+						              	       <%-- <a href="${pageContext.request.contextPath}/SingleCourseDetails?id=${ccl.id}" style="font-size: 25px;">${ccl.name}</a><br/> --%>
+					            	</c:if>
+					            </ul>
+					        </div>
+					       </c:if>
 			            </c:forEach>
 		           </div>
 	        </section>

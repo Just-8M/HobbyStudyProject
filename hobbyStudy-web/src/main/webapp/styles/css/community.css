@@ -1,5 +1,5 @@
-.common_header > .leftnav > ul > li:nth-child(2) a {
-  color: #ffd102;
+.common_header .leftnav ul li:nth-child(2) a  {
+  color: #ffd102 !important; 
 }
 .container {
   width: 100%;

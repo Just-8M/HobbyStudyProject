@@ -58,7 +58,9 @@ public class RecommendController {
 		// 课程分类(一级分类）
 		List<CourseClassifyVO> classifys = classifyBuiness.getAllClassify();
 		List<Course> classifyCourseList = new ArrayList<>();
+		
 		for (CourseClassifyVO cvo : classifys) {
+			
 			System.out.println(cvo.getTitle());
 			List<Course> classifyCourse = courseService.queryClassifyCourse(cvo.getTitle());
 			classifyCourseList.addAll(classifyCourse);
