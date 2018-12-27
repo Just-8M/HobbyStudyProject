@@ -22,7 +22,7 @@ import com.hobbyStudy.service.RecommendService;
 import com.hobbyStudy.vo.CourseClassifyVO;
 
 /**
- * @Description: recommend轮番图板块
+ * @Description: 推荐看点板块功能
  * @author shenjin
  * @date 2018年12月15日
  * @version V1.0
@@ -60,7 +60,6 @@ public class RecommendController {
 		List<Course> classifyCourseList = new ArrayList<>();
 		
 		for (CourseClassifyVO cvo : classifys) {
-			
 			System.out.println(cvo.getTitle());
 			List<Course> classifyCourse = courseService.queryClassifyCourse(cvo.getTitle());
 			classifyCourseList.addAll(classifyCourse);

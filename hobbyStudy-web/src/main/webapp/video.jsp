@@ -23,7 +23,7 @@
     <section class="video_wrap cf">
         <div class="video_box lf">
            		<div class="video_box lf">
-           			 <video src="https://video.pearvideo.com/mp4/third/20181219/cont-1494160-12719568-153850-hd.mp4" controls="controls"></video>
+           			 <video src="https://video.pearvideo.com/mp4/third/20181226/cont-1497439-12719568-142650-hd.mp4"  preload controls="controls"></video>
            		</div>
             <div class="video_info">
                 <span class="video_title">${SingleCourseDetalis.name}</span>
@@ -47,7 +47,7 @@
 		                     <li>
 		                        <a href="${pageContext.request.contextPath}/SingleCourseDetails?id=${classCourse.id}">
 		                            <div class="video_box lf">
-		                                <video src="https://video.pearvideo.com/mp4/third/20181219/cont-1494160-12719568-153850-hd.mp4"  class="video_link">
+		                                <video src="https://video.pearvideo.com/mp4/third/20181226/cont-1497439-12719568-142650-hd.mp4" id="video_time"  preload class="video_link">
 		                                </video>
 		                            </div>
 		                            <div class="video_info lf">
@@ -78,6 +78,22 @@
                 url:'',
                 titile:''
             });
+            // 获取视频时长
+            var time;
+            var pl = document.getElementById('video_time');
+            time = Math.floor(pl.duration); //视频的总秒数,取整
+            //alert(time);
+            //获取分钟
+            var minute = Math.floor(time / 60);
+            // 获取秒
+            var second = time % 60;
+            if(minute < 10) {
+                minute = '0' + minute;
+            }else if(second < 10){
+                second = '0' + second;
+            }
+            var total_time = minute + "'" + second + "''";
+            console.log(total_time);
          }
      </script>
 </body>

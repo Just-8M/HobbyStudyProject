@@ -1,9 +1,12 @@
 package com.hobbyStudy.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.User;
-import com.hobbyStudy.service.CourseService;
 import com.hobbyStudy.service.UserService;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -72,7 +72,7 @@ public class UserController{
     @ResponseBody
     public JSONObject Register(User user) {
 		JSONObject json = new JSONObject();
-		System.out.println("用户名:" +user.getUserid() + "密码：" + user.getPassword());
+		System.out.println(  "密码：" + user.getPassword() + user);
         Boolean flag  = userService.getByUsernameAndPassword(user);
         System.out.println("flag值："+flag);
         if (flag == true) {
@@ -82,7 +82,6 @@ public class UserController{
 		}
         return json;
     }
-	
 	@RequestMapping("login")
 	public String login(User user,HttpSession session){
 		User u = userService.login(user);
@@ -97,7 +96,7 @@ public class UserController{
 	@ResponseBody     
 	@RequestMapping("/queryTaBySort")   //  映射路径
     public ModelAndView queryTaBySort(User user,HttpSession session){
-		ModelAndView mv = new ModelAndView("forward:/findTa.jsp");
+		ModelAndView mv = new ModelAndView("forward:/fail.jsp");
 		List<User> userFansList = userService.queryTaBySort(null);
 	    for (User u : userFansList) {
 			System.out.println("领学者姓名：" + u.getUserid() + "id :" + u.getId());
