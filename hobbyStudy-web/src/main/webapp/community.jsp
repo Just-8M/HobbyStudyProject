@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +69,7 @@
             <c:if test="${!empty page.items}">
             <c:forEach items="${page.items}" var="pi">
                 <li class="work_item">
-                    <a href="video.html">
+                    <a href="${pageContext.request.contextPath}/SingleCourseDetails?id=${pi.id}">
                         <img class="work_item_img" src="./images/findTa-banner/pexels-photo-1401796.jpeg" >
                         <div class="work_item_info">
                             <span class="work_item_name">${pi.name}</span>
@@ -79,7 +79,11 @@
                             <span class="work_item_intro">{{视频介绍}}</span>
                         </div>
                     </a>
-                    <span class="work_item_time">${pi.updateTime}</span>
+                    <span class="work_item_time">
+                    	<!-- 转换时间格式 -->
+                   		<fmt:formatDate value="${pi.updateTime}" pattern="yyyy-MM-dd"/>
+                   		<%-- <fmt:formatDate value="${pi.updateTime}" pattern="yyyy-MM-dd"/>  --%>
+                    </span>
                     <div class="work_user">
                          <a href="leader.html">
                             <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
