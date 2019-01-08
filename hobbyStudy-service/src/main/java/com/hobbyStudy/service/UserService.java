@@ -1,6 +1,9 @@
 package com.hobbyStudy.service;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.User;
@@ -86,5 +89,36 @@ public interface UserService {
 	*/  
 	public User queryPersonDetail(Integer id);
 	
+	/**  
+	* @Title: queryUsernameAndPsw  
+	* @Description: (Login in)  
+	* @param     
+	* @return User  
+	* @throws  
+	*/  
+	public User queryUsernameAndPsw(String userid, String password);
 	
+	/**  
+	* @Title: updateLikeCount  
+	* @Description: (点赞功能)  
+	* @param     
+	* @return void  
+	* @throws  
+	*/  
+	public Boolean updateLikeCount(String likeCount, String userid);
+	
+	/**  
+	* @Title: updateLikeCount  
+	* @Description: (这里用一句话描述这个方法的作用)  
+	* @param     
+	* @return Boolean  
+	* @throws  
+	*/  
+	public Boolean updateLikeCount(User user);
+	/**
+	 * 更新点赞表
+	 * @param userid
+	 * @param i
+	 */
+	public Boolean insertUserLikeitem(String u_userid, String type, String createTime, String creatUser);
 }

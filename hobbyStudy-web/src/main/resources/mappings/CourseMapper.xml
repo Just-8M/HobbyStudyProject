@@ -15,7 +15,7 @@
 		<result column="sub_classify_name" property="subClassifyName"
 			jdbcType="VARCHAR" />
 		<result column="direction" property="direction" jdbcType="VARCHAR" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userid" property="userid" jdbcType="VARCHAR" />
 		<result column="level" property="level" jdbcType="INTEGER" />
 
 		<result column="free" property="free" jdbcType="INTEGER" />
@@ -38,7 +38,7 @@
 
 	<sql id="Base_Column_List">
 		id ,name, type, classify, classify_name, sub_classify,
-		sub_classify_name, direction, username,
+		sub_classify_name, direction, userid,
 		level, free, price, time, onsale, brief, picture,
 		recommend, weight,
 		study_count, create_time, create_user, update_time,
@@ -63,8 +63,8 @@
 			<if test="direction != null">
 				AND direction = #{direction, jdbcType=INTEGER}
 			</if>
-			<if test="username != null">
-				AND username = #{username, jdbcType=INTEGER}
+			<if test="userid != null">
+				AND userid = #{userid, jdbcType=INTEGER}
 			</if>
 			<if test="free != null">
 				AND free = #{free, jdbcType=INTEGER}
@@ -132,16 +132,16 @@
 		WHERE id = #{id, jdbcType=INTEGER}
 		AND del = 0
 	</select>
-	<!-- 根据领学者username查询所属所有课程-->
+	<!-- 根据领学者userid查询所属所有课程-->
 	<select id="queryPersonCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
 		SELECT 
 		<include refid="Base_Column_List"  />
 		FROM hs_course
-		WHERE username = #{username, jdbcType=VARCHAR}
+		WHERE userid = #{userid, jdbcType=VARCHAR}
 		AND del = 0
 	</select>
 	<!-- 推荐页根据二级分类查询课程-->
-	<select id="queryClassifyCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
+	<select id="queryClassifyCourse"  resultMap="BaseResultMap">
 		SELECT 
 		<include refid="Base_Column_List"  />
 		FROM hs_course
@@ -190,8 +190,5 @@
 		WHERE  sub_classify= #{subClassifyName, jdbcType=VARCHAR}
 		AND del = 0
 	</select>
-	
-	
-	
 	
 </mapper>

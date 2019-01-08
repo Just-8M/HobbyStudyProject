@@ -10,7 +10,8 @@
 <body>
 
 
-
+${username}---
+${password}
 
 <br/>
  <c:forEach items="${selectionCourseList}" var="cps" >

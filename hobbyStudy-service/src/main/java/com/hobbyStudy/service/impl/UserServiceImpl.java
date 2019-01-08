@@ -6,14 +6,16 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hobbyStudy.common.utils.storage.QiniuStorage;
+import com.hobbyStudy.dao.UserLikeMapper;
 import com.hobbyStudy.dao.UserMapper;
 import com.hobbyStudy.entity.User;
 import com.hobbyStudy.service.UserService;
 
 /**  
-* @Description: Ajax注册、
+* @Description: User功能板块
 * @author shenjin 
 * @date 2018年11月14日  
 * @version V1.0  
@@ -23,6 +25,9 @@ public class UserServiceImpl implements  UserService{
 
 	@Autowired
 	private UserMapper userMapper;
+	
+	@Autowired
+	private UserLikeMapper UserLikeMapper;
 	
 	@Override
 	public int AjaxRegisterUsername(String username) {
@@ -69,6 +74,31 @@ public class UserServiceImpl implements  UserService{
 	@Override
 	public User queryPersonDetail(Integer id) {
 		return userMapper.queryPersonDetail(id);
+	}
+	/**
+	 * 登录
+	 */
+	
+	@Override
+	public User queryUsernameAndPsw(String userid, String password) {
+		return userMapper.queryUsernameAndPsw(userid,password);
+	}
+	/**
+	 * 点赞功能
+	 */
+	@Override
+	public Boolean updateLikeCount(String likeCount,String userid) {
+		return userMapper.updateLikeCount(likeCount,userid);
+	}
+	
+	@Override
+	public Boolean updateLikeCount(User user) {
+		return userMapper.updateLikeCount(user);
+	}
+	//  更新点赞表
+	@Override
+	public Boolean insertUserLikeitem(String u_userid, String type,String  createTime,String creatUser){
+		return UserLikeMapper.insertUserLikeitem(u_userid,type,createTime,creatUser);
 	}
 
 }

@@ -90,7 +90,7 @@ $(function() {
         turning:3000//轮播时长
     })
 
-    //点击轮播图卡片的喜欢
+  /*  //点击轮播图卡片的喜欢
     $('.love_num').click(function() {
         var love_num = parseInt($(this).text());
         console.log(love_num);
@@ -101,7 +101,7 @@ $(function() {
             $(this).addClass('love_red');
             $(this).text(love_num +1);
         }
-    })
+    })*/
 
     //显示轮播图卡片介绍；
     $('.pi').hover(function(){

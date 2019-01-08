@@ -23,7 +23,7 @@
                 <div class="phoneLogin" id="phoneLogin">手机动态码登录</div>
                 <div class="underline" id="underline"></div>
             </div>
-            <form action="index.php" class="loginForm" id="loginForm">
+            <form action="${pageContext.request.contextPath}/login" method="post" class="loginForm" id="loginForm">
                 <ul>
                     <div id="user_way">
                         <li>
@@ -57,7 +57,7 @@
                         <span>下次自动登录</span>
                     </li>
                     <li class="loginBtn">
-                        <input type="button" value="登录" class="loginText" name="btnSubmit">
+                        <input type="submit" value="登录" class="loginText" name="btnSubmit">
                     </li>
                     <li class="agree_document">
                         <span>登录即同意<a href="javascript:;">《趣学网使用协议》</a>和<a href="javascript:;">《隐私权条款》</a></span>

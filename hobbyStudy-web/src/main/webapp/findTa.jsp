@@ -27,17 +27,22 @@
                             <img src="${ufs.header}">
                             <a href="${pageContext.request.contextPath}/queryPersonDetail?id=${ufs.id}"><div class="findTa-name">${ufs.realname}</div></a>
                             <div class="c|ollege">${ufs.collegeName}</div>
-                            <!-- 判断用户是否登录 -->
+                            <!-- 当登录永和和被点赞者不是同一个userid时 -->
                             <c:choose>
-                            	<c:when test="! empty ${(ufs.id)}">
-                            		<div class="love_num"  href="javascript:void(0)">
-                                		689
+                            	<c:when test="${USER_IN_SESSION != null && USER_IN_SESSION.id !=ufs.id}">
+                            		
+                            		<div class="login_userid"  style="display: none;">${USER_IN_SESSION.userid}</div>
+                            		<div class="user_id"  style="display: none;">${ufs.userid}</div>
+                            		<div class="love_num"  onclick="dianzan(1)">
+                                		${ufs.likeCount}
                             		</div>
                             	</c:when>
                             	<c:otherwise>
-		                            <div class="love_num">
-		                                689
-		                            </div>
+                            		<div class="user_id" style="display: none" >${ufs.userid}</div>
+                            		<div class="login_userid"  style="display: none;">${USER_IN_SESSION.userid}</div>
+                            		<div class="love_num" onclick="dianzan(-1)">
+                                		${ufs.likeCount}
+                            		</div>
                             	</c:otherwise>
                             </c:choose>
                             <div class="person_label">
@@ -91,10 +96,70 @@
 	<!--底部信息栏结束-->
 
     <script src="script/bootstrap/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript">
-     $(function(){
+    
+    <script type="text/javascript">
+    $(function() {
+    	  //点击轮播图卡片的喜欢
+  	    $('.love_num').click(function(e) {
+  	    var love_num = parseInt($(this).text());
+  	    var userid = $(this).siblings('.user_id').text();  /* 被点赞用户的userid */
+  	    var loginUserid = $(this).siblings('.login_userid').text(); /* 登录用户的userid */
+  	    alert("love_num：" +love_num + "---" + "userid:" + userid +"---" + "login_userid:" + loginUserid);
+  	    console.log(love_num);
+  	        // 在这里判断是否登录
+  	        if($(this).hasClass('love_red')){
+  	            alert(loginUserid);
+  	            $(this).removeClass('love_red').addClass('love_num');
+  	            $(this).text(love_num -1);
+	  	            $.ajax({
+	  				url:'${pageContext.request.contextPath}/xunTaLikeCount',
+	  			    type:'POST',
+	  			    dataType:'json',
+	  			    data:{
+	  			    	'likeCount':love_num,
+	  			    	'userid':userid,
+	  			    	'login_userid':loginUserid
+	  			    	},
+	  			    success:function(data){
+	  			    	alert('你好，点赞成功');
+	  			    }
+	  			});
+  	        }else{
+  	            $(this).addClass('love_red');
+  	            $(this).text(love_num +1);
+  	            $.ajax({
+	  				url:'${pageContext.request.contextPath}/xunTaLikeCount',
+	  			    type:'POST',
+	  			    dataType:'json',
+	  			  data:{
+	  			    	'likeCount':$(this).text(),
+	  			    	'userid':userid,
+	  			    	'login_userid':loginUserid
+	  			    	},
+	  			    success:function(resp){
+	  			    	alert('点赞成功');
+	  			    }
+	  			});
+  	        }
+  	    })
+    })
+    </script>
+    <script type="text/javascript">
+	    function dianzan(type,userid){
+	    	alert(type);
+	    	 if(type==-1){
+	    		alert("您还没有登录,请登录！");
+	    		 window.location.href='${pageContext.request.contextPath}/login.jsp'
+	    	 }
+	    	 if(type==1){
+	    		alert("点赞成功");
+	    	 }
+	    } 
+    </script>
+    <script type="text/javascript">
      //判断用户是否已经收藏
-		/* var userId = ${(ufs.id)}
+    /* $(function(){
+		 var userId = ${(ufs.id)}
  			alert("用户存在，可以收藏");
 		if(courseId){
 			var url = '${pageContext.request.contextPath}/UserCollections/isCollection';
@@ -127,6 +192,8 @@
 			    } 
 			});
 		} */
+		
+	    
      </script>
     <script type="text/javascript">
     window.onload=function(){

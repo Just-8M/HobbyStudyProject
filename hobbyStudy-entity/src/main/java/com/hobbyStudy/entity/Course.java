@@ -16,7 +16,7 @@ public class Course {
 	private String subClassify;      //  课程二级分类
 	private String subClassifyName;   // 课程二级分类名称
 	private String direction;    //  课程方向
-	private String username;    // 归属人
+	private String userid;    // 归属人
 	private Integer level;     //  课程级别：1-初级，2-中级，3-高级
 	
 	private Integer free;      //  是否免费：0-否，1-是
@@ -87,14 +87,13 @@ public class Course {
 		this.direction = direction;
 	}
 
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getUserid() {
+		return userid;
 	}
-
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public Integer getLevel() {
 		return level;
 	}

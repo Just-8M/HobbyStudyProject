@@ -87,7 +87,7 @@
                     <div class="work_user">
                          <a href="leader.html">
                             <img class="work_user_profile" src="./images/findTa-banner/pexels-photo-1262357.jpeg">
-                            <span class="user_name">${pi.username}</span>
+                            <span class="user_name">${pi.userid}</span>
                         </a>
                     </div> 
                   </li>

@@ -2,6 +2,8 @@ package com.hobbyStudy.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hobbyStudy.entity.User;
 
 /**
@@ -86,4 +88,42 @@ public interface UserMapper {
 	* @throws  
 	*/  
 	public User queryPersonDetail(Integer id);
+
+	
+	/**  
+	* @Title: queryUsernameAndPsw  
+	* @Description: (Login in)  
+	* @param     
+	* 传递多个参数加上@Param
+	* @return User  
+	* @throws  
+	*/  
+	public User queryUsernameAndPsw(@Param("userid") String userid, @Param("password") String password);
+//	public User queryUsernameAndPsw(String userid,String password); //  错误
+
+	
+	/**  
+	* @Title: LikeCount  
+	* @Description: (点赞功能)  
+	* @param     
+	* @return void  
+	* @throws  
+	*/  
+	public Boolean updateLikeCount(@Param("likeCount") String likeCount, @Param("userid") String userid);
+
+	
+	/**  
+	* @Title: updateLikeCount  
+	* @Description: (这里用一句话描述这个方法的作用)  
+	* @param     
+	* @return Boolean  
+	* @throws  
+	*/  
+	public Boolean updateLikeCount(User user);
+	/**
+	 * 更新点赞表
+	 * @param userid
+	 * @param i
+	 */
+	public void insertUserLikeirem(String userid, int i);
 }

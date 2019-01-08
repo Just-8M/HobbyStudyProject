@@ -67,7 +67,6 @@
 						<c:choose>
 							<c:when test="${!empty curSubCode && curSubCode== subs.code}">
 			                    <li class="course-nav-item  cur-course-nav"><a href="javascript:;" onClick="_queryPage(1,'${subs.code}')">${subs.name}</a></li>
-			                   
 							</c:when>
 						<c:otherwise>
 			                   <li class="course-nav-item"><a href="javascript:;"  onClick="_queryPage(1,'${subs.code}')">${subs.name}</a></li>
@@ -96,7 +95,7 @@
 							 <span class="new active">最热1</span>                		
                 		</c:when>
                 		<c:otherwise>
-							 <span>最热2</span>                		
+							 <span>最热2</span>
                 		</c:otherwise>
                 	</c:choose>
                 </a>
@@ -131,7 +130,7 @@
 				                         <i class="fa fa-shopping-cart"></i>
 				                   </div>
 			                  </div>
-			                   <div class="courseTeacher"><a href="leader.html"><img src="images/iconfont/default1.png">${pi.username}</a><span
+			                   <div class="courseTeacher"><a href="leader.html"><img src="images/iconfont/default1.png">${pi.userid}</a><span
 			                                class="school">陕西理工大学</span>
 			                   </div>
 			             </div>
@@ -188,7 +187,6 @@
                 $('.addcart').css('display', 'block');
                 $('#fade').css('display', 'block');
             })
-
             $('.addcart .sure').click(function () {
                 $('.addcart').css('display', 'none');
                 $('#fade').css('display', 'none');

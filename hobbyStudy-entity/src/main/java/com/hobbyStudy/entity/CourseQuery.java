@@ -13,15 +13,10 @@ import com.hobbyStudy.common.utils.BeanUtil;
 public class CourseQuery extends Course{
 	
 	private String sortField;     // java bean中的属性
-	
 	private String sortDirection = "DESC";    
-	
 	private Integer start=0;//limit开始
-	
 	private Integer count;//数量
-	
 	private Integer end;//limit结束
-	
 	
 	public String getSortField() {
 		return sortField;

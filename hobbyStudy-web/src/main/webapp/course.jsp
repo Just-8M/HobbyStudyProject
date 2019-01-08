@@ -144,7 +144,7 @@
 		<div class="course_tab_wrap_first">
 			<div class="course-menu"> 
 				<a href="javascript:void(0)"> 
-					<span onclick="showTab(this,'courseSection')" class="menu-item cur">简介</span
+					<span onclick="showTab(this,'courseSection')" class="menu-item cur">简介</span>
 				</a>
 				 <a href="javascript:void(0)"> 
 				 	<span onclick="showTab(this,'commentQA',0)" class="menu-item">评论</span>

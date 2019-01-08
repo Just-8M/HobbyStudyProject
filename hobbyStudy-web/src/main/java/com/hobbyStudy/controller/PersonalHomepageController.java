@@ -32,9 +32,9 @@ public class PersonalHomepageController {
 	// 查询领学者课程
 	@ResponseBody
 	@RequestMapping(value = "/personalCourse", method = RequestMethod.POST) // 映射路径
-	public List<Course> personalCourse(String username, HttpServletRequest request) {
-		System.out.println(username);
-		 List<Course> personCourse = CourseService.queryPersonCourse(username);
+	public List<Course> personalCourse(String userid, HttpServletRequest request) {
+		System.out.println("userid:" + userid);
+		 List<Course> personCourse = CourseService.queryPersonCourse(userid);
 		 for (Course c : personCourse) {
 			System.out.println(c.getName());
 		}

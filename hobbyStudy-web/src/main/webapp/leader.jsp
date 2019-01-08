@@ -32,8 +32,8 @@
                 <img class="homepage_profile_photo" src="${personDetail.header}">
                 <!-- 姓名 -->
                 <div class="homepage_leader_name">${personDetail.realname}</div>
-                <!-- username -->
-                <div class="homepage_leader_username" style="display: none;">${personDetail.username}</div>> 
+                <!-- userid -->
+                <div class="homepage_leader_username" style="display: none;">${personDetail.userid}</div>> 
                 
                 <!-- 标签，说明精通哪个领域 2-30个字-->
                 <div class="homepage_label_words">
@@ -142,7 +142,7 @@
                                     <img src="./images/iconfont/default1.png">
                                     <div class="username_time_wrap">
                                         <div class="username">
-                                           ${personDetail.username}
+                                           ${personDetail.realname}
                                         </div>
                                         <div class="time">
                                             <span class="y-m-d">2018-12-07</span> 
@@ -308,14 +308,13 @@
     <script type="text/javascript">
     	$(function(){
     		$("#person_course").click(function(){
-           /*  alert($(".homepage_leader_username").text() );  */
+           alert($(".homepage_leader_username").text() ); 
     			$.ajax({
     				/* GET和POST两种方式传值问题吗，需要修改Ajax中的type类型 */
     				
- 	                /* url:"${pageContext.request.contextPath}/personalCourse ?username=${personDetail.username}", */
  	                url:"${pageContext.request.contextPath}/personalCourse",
  	                 'data':{                          //数据
- 	                	 username:$(".homepage_leader_username").text(), 
+ 	                	 userid:$(".homepage_leader_username").text(), 
  	                }, 
  	                type: "POST",                   //类型，POST或者GET
  	                dataType: 'json',              //数据返回类型，可以是xml、json等

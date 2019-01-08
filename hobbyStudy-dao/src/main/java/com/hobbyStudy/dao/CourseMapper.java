@@ -45,7 +45,7 @@ public interface CourseMapper {
 	* @return List<Course>  
 	* @throws  
 	*/  
-	public List<Course> queryPersonCourse(String username);
+	public List<Course> queryPersonCourse(String userid);
 
 	
 	/**  

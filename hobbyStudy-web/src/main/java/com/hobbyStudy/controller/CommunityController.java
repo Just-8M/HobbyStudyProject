@@ -1,6 +1,5 @@
 package com.hobbyStudy.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.hobbyStudy.common.utils.CourseEnum;
 import com.hobbyStudy.common.utils.page.TailPage;
 import com.hobbyStudy.entity.Course;

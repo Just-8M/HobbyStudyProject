@@ -76,8 +76,8 @@ public class CourseServiceImpl implements CourseService {
 
 	// 根据领学者username查询所属所有课程
 	@Override
-	public List<Course> queryPersonCourse(String username) {
-		return courseMapper.queryPersonCourse(username);
+	public List<Course> queryPersonCourse(String userid) {
+		return courseMapper.queryPersonCourse(userid);
 	}
 
 	// 查询分类课程

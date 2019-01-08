@@ -55,8 +55,18 @@
 				<li><a href="#"><i class="fa fa-shopping-cart"></i>购物车<span
 						class="num">10</span></a></li>
 				<li><a href="#"><i class="fa fa-user-plus"></i>申请成为领学者</a></li>
-				<li class="login_link"><a href="login.jsp">登录</a>/<a
-					href="register.jsp">注册</a></li>
+				<li class="login_link">
+						   <!-- 判断用户是否登录 -->
+	                        <c:choose>
+	                            <c:when test="${USER_IN_SESSION==null}">
+									<a href="login.jsp">登录</a>/<a href="register.jsp">注册</a>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <span><a href="#"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
+									<span><a href="${pageContext.request.contextPath}/login?quit=exit" >退出</a></span>
+	                            </c:otherwise>
+	                        </c:choose>
+				</li>
 				<li class="avatar"><a href="javascript:;">username <img
 						src="images/logo/logo_light.png"></a></li>
 			</ul>
@@ -161,13 +171,7 @@
 								<a href="javascript:;"><img src="${cps.picture}"></a>
 							</div>
 						</c:forEach>
-						<!-- <div class="item">
-							<a href="javascript:;"><img src="images/login/bg.jpg"></a>
-						</div>
 						
-						<div class="item">
-							<a href="javascript:;"><img src="images/login/login_bg.jpeg"></a>
-						</div> -->
 					</div>
 
 					<!-- Controls -->

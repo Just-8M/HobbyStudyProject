@@ -46,13 +46,13 @@ public class CourseNavigationController {
 
 		// 课程分类(一级分类）
 		List<CourseClassifyVO> classifys = classifyBuiness.getAllClassify();
-		for (CourseClassifyVO cvo : classifys) {
+		/*for (CourseClassifyVO cvo : classifys) {
 			System.out.println(cvo.getName() + "  " + cvo.getSort());
 
 			for (CourseClassify c : cvo.getSubClassifyList()) {
 				System.out.println("Name:" + c.getName() +" Code:"  + c.getCode() + "Title:" + c.getTitle());
 			}
-		}
+		}*/
 		mv.addObject("classifys", classifys);
 		// mv.addObject("CourseClassify", CourseClassify);
 
@@ -63,18 +63,18 @@ public class CourseNavigationController {
 		courseQuery.descSortField("weight"); // 按照weight降序排列
 
 		List<Course> CourseList = this.courseService.getList(courseQuery);
-		for (Course c : CourseList) {
+		/*for (Course c : CourseList) {
 			System.out.println("精选课程         " + c.getName());
-		}
+		}*/
 		System.out.println("CourseList==" + CourseList);
 		mv.addObject("CourseList", CourseList);
 
 		// 获取4门热门课推荐，根据权重（weight）进行排序
 		courseQuery.setFree(CourseEnum.FREE.value());// 免费
 		List<Course> freeCourse = this.courseService.getList(courseQuery);
-		for (Course course : freeCourse) {
+		/*for (Course course : freeCourse) {
 			System.out.println("最热课程:" + course.getName());
-		}
+		}*/
 		mv.addObject("freeCourse", freeCourse);
 
 		// 获取4门最新课程，学习数量studyCount进行排序
@@ -83,9 +83,9 @@ public class CourseNavigationController {
 		courseQuery.descSortField("studyCount");// 按照studyCount降序排列
      	List<Course> UpdateCourseList = this.courseService.getList(courseQuery);
 		System.out.println("UpdateCourseList:" + UpdateCourseList);
-		for (Course course1 : UpdateCourseList) {
+	/*	for (Course course1 : UpdateCourseList) {
 			System.out.println("最新课程:" + course1.getName());
-		}
+		}*/
 		mv.addObject("UpdateCourseList", UpdateCourseList);
 		// 首页推荐讲师
 		List<User> recommendTeacher = userService.getRecommendTeacher();

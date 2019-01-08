@@ -63,7 +63,7 @@ public class CourseDetailsController {
 		mv.addObject("chaptSections", chaptSections);
 
 		// 获取讲师
-		User user= userService.getByUsername(course.getUsername());
+		User user= userService.getByUsername(course.getUserid());
 		//  七牛云存储
 		/*if (StringUtils.isNotEmpty(user.getHeader())) {
 			user.setHeader(QiniuStorage.getUrl(user.getHeader()));

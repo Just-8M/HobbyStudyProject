@@ -29,22 +29,23 @@
 		<result column="province" property="province"  jdbcType="VARCHAR" />
 		<result column="city" property="city"  jdbcType="VARCHAR" />
 		<result column="district" property="district"  jdbcType="VARCHAR" />
-		<result column="weight" property="weight"  jdbcType="INTEGER" />
 		<result column="fans" property="fans"  jdbcType="INTEGER" />
+		<result column="likeCount" property="likeCount"  jdbcType="VARCHAR" />
+		<result column="weight" property="weight"  jdbcType="INTEGER" />
 		<result column="create_time" property="createTime"  jdbcType="DATE" />
 		<result column="del" property="del"  jdbcType="TINYINT" />
 	</resultMap>
 	<sql id="Base_Column_List"> 
 		id,realname,userid,nickname,userCategory,password,gender,Identity,header,mobile,status,
 		birthday,education,college_code,college_name ,cert_no,title,sign,money,open_id,wechat_id,qq,
-		login_time,ip,province,city,district,weight,fans,create_time,del
+		login_time,ip,province,city,district,fans,likeCount,weight,create_time,del
 	</sql>
 	<!-- Ajax注册查询 -->
 	<select id="AjaxRegisterUsername"  resultType="Integer">
-		select
+		SELECT
 		count(1) cnt
-		from hs_user
-		where userid = #{userid,jdbcType=VARCHAR}
+		FROM  hs_user
+		WHERE userid = #{userid,jdbcType=VARCHAR}
 	</select>
 	<!-- 
 		flushCache="true":
@@ -136,11 +137,14 @@
 			<if test="district != null ">
 			district,
 			</if>
-			<if test="weight != null ">
-			weight,
-			</if>
 			<if test="fans != null ">
 			fans,
+			</if>
+			<if test="likeCount != null ">
+			likeCount,
+			</if>
+			<if test="weight != null ">
+			weight,
 			</if>
 			<if test="createTime != null">
 			create_time,
@@ -154,6 +158,7 @@
 			<if test="realname != null ">
 			#{realname, jdbcType=VARCHAR},
 			</if>
+			
 			<if test="userid != null ">
 			#{userid, jdbcType=VARCHAR},
 			</if>
@@ -229,11 +234,14 @@
 			<if test="district != null ">
 			#{district, jdbcType=VARCHAR},
 			</if>
-			<if test="weight != null ">
-			#{weight, jdbcType=INTEGER},
-			</if>
 			<if test="fans != null ">
 			#{fans, jdbcType=INTEGER},
+			</if>
+			<if test="likeCount != null ">
+			#{likeCount, jdbcType=VARCHAR},
+			</if>
+			<if test="weight != null ">
+			#{weight, jdbcType=INTEGER},
 			</if>
 			<if test="createTime != null ">
 			#{createTime, jdbcType=DATE},
@@ -244,14 +252,25 @@
 		</trim>
 	</insert>
 	
+	<!-- parameterType的用法，parameterType为输入参数，在配置的时候，配置相应的
+			输入参数类型即可。parameterType有基本数据类型和复杂的数据类型配置。 -->
+    <!-- id:statement的id 或者叫做sql的id -->
+	<!-- parameterType:声明输入参数的类型 -->
+	<!-- resultType:声明输出结果的类型，应该填写pojo的全路径 -->
+	<!-- #{}：输入参数的占位符，相当于jdbc的？ -->
 	<!-- 登录 -->
-	<!-- <select id=""  resultType="Integer">
-		select
-		count(1) cnt
-		from hs_user
-		where userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
-	</select> -->
-	
+	<!--  <select id="queryUsernameAndPsw"  parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM hs_user
+		WHERE userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
+	</select>  -->
+	<select id="queryUsernameAndPsw"  resultType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM  hs_user
+		WHERE userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
+	</select>
 	<!-- 首页推荐讲师 -->
 	<select id="getRecommendTeacher"  parameterType="com.hobbyStudy.entity.User" resultMap="BaseResultMap">
 		SELECT 
@@ -260,6 +279,11 @@
 		ORDER BY weight DESC 
 		LIMIT 5
 	</select>
+	<!-- 
+		如果parameterType="java.lang.String"是一个简单类型，#{里面的值可以任意写} 
+		${} 是进行拼串用的， 传入简单类型时  里面只能是${value}
+	-->
+	
 	<select id="getByUsername" parameterType="java.lang.String"  resultMap="BaseResultMap">
 		SELECT 
 		<include refid="Base_Column_List"/>
@@ -291,4 +315,19 @@
 		WHERE id = #{id,jdbcType=INTEGER}
 		AND DEL = 0
 	</select>
+	<!--寻Ta界面点赞更新  -->
+	<update id="updateLikeCount" parameterType="com.hobbyStudy.entity.User">
+	 update hs_user  SET
+	    likeCount = #{likeCount}
+        where userid = #{userid}
+	</update>
+	<!-- <update id="updateLikeCount" parameterType="java.lang.String">
+	 update hs_user  SET
+	    likeCount = #{likeCount}
+        where userid = #{userid}
+	</update> -->
+	
+	<insert id="insertUserLikeirem" parameterType="com.hobbyStudy.entity.User">
+	
+	</insert>	
 </mapper>

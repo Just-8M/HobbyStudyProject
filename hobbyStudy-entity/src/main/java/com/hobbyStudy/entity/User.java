@@ -27,8 +27,8 @@ public class User {
 	private String certNo;         // 资格证书编号
 	private String title;          // 头衔
 	private String sign;           //  签名
-	private String money;         //  零钱
-	private String openId;        //  微信公众号
+	private String money;          //  零钱
+	private String openId;         //  微信公众号
 	private String wechatId;       // 微信号
 	private String qq;             //  qq号
 	private Date loginTime;        //  最后一次登录时间
@@ -36,9 +36,11 @@ public class User {
 	private String province;       //  所在省份
 	private String city;           //  所在城市
 	private String district;       //  所在地区
-	private Integer weight;        //  平评分
 	private Integer fans;          //  粉丝数
-	private Date createTime;        //  最后登录时间
+	private String likeCount;      //  点赞数
+	private Integer weight;        //  平均分(权重)
+	
+	private Date createTime;       //  最后登录时间
 	
 	/**
 	 * 逻辑删除
@@ -264,6 +266,13 @@ public class User {
 		this.district = district;
 	}
 
+	public String getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(String likeCount) {
+		this.likeCount = likeCount;
+	}
 
 	public Integer getWeight() {
 		return weight;
