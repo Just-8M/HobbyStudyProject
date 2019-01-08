@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hobbyStudy.dao.UserLikeMapper">
+	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.UserLike">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="u_userid" property="u_userid"  jdbcType="VARCHAR" />
+		<result column="type" property="type"  jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime"  jdbcType="VARCHAR" />
+		<result column="creat_user" property="creatUser"  jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List"> 
+		id,u_userid,type,create_time,creat_user
+	</sql>
+	<insert id="insertUserLikeitem" parameterType="com.hobbyStudy.entity.UserLike">
+		INSERT INTO hs_user_like
+		<trim prefix="(" suffix=")"  suffixOverrides="," >
+			<if test="u_userid != null ">
+			u_userid,
+			</if>
+			<if test="type != null ">
+			type,
+			</if>
+			<if test="createTime != null ">
+			create_time,
+			</if>
+			<if test="creatUser != null ">
+			creat_user,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")"  suffixOverrides="," >
+			<if test="u_userid != null ">
+			#{u_userid, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null ">
+			#{type, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null ">
+			#{createTime, jdbcType=VARCHAR},
+			</if>
+			<if test="creatUser != null ">
+			#{creatUser, jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+</mapper>
