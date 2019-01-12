@@ -326,8 +326,20 @@
 	    likeCount = #{likeCount}
         where userid = #{userid}
 	</update> -->
-	
+	<!-- 待完成 -->
 	<insert id="insertUserLikeirem" parameterType="com.hobbyStudy.entity.User">
 	
-	</insert>	
+	</insert>
+	<!-- <update id="updatePersonInfor">
+	 UPDATE hs_user  SET
+	    nickname=#{nickname},gender=#{gender},province=#{province},city=#{city},
+	    district=#{district},title=#{title},sign=#{sign}
+        WHERE userid = #{userid}
+	</update> -->
+	<update id="updatePersonInfor" parameterType="com.hobbyStudy.entity.User">
+	 update hs_user  SET
+	    nickname=#{nickname},gender=#{gender},province=#{province},city=#{city},
+	    district=#{district},title=#{title},sign=#{sign}
+        where userid = #{userid}
+	</update>
 </mapper>

@@ -100,5 +100,11 @@ public class UserServiceImpl implements  UserService{
 	public Boolean insertUserLikeitem(String u_userid, String type,String  createTime,String creatUser){
 		return UserLikeMapper.insertUserLikeitem(u_userid,type,createTime,creatUser);
 	}
+	//  更新个人信息
+	@Override
+	public Boolean updatePersonInfor(String userid, String nickname, int gender, String province, String city,
+			String district, String title, String sign) {
+		 return userMapper.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
+	}
 
 }

@@ -121,4 +121,12 @@ public interface UserService {
 	 * @param i
 	 */
 	public Boolean insertUserLikeitem(String u_userid, String type, String createTime, String creatUser);
+	/**
+	 * 
+	 * @return 
+	 * @Description   更新个人信息
+	 * @Author shenjin
+	 */
+	public Boolean updatePersonInfor(String userid, String nickname, int gender, String province, String city,
+                                     String district, String title, String sign);
 }

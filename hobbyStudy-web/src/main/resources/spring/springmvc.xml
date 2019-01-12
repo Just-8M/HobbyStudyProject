@@ -18,8 +18,13 @@
 	<mvc:resources mapping="/static/js/**" location="static/js/" />
 	<mvc:resources mapping="/static/css/**" location="static/css/" />
 	<mvc:resources mapping="/fonts/**" location="fonts/" />
+	<mvc:resources mapping="/images" location="images/" />
 	<mvc:resources mapping="/images/**" location="images/" />
+	<mvc:resources mapping="/images/logo/**" location="images/logo/" />
+	<mvc:resources mapping="/images/iconfont/**" location="images/iconfont/" />
 	<mvc:resources mapping="/script/**" location="script/" />
+	<mvc:resources mapping="/css/**" location="css/" />
+	<mvc:resources mapping="/plugins/**" location="plugins/" />
 	<mvc:resources mapping="/styles/**" location="styles/" />
 	<mvc:resources mapping="/common/**" location="common/" />
 	<mvc:resources mapping="/lib/**" location="lib/" />

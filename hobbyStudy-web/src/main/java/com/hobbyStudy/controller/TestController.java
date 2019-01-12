@@ -22,45 +22,12 @@ import com.hobbyStudy.service.VideoTypeService;
  *
  */
 @Controller
+@RequestMapping("/TestController")
 public class TestController {
-	private static Logger log = Logger.getLogger(TestController.class);
-	// 跳转到测试页面
-	private static final String Test = "test";
 
-	//  引用service层
-	@Autowired
-	private VideoTypeService videoTypeService;  
-
-	@RequestMapping("/hello")
-	public String Hello() {
-		System.out.println("hello");
-		return Test;
-	}
-	/**
-	 * 提供一个返回json格式，查询所有videoType
-	 * @ResponseBody  表示返回json格式的
-	 * @return
-	 */
-	@ResponseBody                      //  返回json格式
-	@RequestMapping("/getVideoTypeList")   //  映射路径
-    public List<VideoType> getVideoTypeList(){
-		 List<VideoType> listVideoType = videoTypeService.getVideoType(null);
-		
-		 for (VideoType vt : listVideoType) {
-			 log.info(vt.toString());
-		}
-		return listVideoType;
-    }
-	@Autowired
-	 private  CoursePhotoSlideService  courseService;
-	
-	@RequestMapping(value="getIndexPages")
-	public ModelAndView getIndexPages() {        
-		ModelAndView mv = new ModelAndView("forward:/Test.jsp");
-		//加载轮播
-		//加载轮播
-				List<CoursePhotoSlide> coursePhotoSlideList = courseService.queryPhotoSilde(3);
-		mv.addObject("CoursePhotoSlideList", coursePhotoSlideList);
-	    return mv;
+	@RequestMapping("/Test")
+	public ModelAndView Test() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/PersonCenter.jsp");
+		return mv;
 	}
 }

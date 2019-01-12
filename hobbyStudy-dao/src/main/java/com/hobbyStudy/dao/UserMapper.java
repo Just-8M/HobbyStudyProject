@@ -126,4 +126,14 @@ public interface UserMapper {
 	 * @param i
 	 */
 	public void insertUserLikeirem(String userid, int i);
+	/**
+	 * 
+	 * @Description : 修改个人中心
+	 *@param
+	 * @return
+	 * @Author shenjin
+	 */
+	public Boolean updatePersonInfor(@Param("userid") String userid, @Param("nickname") String nickname, @Param("gender") int gender,
+                                     @Param("province") String province, @Param("city") String city,
+                                     @Param("district") String district, @Param("title") String title, @Param("sign") String sign);
 }

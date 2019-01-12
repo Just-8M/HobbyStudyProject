@@ -288,7 +288,28 @@ public class UserController{
 	    mv.addObject("personDetail", personDetail);
 		return  mv;
     }
-	
+    // 个人中心
+	@RequestMapping(value = "/personCenter")   //  映射路径
+    public ModelAndView personCenter(Integer id){
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/PersonCenter.jsp");
+		User  PersonCenterDetail = userService.queryPersonDetail(id);
+	    mv.addObject("PersonCenterDetaild", PersonCenterDetail);
+		return  mv;
+    }
+	/**  个人信息修改
+	 * @param userid
+	 * @param title
+	 * @return
+	 */
+	 @ResponseBody
+	@RequestMapping(value = "/updatePersonInfor")   //  映射路径
+    public Boolean updatePersonInfor(String userid,String nickname,int gender,String province,
+    		String city,String district,String title,String sign){
+		System.out.println("useridL:" + userid + "sign：" + sign);
+		Boolean boo = userService.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
+		System.out.println("b：" +boo);
+		return boo;
+	  }
 }
 
 
