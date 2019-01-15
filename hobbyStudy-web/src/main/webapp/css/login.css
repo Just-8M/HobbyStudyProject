@@ -1,0 +1,172 @@
+@charset 'UTF-8';
+body {
+  background-image: url(../images/login/login_bg.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ul li {
+  list-style-type: none;
+}
+input {
+  outline: none;
+}
+.errorIco {
+  background: url('../images/iconfont/error.png') no-repeat left center;
+  background-size: 30px 21px;
+}
+.content {
+  width: 450px;
+  margin: 20px auto;
+}
+.content .loginBox {
+  height: auto;
+  background-color: #fff;
+  opacity: 0.8;
+  position: relative;
+  padding: 10px 20px;
+}
+.content .loginBox .login_logo {
+  text-align: center;
+}
+.content .loginBox .login_logo .logoImg {
+  height: 80px;
+}
+.content .loginBox .loginWay {
+  width: 410px;
+  height: 30px;
+  margin: 10px 0;
+  border-bottom: 1px solid #999;
+}
+.content .loginBox .loginWay .userLogin,
+.content .loginBox .loginWay .emailLogin {
+  font-size: 18px;
+  width: 200px;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.content .loginBox .loginWay .underline {
+  width: 205px;
+  height: 2px;
+  background-color: #fdd102;
+  position: absolute;
+  margin-top: 28px;
+}
+.content .loginBox .loginForm {
+  position: relative;
+}
+.content .loginBox .loginForm .input-error {
+  width: auto;
+  color: #e5224c;
+  font-size: 16px;
+  display: block;
+  padding: 5px 0px 0px 30px;
+}
+.content .loginBox .loginForm .userIcon,
+.content .loginBox .loginForm .pswIcon,
+.content .loginBox .loginForm .verifyIcon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  font-size: 20px;
+  margin: 28px 0 0 15px;
+  background: url('../images/iconfont/login_ico.png') no-repeat;
+  background-size: 100%;
+}
+.content .loginBox .loginForm .userIcon {
+  background-position: 0 -50px;
+}
+.content .loginBox .loginForm .EmailIcon {
+  color: #000;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  font-size: 20px;
+  margin: 28px 0 0 15px;
+}
+.content .loginBox .loginForm .verifyIcon {
+  background-position: 0 -76px;
+}
+.content .loginBox .loginForm .getCode {
+  width: 135px;
+  line-height: 30px;
+  background: #fdd102;
+  margin: 20px 0 0 -145px;
+  border: 0;
+  border-radius: 25px;
+}
+.content .loginBox .loginForm .inputBox {
+  width: 400px;
+  height: 50px;
+  margin-top: 15px;
+  text-indent: 50px;
+  border: 1px solid #615e5e;
+}
+.content .loginBox .loginForm .inputBox:active,
+.content .loginBox .loginForm .inputBox:focus {
+  border: 1px solid #fdd102;
+}
+.content .loginBox .loginForm .commitcode_new {
+  margin-top: 15px;
+}
+.content .loginBox .loginForm .commitcode_new .forgotPsw {
+  float: right;
+  color: #666;
+  text-decoration: none;
+}
+.content .loginBox .loginForm .commitcode_new .forgotPsw:hover {
+  color: #ffd700;
+}
+.content .loginBox .loginForm .commitcode_new #rememberPsw {
+  display: block;
+  float: left;
+  margin-right: 5px;
+}
+.content .loginBox .loginForm .commitcode_new span {
+  color: #666;
+}
+.content .loginBox .loginForm .loginBtn .loginText {
+  width: 400px;
+  height: 50px;
+  margin-top: 15px;
+  background-color: #fdd102;
+  color: #fff;
+  border: 0;
+  font-size: 20px;
+}
+.content .loginBox .loginForm .agree_document {
+  text-align: center;
+  margin-top: 15px;
+}
+.content .loginBox .loginForm .agree_document a {
+  color: #000;
+  font-weight: bold;
+}
+.content .loginBox .loginForm .otherWay {
+  text-align: center;
+  margin-top: 15px;
+}
+.content .loginBox .loginForm .otherWay .wechat,
+.content .loginBox .loginForm .otherWay .qq {
+  width: 50px;
+  margin: 10px 20px 5px 20px;
+  cursor: pointer;
+}
+.content .loginBox .loginForm .back {
+  height: 20px;
+  line-height: 20px;
+}
+.content .loginBox .loginForm .back .register {
+  display: inline-block;
+  margin-left: 195px;
+}
+.content .loginBox .loginForm .back a {
+  float: right;
+  margin-right: 10px;
+  color: #666;
+}
+.content .loginBox .loginForm .back a:hover {
+  text-decoration: none;
+  color: #ffd700;
+}

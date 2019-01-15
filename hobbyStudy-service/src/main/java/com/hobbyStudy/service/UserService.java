@@ -34,6 +34,13 @@ public interface UserService {
 	 */
 	public Boolean getByUsernameAndPassword(User user);
 	/**
+	 * 
+	 * @Description  用户注册 
+	 * @param
+	 * @return:Boolean
+	 */
+	public Boolean insertUser(String username, String password, String email);
+	/**
 	* @Title: login  
 	* @Description: (登录)  
 	* @param     
@@ -109,7 +116,7 @@ public interface UserService {
 	
 	/**  
 	* @Title: updateLikeCount  
-	* @Description: (这里用一句话描述这个方法的作用)  
+	* @Description: (更新点赞数量)  
 	* @param     
 	* @return Boolean  
 	* @throws  
@@ -125,8 +132,28 @@ public interface UserService {
 	 * 
 	 * @return 
 	 * @Description   更新个人信息
-	 * @Author shenjin
 	 */
 	public Boolean updatePersonInfor(String userid, String nickname, int gender, String province, String city,
                                      String district, String title, String sign);
+	/**
+	 * 
+	 * @Description   判断密码是否和数据库中相等
+	 * @param
+	 * @return
+	 */
+	public User selectoldPassword(String userid);
+	/**
+	 * @Description   修改密码
+	 * @param
+	 * @return
+	 */
+	public Boolean updataUserPsw(String userid, String newPassword);
+	/**
+	 * 
+	 * @Description 查看邮箱是否存在 
+	 * @param
+	 * @return:Boolean
+	 */
+	public Boolean queryemail(String email);
+	
 }

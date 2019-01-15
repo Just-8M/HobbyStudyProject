@@ -1,0 +1,359 @@
+.warning {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 100px;
+  background: #fffacd url(../../images/iconfont/error.png) no-repeat 70px center;
+  background-size: 30px 25px;
+}
+.warning img {
+  display: block;
+  height: 25px;
+  cursor: pointer;
+  float: right;
+  margin-top: 5px;
+}
+.warning a {
+  color: #e5224c;
+}
+.coursewrap {
+  margin-top: 20px;
+  width: 1210px;
+  margin: 5px auto;
+}
+.coursewrap .courseDetail .coursevideo {
+  float: left;
+  cursor: pointer;
+  position: relative;
+}
+.coursewrap .courseDetail .coursevideo img {
+  width: 600px;
+  height: 370px;
+}
+.coursewrap .courseDetail .coursevideo .video_btn {
+  position: absolute;
+  margin-left: 210px;
+  margin-top: -210px;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  text-indent: 50px;
+  border-radius: 25px;
+  background: #ffffff url('../../images/iconfont/video_btn.png') no-repeat 20px center;
+  background-size: 25px 25px;
+}
+.coursewrap .courseDetail .coursevideo .video_btn:hover {
+  background: #cccccc url('../../images/iconfont/video_btn.png') no-repeat 20px center;
+  background-size: 25px 25px;
+  opacity: 0.7;
+}
+.coursewrap .courseDetail .videolink {
+  display: none;
+  width: 600px;
+  height: 370px;
+  position: absolute;
+}
+.coursewrap .courseDetail .course_right {
+  width: 570px;
+  height: 370px;
+  float: right;
+}
+.coursewrap .courseDetail .course_right .course_title {
+  width: 430px;
+  min-height: 30px;
+  max-height: 75px;
+  overflow: hidden;
+  font-size: 22px;
+  padding: 0 15px 20px 0;
+}
+.coursewrap .courseDetail .course_right .course_price {
+  font-size: 18px;
+  padding: 10px 0;
+}
+.coursewrap .courseDetail .course_right .course_price span {
+  color: #e5224c;
+}
+.coursewrap .courseDetail .course_right .love_addcart {
+  float: right;
+  margin-top: -40px;
+  font-size: 16px;
+  /* Firefox */
+  /* Safari and Chrome */
+  /* Opera */
+}
+.coursewrap .courseDetail .course_right .love_addcart span {
+  padding-left: 30px;
+  margin-left: 25px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.coursewrap .courseDetail .course_right .love_addcart .love {
+  background: url('../../images/iconfont/love.png') no-repeat left;
+  background-size: 20px 20px;
+}
+.coursewrap .courseDetail .course_right .love_addcart .love_red {
+  background: url('../../images/iconfont/love_red.png') no-repeat left;
+  background-size: 25px 25px;
+}
+.coursewrap .courseDetail .course_right .love_addcart .addcart {
+  background: url('../../images/iconfont/addcart.png') no-repeat left;
+  background-size: 25px 25px;
+}
+.coursewrap .courseDetail .course_right .love_addcart .cart_animate {
+  display: none;
+  width: 50px;
+  height: 50px;
+  background: url('../../images/iconfont/addcart.png') no-repeat left;
+  background-size: 30px 30px;
+  position: absolute;
+  margin-top: -40px;
+  margin-left: 115px;
+  animation: cart_animate 1s;
+  -moz-animation: cart_animate 1s;
+  /* Firefox */
+  -webkit-animation: cart_animate 1s;
+  /* Safari and Chrome */
+  -o-animation: cart_animate 1s;
+  /* Opera */
+}
+@keyframes cart_animate {
+  0% {
+    left: 1050px;
+    top: 220px;
+  }
+  100% {
+    left: 890px;
+    top: 55px;
+  }
+}
+@-moz-keyframes cart_animate {
+  0% {
+    left: 1050px;
+    top: 220px;
+  }
+  100% {
+    left: 980px;
+    top: 55px;
+  }
+}
+@-webkit-keyframes cart_animate {
+  0% {
+    left: 1050px;
+    top: 220px;
+  }
+  100% {
+    left: 890px;
+    top: 55px;
+  }
+}
+@-o-keyframes cart_animate {
+  0% {
+    left: 1050px;
+    top: 220px;
+  }
+  100% {
+    left: 890px;
+    top: 55px;
+  }
+}
+.coursewrap .courseDetail .course_right .notice {
+  width: 350px;
+  height: 30px;
+  line-height: 30px;
+  background: url('../../images/iconfont/bbs.png') no-repeat left;
+  background-size: 30px 30px;
+  text-indent: 40px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.coursewrap .courseDetail .course_right .course_notice {
+  width: 100%;
+  height: auto;
+  padding: 10px 40px;
+  border-radius: 8px;
+  background: #FFFACD;
+}
+.coursewrap .courseDetail .course_right .course_notice .star_time,
+.coursewrap .courseDetail .course_right .course_notice .class_hour,
+.coursewrap .courseDetail .course_right .course_notice .week_hour,
+.coursewrap .courseDetail .course_right .course_notice .destination,
+.coursewrap .courseDetail .course_right .course_notice .introduced {
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: bold;
+}
+.coursewrap .courseDetail .course_right .course_notice .star_time span,
+.coursewrap .courseDetail .course_right .course_notice .class_hour span,
+.coursewrap .courseDetail .course_right .course_notice .week_hour span,
+.coursewrap .courseDetail .course_right .course_notice .destination span,
+.coursewrap .courseDetail .course_right .course_notice .introduced span {
+  font-size: 14px;
+  font-weight: normal;
+}
+.coursewrap .courseDetail .course_right .course_notice .star_time span:first-child,
+.coursewrap .courseDetail .course_right .course_notice .class_hour span:first-child,
+.coursewrap .courseDetail .course_right .course_notice .week_hour span:first-child,
+.coursewrap .courseDetail .course_right .course_notice .destination span:first-child,
+.coursewrap .courseDetail .course_right .course_notice .introduced span:first-child {
+  padding-left: 15px;
+}
+.coursewrap .courseDetail .course_right .course_notice .destination span {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 75px;
+  width: 410px;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /*文字占几行*/
+  -webkit-box-orient: vertical;
+}
+.coursewrap .courseDetail .course_right .buy {
+  line-height: 60px;
+  margin-top: 15px;
+}
+.coursewrap .courseDetail .course_right .buy .btn {
+  float: left;
+  width: 130px;
+  height: 40px;
+  background: #fdd102;
+  font-size: 18px;
+  color: #fff;
+}
+.coursewrap .courseDetail .course_right .buy .next_course {
+  float: left;
+  width: 440px;
+  padding-left: 25px;
+}
+.coursewrap .courseDetail .course_right .buy .next_course .sign_up,
+.coursewrap .courseDetail .course_right .buy .next_course .sign_up_success {
+  font-size: 16px;
+  line-height: 40px;
+}
+.coursewrap .courseDetail .course_right .buy .next_course .sign_up a,
+.coursewrap .courseDetail .course_right .buy .next_course .sign_up_success a {
+  color: #ffc125 !important;
+}
+.course_tab_wrap {
+  margin-top: 30px;
+  background: #F4F4F4;
+  width: 100%;
+  padding: 20px 70px;
+  height: auto;
+}
+.course_tab_wrap .course_tab {
+  float: left;
+  padding: 15px 30px;
+  width: 870px;
+  height: auto;
+  min-height: 550px;
+  margin: 0 auto;
+  background: #fff;
+}
+.course_tab_wrap .course_tab .nav-tabs li.active a {
+  color: #ffc125 !important;
+}
+.course_tab_wrap .course_tab .nav-tabs li a {
+  font-size: 16px !important;
+}
+/* .course_tab_wrap .course_tab .course_tab_content .courseDetail .course_intro_text {
+  text-align: justify;
+  margin: 20px 0;
+  border-radius: 8px;
+  height: auto;
+  line-height: 30px;
+  font-size: 16px;
+  min-height: 80px;
+  padding: 20px;
+  background: #fffacd;
+}
+.course_tab_wrap .course_tab .course_tab_content .courseDetail .course_intro_pic img {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+} */
+.course_tab_wrap .course_leader {
+  float: right;
+  width: 300px;
+  height: auto;
+  min-height: 360px;
+  background: #fff;
+  padding: 0 15px;
+}
+.course_tab_wrap .course_leader .leader_visiting_card {
+  line-height: 55px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid #EDEDED;
+}
+.course_tab_wrap .course_leader .profile_photo {
+  margin: 10px 0;
+}
+.course_tab_wrap .course_leader .profile_photo img {
+  float: left;
+  width: 90px;
+  height: 90px;
+  border-radius: 100px;
+}
+.course_tab_wrap .course_leader .profile_photo .name_school {
+  float: right;
+  width: 160px;
+  height: 120px;
+}
+.course_tab_wrap .course_leader .profile_photo .name_school .leader_name {
+  width: 90px;
+  font-size: 18px;
+  line-height: 60px;
+}
+.course_tab_wrap .course_leader .profile_photo .name_school .leader_school {
+  font-size: 14px;
+  line-height: 20px;
+}
+.course_tab_wrap .course_leader .profile_photo .favorite {
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #CCCCCC;
+  line-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  margin-left: 210px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #CD3333;
+}
+.course_tab_wrap .course_leader .profile_photo .favorite:hover {
+  background: #FAFAFA;
+}
+.course_tab_wrap .course_leader .course_comment {
+  width: 270px;
+}
+.course_tab_wrap .course_leader .course_comment ul li {
+  font-size: 18px;
+  text-align: center;
+  float: left;
+  width: 90px;
+  height: 50px;
+  line-height: 20px;
+}
+.course_tab_wrap .course_leader .course_comment ul li span {
+  display: block;
+  font-size: 16px;
+  line-height: 30px;
+}
+.course_tab_wrap .course_leader .course_comment ul li:first-child,
+.course_tab_wrap .course_leader .course_comment ul li:nth-child(2) {
+  border-right: 1px solid #666666;
+}
+.course_tab_wrap .course_leader .introduction {
+  text-align: justify;
+  font-size: 14px;
+  padding: 15px;
+  width: 270px;
+  line-height: 25px;
+}

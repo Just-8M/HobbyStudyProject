@@ -56,9 +56,10 @@ public class UserController{
 	 */
 	@RequestMapping(value = "/AjaxRegister", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public JSONObject AjaxRegister(@RequestParam("username") String username) {
+	public JSONObject AjaxRegister(@Param("username") String username) {
 		JSONObject json = new JSONObject();
 		String temp = "";
+		System.out.println("username:" + username);
 		int count = userService.AjaxRegisterUsername(username);
 		System.out.println(username + "   " + count);
 		if (count > 0) {
@@ -68,18 +69,36 @@ public class UserController{
 			temp = "用户名：" +  username + "可以注册";
 			json.put("result", temp);
 		}
-		System.out.println(temp);
 		return json;
 	}
 	/**
+	 * @Description : 用户注册时下一步进行绑定邮箱
+	 * @param
+	 * @return
+	 */
+    @RequestMapping(value = "/BindEmail", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject BindEmail(@Param("email")String email) {
+		JSONObject json = new JSONObject();
+		System.out.println(  "email:" + email);
+        Boolean flag  = userService.queryemail(email);
+        System.out.println("flag值："+flag);
+        if (flag == true) {
+        	json.put("BindEmailResult", "邮箱已存在，请更换邮箱");
+		}else{
+			json.put("BindEmailResult", "邮箱可以使用");
+		}
+        return json;
+    }
+	/**
 	 * 
 	* @Title: Register  
-	* @Description: (Ajax注册)  
+	* @Description: (Ajax进行用户名查找注册)  
 	* @param     
 	* @return JSONObject  
 	* @throws
 	 */
-	@RequestMapping(value = "/Register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	/*@RequestMapping(value = "/Register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject Register(User user) {
 		JSONObject json = new JSONObject();
@@ -92,81 +111,111 @@ public class UserController{
 			json.put("RegisterResult", "注册失败");
 		}
         return json;
+    }*/
+	/**
+	 * 
+	 * @Description   注册时发送邮件验证码 
+	 * @param
+	 * @return:JSONObject
+	 */
+    @RequestMapping("register2")
+    public JSONObject register2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        JSONObject json = new JSONObject();
+        try {
+            String email = req.getParameter("email");
+            JavaMailUtil.receiveMailAccount = email; // 给用户输入的邮箱发送邮件
+
+            // 1、创建参数配置，用于连接邮箱服务器的参数配置
+            Properties props = new Properties();
+            // 开启debug调试
+            props.setProperty("mail.debug", "true");
+            // 发送服务器需要身份验证
+            props.setProperty("mail.smtp.auth", "true");
+            // 设置右键服务器的主机名
+            props.setProperty("mail.host", JavaMailUtil.emailSMTPHost);
+            // 发送邮件协议名称
+            props.setProperty("mail.transport.protocol", "smtp");
+
+            // 2、根据配置创建会话对象，用于和邮件服务器交互
+            Session session = Session.getInstance(props);
+            // 设置debug，可以查看详细的发送log
+            session.setDebug(true);
+            // 3、创建一封邮件
+            String code = RandomUtil.getRandom();
+            System.out.println("邮箱验证码：" + code);
+            String html = htmlText.html(code);
+            MimeMessage message = JavaMailUtil.creatMimeMessage(session, JavaMailUtil.emailAccount,
+                    JavaMailUtil.receiveMailAccount, html);
+
+            // 4、根据session获取邮件传输对象
+            Transport transport = session.getTransport();
+            // 5、使用邮箱账号和密码连接邮箱服务器emailAccount必须与message中的发件人邮箱一致，否则报错
+            transport.connect(JavaMailUtil.emailAccount, JavaMailUtil.emailPassword);
+            // 6、发送邮件,发送所有收件人地址
+            transport.sendMessage(message, message.getAllRecipients());
+            // 7、关闭连接
+            transport.close();
+            //  写入session
+            req.getSession().setAttribute("code", code);
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.getSession().setAttribute("error", "邮件发送失败");
+        }
+        return json;
+
     }
-	@RequestMapping("register2")
-	public JSONObject register2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	/**
+	 * 
+	 * @Description  验证邮箱验证码 
+	 * @param
+	 */
+	@RequestMapping(value = "MailVerify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public JSONObject MailVerify(HttpServletRequest req, HttpServletResponse resp,@Param("username")String username,@Param("password")String  password,
+			@Param("email")String email,@Param("emailCode")String emailCode) throws ServletException, IOException {
 		JSONObject json = new JSONObject();
-		try {
-			String email = req.getParameter("email");
-			JavaMailUtil.receiveMailAccount = email; // 给用户输入的邮箱发送邮件
-
-			// 1、创建参数配置，用于连接邮箱服务器的参数配置
-			Properties props = new Properties();
-			// 开启debug调试
-			props.setProperty("mail.debug", "true");
-			// 发送服务器需要身份验证
-			props.setProperty("mail.smtp.auth", "true");
-			// 设置右键服务器的主机名
-			props.setProperty("mail.host", JavaMailUtil.emailSMTPHost);
-			// 发送邮件协议名称
-			props.setProperty("mail.transport.protocol", "smtp");
-
-			// 2、根据配置创建会话对象，用于和邮件服务器交互
-			Session session = Session.getInstance(props);
-			// 设置debug，可以查看详细的发送log
-			session.setDebug(true);
-			// 3、创建一封邮件
-			String code = RandomUtil.getRandom();
-			System.out.println("邮箱验证码：" + code);
-			String html = htmlText.html(code);
-			MimeMessage message = JavaMailUtil.creatMimeMessage(session, JavaMailUtil.emailAccount,
-					JavaMailUtil.receiveMailAccount, html);
-
-			// 4、根据session获取邮件传输对象
-			Transport transport = session.getTransport();
-			// 5、使用邮箱账号和密码连接邮箱服务器emailAccount必须与message中的发件人邮箱一致，否则报错
-			transport.connect(JavaMailUtil.emailAccount, JavaMailUtil.emailPassword);
-			// 6、发送邮件,发送所有收件人地址
-			transport.sendMessage(message, message.getAllRecipients());
-			// 7、关闭连接
-			transport.close();
-			//  写入session
-			req.getSession().setAttribute("code", code);
-		} catch (Exception e) {
-			e.printStackTrace();
-			req.getSession().setAttribute("error", "邮件发送失败");
-		}
-		return json;
-		
-		}
-	@RequestMapping("MailVerify")
-	public void MailVerify(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String sessionCode = (String) req.getSession().getAttribute("code");
-		System.out.println(sessionCode);
+		System.out.println("注册成功之后保存的session" + sessionCode);
 		//  获取session中的验证码
 		if(sessionCode != null) {
 			//  获取页面提交的验证码
-			String inputCode = req.getParameter("code");
+			String inputCode = emailCode;
 			System.out.println("页面提交的验证码:" + inputCode);
 			if (sessionCode.toLowerCase().equals(inputCode.toLowerCase())) {
 				// 把用户名和密码等一系列信息传入数据库中
-				String username = req.getParameter("username");
-				String password = req.getParameter("password");
-				
-				//  验证成功，跳转成功页面
-				req.setAttribute("username", username);
-				req.setAttribute("password", password);
-				req.getRequestDispatcher("Test.jsp").forward(req, resp);
+				System.out.println("username:" + username);
+				System.out.println("password:" + password);
+				System.out.println("email:" + email);
+				//  执行插入操作
+				Boolean boo;
+				if (username=="" ||username==null){
+					//  执行邮箱注册，userid就是email
+					 boo = userService.insertUser(email,password,email);
+				}else{
+					//  执行自定义用户名注册
+					 boo = userService.insertUser(username,password,email);
+					System.out.println("插入boo:" + boo);
+				}
+				if (boo == true) {
+					System.out.println("我注册成功");
+					json.put("RegisterResult", "注册成功");
+				}else {
+					System.out.println("注册失败");
+					json.put("RegisterResult", "注册失败");
+				}
 			}else {
 				//  验证失败
-				req.getRequestDispatcher("login.jsp").forward(req, resp);
+				json.put("RegisterResult", "注册失败");
 			}
 		}else {
 			//  验证失败
-			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			json.put("RegisterResult", "注册失败");
 		}
-		//  移除session中的验证码
-		req.getSession().removeAttribute("code");
+			//  移除session中的验证码
+			req.getSession().removeAttribute("code");
+		return json;
+
+
 	}
 	@RequestMapping("/login")
 	public String login(@Param("username")String username,@Param("password")String password,
@@ -189,7 +238,6 @@ public class UserController{
 				}
         }
 	}
-	
 	/**
 	 * 
 	* @Title: queryTaBySort  
@@ -212,8 +260,8 @@ public class UserController{
 	/**
 	 * 
 	* @Title: xunTaLikeCount  
-	* @Description: (寻Ta点赞功能)  
-	* @param     传入对象和传入参数值都可以，传入参数只需要在dao层表明参数对应的值
+	* @Description: (寻Ta点赞功能)  传入对象和传入参数值都可以 ，传入参数只需要在dao层表明参数对应的值
+	* @param
 	* @return void  
 	* @throws
 	 */
@@ -296,12 +344,12 @@ public class UserController{
 	    mv.addObject("PersonCenterDetaild", PersonCenterDetail);
 		return  mv;
     }
-	/**  个人信息修改
+	/**  个人信息修改(不包括密码)
 	 * @param userid
 	 * @param title
 	 * @return
 	 */
-	 @ResponseBody
+	@ResponseBody
 	@RequestMapping(value = "/updatePersonInfor")   //  映射路径
     public Boolean updatePersonInfor(String userid,String nickname,int gender,String province,
     		String city,String district,String title,String sign){
@@ -309,6 +357,28 @@ public class UserController{
 		Boolean boo = userService.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
 		System.out.println("b：" +boo);
 		return boo;
+	  }
+	/**
+	 * @Description  修改个人密码 
+	 * @param
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updatePersonPsw")   //  映射路径
+    public Boolean updatePersonPsw(String userid,String oldPassword,String newPassword){
+		System.out.println("oldPassword:" + oldPassword + "    userid：" + userid);
+		User user = userService.selectoldPassword(userid);
+		System.out.println("boo:" + user);
+		if (user != null  && user.getPassword().equals(oldPassword)) {
+			System.out.println("密码相等");
+			Boolean boo = userService.updataUserPsw(userid,newPassword);
+			return boo;
+		}else{
+			System.out.println("密码不等");
+			return false;
+		}
+		/*Boolean boo = userService.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
+		System.out.println("b：" +boo);*/
 	  }
 }
 

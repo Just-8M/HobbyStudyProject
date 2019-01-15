@@ -1,0 +1,333 @@
+button.btn {
+  outline: 0 !important;
+}
+.control-label {
+  text-align: right !important;
+}
+.container {
+  margin-top: 30px;
+}
+.container .left_nav {
+  height: 550px;
+}
+.container .left_nav .panel-body .profile {
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+}
+.container .left_nav .panel-body .profile .profile_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 4px solid #d9dde1;
+}
+.container .left_nav .panel-body .profile .update-avator {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+}
+.container .left_nav .panel-body .profile .update-avator p {
+  background: rgba(0, 0, 0, 0.6);
+  line-height: 30px;
+  text-align: center;
+}
+.container .left_nav .panel-body .profile .update-avator p a {
+  font-size: 12px;
+  color: #fff;
+}
+.container .left_nav .panel-body .profile .update-avator p a:hover,
+.container .left_nav .panel-body .profile .update-avator p a:link,
+.container .left_nav .panel-body .profile .update-avator p a:active {
+  text-decoration: none;
+}
+.container .left_nav .panel-body .profile #changeProfile {
+  margin-top: 150px;
+}
+.container .left_nav .panel-body .profile #changeProfile .changePhoto {
+  border: 2px solid #ccc;
+  border-radius: 80px;
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin: 0 50px;
+}
+.container .left_nav .panel-body .profile #changeProfile .upload-profile #onload_change_profile {
+  width: 60px;
+  height: 30px;
+  opacity: 0;
+}
+.container .left_nav .panel-body .profile #changeProfile .upload-profile .onload_link {
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+}
+.container .left_nav .panel-body .profile #changeProfile .upload-profile .onload_link:hover,
+.container .left_nav .panel-body .profile #changeProfile .upload-profile .onload_link:active {
+  text-decoration: none;
+}
+.container .left_nav .panel-body .user_info {
+  margin: 10px 0;
+}
+.container .left_nav .panel-body .user_info h4 {
+  line-height: 40px;
+  width: 160px;
+  margin: 10px auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.container .left_nav .panel-body .user_info .authentication {
+  margin-left: 20px;
+}
+.container .left_nav .panel-body .user_info .authentication .auth_item {
+  float: left;
+}
+.container .left_nav .panel-body .user_info .authentication .auth_item .ico_wrap {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 25px;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  margin: 0 10px;
+}
+.container .left_nav .panel-body .user_info .authentication .auth_item .ico_wrap i {
+  line-height: 30px;
+  font-size: 16px;
+}
+.container .left_nav .panel-body .user_info .authentication .auth_item .ico_wrap i.active {
+  color: #ffc125;
+}
+.container .left_nav .list-group-item.active,
+.container .left_nav .list-group-item.active:focus,
+.container .left_nav .list-group-item.active:hover {
+  background-color: #fdd102;
+  border-color: #fdd102;
+}
+.container .left_nav .list-group {
+  margin-top: 20px;
+}
+.container .left_nav .list-group a {
+  text-align: center;
+}
+.container .right_content_box {
+  min-height: 550px;
+  background: #fff;
+  padding-left: 50px;
+}
+.container .right_content_box .right_item {
+  width: 100%;
+  min-height: 550px;
+}
+.container .right_content_box .right_item .right_item_title {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.container .right_content_box .right_item .right_item_title p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.container .right_content_box .right_item .right_item_body {
+  margin: 20px auto;
+}
+.container .right_content_box .right_item .right_item_body .control-label {
+  text-align: left;
+}
+.container .right_content_box .right_item .right_item_body .certific_notice li {
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+.container .right_content_box .user_data_box .location .form-control {
+  margin-right: 25px;
+  width: 160px;
+}
+.container .right_content_box .user_data_box #PI {
+  width: 100%;
+  height: 120px;
+  resize: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.container .right_content_box .account_box .right_item_body .media {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.container .right_content_box .account_box .right_item_body .media .media-left {
+  width: 80px;
+  line-height: 80px;
+}
+.container .right_content_box .account_box .right_item_body .media .media-left .media-object {
+  width: 30px;
+  margin: 10px;
+  display: block;
+}
+.container .right_content_box .account_box .right_item_body .media .media-body .status {
+  margin-left: 10px;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 14px;
+}
+.container .right_content_box .account_box .right_item_body .media .media-body .status-red {
+  color: #e5224c;
+}
+.container .right_content_box .account_box .right_item_body .media .media-right {
+  line-height: 50px;
+}
+.container .right_content_box .account_box .right_item_body .media .media-right button {
+  border-radius: 50px;
+}
+.container .right_content_box .account_box .right_item_body .media:last-child {
+  border-bottom: none;
+  height: 150px;
+}
+.container .right_content_box .account_box .right_item_body .media:last-child .media-soceity {
+  border: 0;
+  width: 30%;
+  float: left;
+}
+.container .right_content_box .account_box .right_item_body .media:last-child .media-soceity .icon-QQ,
+.container .right_content_box .account_box .right_item_body .media:last-child .media-soceity .icon-wechat {
+  font-size: 40px;
+  color: #ccc;
+}
+.container .right_content_box .account_box .right_item_body .modal {
+  margin-top: 120px;
+}
+.container .right_content_box .account_box .right_item_body .modal .modal-body {
+  padding: 15px 30px;
+  margin: 20px auto;
+  text-align: center;
+}
+.container .right_content_box .account_box .right_item_body .modal .modal-body .form-horizontal input {
+  width: 320px;
+}
+.container .right_content_box .account_box .right_item_body .modal .modal-body .form-horizontal .sendBtn {
+  /* cursor: pointer; */
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ffd102;
+  border-radius: 50px;
+  position: absolute;
+  top: 1px;
+  right: 0;
+  background: #fff;
+}
+.container .authentic_wrap,
+.container .leaderManage_wrap {
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  background: #f0f0f0;
+  position: relative;
+  margin-bottom: 20px;
+}
+.container .authentic_wrap .star_authentic,
+.container .leaderManage_wrap .star_authentic,
+.container .authentic_wrap .publish_course,
+.container .leaderManage_wrap .publish_course {
+  color: #fff;
+  vertical-align: middle;
+  width: 120px;
+  height: 30px;
+  background: #ffd102;
+  position: absolute;
+  left: 50%;
+  margin-top: 35px;
+  margin-left: -60px;
+}
+.container .authentic_notice li {
+  list-style-type: decimal !important;
+  margin-left: 20px;
+}
+.container .right_content_box .certificate_box .right_item_body #materia {
+  opacity: 0;
+  position: relative;
+  width: 165px;
+  height: 100%;
+}
+.container .right_content_box .certificate_box .right_item_body .file_box {
+  cursor: pointer;
+  width: 165px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #f0f0f0;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+}
+.container .right_content_box .certificate_box .right_item_body #img_name {
+  margin-top: 20px;
+  display: block;
+}
+.container .right_content_box .certificate_box .right_item_body .help_application {
+  color: #e5224c;
+  display: inline;
+  float: right;
+  margin-top: -15px;
+}
+.container .upload_IdPhoto {
+  opacity: 0;
+  height: 100px;
+}
+.container .authenticIdPhoto_box {
+  text-align: center;
+  position: relative;
+  margin-top: -100px;
+  padding-top: 20px;
+  width: 170px;
+  height: 100px;
+  border: 1px solid #ccc;
+}
+.container .authenticIdPhoto_box p {
+  line-height: 30px;
+}
+.container .ID_img {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  width: 170px;
+  height: 100px;
+  top: 0;
+  left: 15px;
+}
+.container .certificate_btn {
+  border-radius: 4px;
+  margin-left: 20%;
+  width: 120px;
+  background: #fdd102;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+/* 错误提示信息.error */
+.modal .modal-dialog .modal-content .modal-body .form-group .error{
+  color: #E5224C;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: left;
+}
+.modal .modal-dialog .modal-content .modal-body .form-group .error i{
+  padding-right:10px; 
+}
+
+/* 已绑定邮箱 */
+#EmailModal .bindEmail{
+  color: #E5224C;
+}
+#EmailModal  .changeEmail_btn{
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background: #ffd102;
+  color: #fff;
+  margin-left: 20px;
+}

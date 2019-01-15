@@ -92,10 +92,8 @@ public interface UserMapper {
 	
 	/**  
 	* @Title: queryUsernameAndPsw  
-	* @Description: (Login in)  
-	* @param     
-	* 传递多个参数加上@Param
-	* @return User  
+	* @Description: (Login in)    传递多个参数加上
+	* @return User
 	* @throws  
 	*/  
 	public User queryUsernameAndPsw(@Param("userid") String userid, @Param("password") String password);
@@ -131,9 +129,16 @@ public interface UserMapper {
 	 * @Description : 修改个人中心
 	 *@param
 	 * @return
-	 * @Author shenjin
 	 */
 	public Boolean updatePersonInfor(@Param("userid") String userid, @Param("nickname") String nickname, @Param("gender") int gender,
                                      @Param("province") String province, @Param("city") String city,
                                      @Param("district") String district, @Param("title") String title, @Param("sign") String sign);
+	//  查询输入密码和数据库是否相等
+	public User selectoldPassword(@Param("userid") String userid);
+	// 修改密码
+	public Boolean updataUserPsw(@Param("userid") String userid, @Param("password") String newPassword);
+	// 查看邮箱是否 被注册
+	public Boolean queryemail(String email);
+	//  注册
+	public Boolean insertUser(@Param("userid") String username, @Param("password") String password, @Param("email") String email);
 }

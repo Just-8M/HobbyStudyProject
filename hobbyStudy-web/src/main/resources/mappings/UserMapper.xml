@@ -12,6 +12,7 @@
 		<result column="Identity" property="Identity"  jdbcType="VARCHAR" />
 		<result column="header" property="header"  jdbcType="VARCHAR" />
 		<result column="mobile" property="mobile"  jdbcType="VARCHAR" />
+		<result column="email" property="email"  jdbcType="VARCHAR" />
 		<result column="status" property="status"  jdbcType="INTEGER" />
 		<result column="birthday" property="birthday"  jdbcType="DATE" />
 		<result column="education" property="education"  jdbcType="VARCHAR" />
@@ -36,7 +37,7 @@
 		<result column="del" property="del"  jdbcType="TINYINT" />
 	</resultMap>
 	<sql id="Base_Column_List"> 
-		id,realname,userid,nickname,userCategory,password,gender,Identity,header,mobile,status,
+		id,realname,userid,nickname,userCategory,password,gender,Identity,header,mobile,email,status,
 		birthday,education,college_code,college_name ,cert_no,title,sign,money,open_id,wechat_id,qq,
 		login_time,ip,province,city,district,fans,likeCount,weight,create_time,del
 	</sql>
@@ -46,6 +47,13 @@
 		count(1) cnt
 		FROM  hs_user
 		WHERE userid = #{userid,jdbcType=VARCHAR}
+	</select>
+	<!-- 查看邮箱是否可用 -->
+	<select id="queryemail"  parameterType="java.lang.String" resultType="boolean">
+		SELECT
+		count(1) cnt
+		FROM  hs_user
+		WHERE email=#{email}
 	</select>
 	<!-- 
 		flushCache="true":
@@ -85,6 +93,9 @@
 			</if>
 			<if test="mobile != null ">
 			mobile,
+			</if>
+			<if test="email != null ">
+			email,
 			</if>
 			<if test="status != null ">
 			status,
@@ -183,6 +194,9 @@
 			<if test="mobile != null ">
 			#{mobile, jdbcType=VARCHAR},
 			</if>
+			<if test="email != null ">
+			#{email, jdbcType=VARCHAR},
+			</if>
 			<if test="status != null ">
 			#{status, jdbcType=INTEGER},
 			</if>
@@ -252,6 +266,11 @@
 		</trim>
 	</insert>
 	
+	<insert id="insertUser" parameterType="com.hobbyStudy.entity.User"
+	 flushCache="true" useGeneratedKeys="true">
+ 		 INSERT INTO hs_user(userid, password,email) VALUES(#{userid}, #{password},#{email})
+    </insert>
+    
 	<!-- parameterType的用法，parameterType为输入参数，在配置的时候，配置相应的
 			输入参数类型即可。parameterType有基本数据类型和复杂的数据类型配置。 -->
     <!-- id:statement的id 或者叫做sql的id -->
@@ -337,9 +356,23 @@
         WHERE userid = #{userid}
 	</update> -->
 	<update id="updatePersonInfor" parameterType="com.hobbyStudy.entity.User">
-	 update hs_user  SET
+	 UPDATE hs_user  SET
 	    nickname=#{nickname},gender=#{gender},province=#{province},city=#{city},
 	    district=#{district},title=#{title},sign=#{sign}
-        where userid = #{userid}
+        WHERE userid = #{userid}
 	</update>
+	<!-- 查询个人密码   表示值返回user这个对象 -->
+	<select id="selectoldPassword" parameterType="String"  resultMap="BaseResultMap"> 
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM hs_user
+		WHERE userid = #{userid}
+	</select>
+	<!-- 更新密码 -->
+	<update id="updataUserPsw" parameterType="com.hobbyStudy.entity.User">
+	  UPDATE hs_user  SET
+	 	password=#{password}
+        WHERE userid = #{userid}
+	</update>
+	
 </mapper>

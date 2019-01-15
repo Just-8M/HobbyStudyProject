@@ -1,0 +1,117 @@
+.register {
+  width: 100%;
+}
+.register .header_wrapper {
+  padding: 15px 0;
+  width: 100%;
+  background: #fff;
+}
+.register .header_wrapper .header {
+  width: 1120px;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 auto;
+}
+.register .header_wrapper .header .logo {
+  width: 150px;
+}
+.register .header_wrapper .header .logo .logoIco {
+  width: 100%;
+}
+.register .header_wrapper .header .register_title {
+  font-size: 20px;
+  margin-left: 20px;
+}
+.register .header_wrapper .header .login_link p {
+  font-size: 18px;
+}
+.register .header_wrapper .header .login_link p a {
+  color: #ffd102;
+}
+.register .main {
+  width: 100%;
+  min-height: 560px;
+  background: #f5f8fa;
+  padding: 60px 0;
+}
+.register .main .content {
+  width: 1120px;
+  min-height: 480px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px 0;
+}
+.register .main .content .content-from {
+  width: 480px;
+  margin: 0 auto;
+}
+.register .main .content .content-from .content-head {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+.register .main .content .content-from .content-head .register_way {
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+.register .main .content .content-from .content-head .register_way .way_item {
+  cursor: pointer;
+  font-size: 18px;
+  width: 50%;
+  text-align: center;
+}
+.register .main .content .content-from .content-head .register_way .active {
+  width: 50%;
+  height: 40px;
+  color: #ffd102;
+  border-bottom: 2px solid #ffd102;
+}
+.register .main .content .content-from .content-body #user_way .form-group label,
+.register .main .content .content-from .content-body #email_way .form-group label,
+.register .main .content .content-from .content-body #bind_email .form-group label {
+  font-size: 14px;
+}
+.register .main .content .content-from .content-body #user_way .form-group .eye,
+.register .main .content .content-from .content-body #email_way .form-group .eye,
+.register .main .content .content-from .content-body #bind_email .form-group .eye {
+  cursor: pointer;
+  color: #999;
+  font-size: 20px;
+  display: block;
+  float: right;
+  margin: -28px 10px 0 0;
+}
+.register .main .content .content-from .content-body #user_way .form-group .service_term,
+.register .main .content .content-from .content-body #email_way .form-group .service_term,
+.register .main .content .content-from .content-body #bind_email .form-group .service_term {
+  color: #ffd102;
+}
+.register .main .content .content-from .content-body #user_way .form-group .register_btn,
+.register .main .content .content-from .content-body #email_way .form-group .register_btn,
+.register .main .content .content-from .content-body #bind_email .form-group .register_btn {
+  background: #ffd102;
+  border: 0;
+  height: 40px;
+  color: #fff;
+}
+.register .main .content .content-from .content-body #user_way .form-group .error,
+.register .main .content .content-from .content-body #email_way .form-group .error,
+.register .main .content .content-from .content-body #bind_email .form-group .error {
+  color: #E5224C;
+  font-size: 14px;
+}
+.register .main .content .content-from .content-body #user_way .form-group .error .icon-error,
+.register .main .content .content-from .content-body #email_way .form-group .error .icon-error,
+.register .main .content .content-from .content-body #bind_email .form-group .error .icon-error {
+  padding-right: 10px;
+}
+.register .main .content .content-from .content-body #email_way,
+.register .main .content .content-from .content-body #bind_email {
+  display: none;
+}
+.register .main .copy-right {
+  width: 1120px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 30px;
+}

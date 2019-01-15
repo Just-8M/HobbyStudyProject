@@ -106,5 +106,21 @@ public class UserServiceImpl implements  UserService{
 			String district, String title, String sign) {
 		 return userMapper.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
 	}
+	@Override
+	public User selectoldPassword(String userid) {
+		return userMapper.selectoldPassword(userid);
+	}
+	@Override
+	public Boolean updataUserPsw(String userid, String newPassword) {
+		return userMapper.updataUserPsw(userid,newPassword);
+	}
+	@Override
+	public Boolean queryemail(String email) {
+		return userMapper.queryemail(email);
+	}
+	@Override
+	public Boolean insertUser(String username, String password, String email) {
+		return userMapper.insertUser(username,password,email);
+	}
 
 }

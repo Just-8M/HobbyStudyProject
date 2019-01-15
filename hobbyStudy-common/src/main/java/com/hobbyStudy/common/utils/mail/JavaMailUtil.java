@@ -18,7 +18,7 @@ public class JavaMailUtil {
 		public static String emailAccount = "379132867@qq.com";
 		// 发件人邮箱密码（有的是授权码）
 //		public static String emailPassword = "858873jin";
-		public static String emailPassword = "bobfrvhldigacbbd";
+		public static String emailPassword = "gpxorzbcmhodcbcj";
 		// 发件人邮箱服务地址
 //		public static String emailSMTPHost = "smtp.163.com";
 		public static String emailSMTPHost = "smtp.qq.com";

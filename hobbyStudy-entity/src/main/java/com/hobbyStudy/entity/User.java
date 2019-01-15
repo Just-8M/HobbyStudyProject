@@ -19,6 +19,7 @@ public class User {
 	private String Identity;      //  身份信息
 	private String header;        //  头像
 	private String mobile;        //  手机号码
+	private String email;         //  邮箱
 	private Integer status;       //  状态：待审核（0），审核通过（1），默认（2），审核未通过（3），禁用（5）
 	private Date birthday;        //  出生日期
 	private String education;     //  学历：大专、本科、硕士、博士、博士后
@@ -124,6 +125,14 @@ public class User {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Integer getStatus() {
@@ -302,11 +311,12 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", realname=" + realname + ", userid=" + userid + ", nickname=" + nickname
 				+ ", userCategory=" + userCategory + ", password=" + password + ", gender=" + gender + ", Identity="
-				+ Identity + ", header=" + header + ", mobile=" + mobile + ", status=" + status + ", birthday="
-				+ birthday + ", education=" + education + ", collegeCode=" + collegeCode + ", collegeName="
-				+ collegeName + ", certNo=" + certNo + ", title=" + title + ", sign=" + sign + ", money=" + money
-				+ ", openId=" + openId + ", wechatId=" + wechatId + ", qq=" + qq + ", loginTime=" + loginTime + ", ip="
-				+ ip + ", province=" + province + ", city=" + city + ", district=" + district + ", weight=" + weight
-				+ ", fans=" + fans + ", createTime=" + createTime + ", del=" + del + "]";
+				+ Identity + ", header=" + header + ", mobile=" + mobile + ", email=" + email + ", status=" + status
+				+ ", birthday=" + birthday + ", education=" + education + ", collegeCode=" + collegeCode
+				+ ", collegeName=" + collegeName + ", certNo=" + certNo + ", title=" + title + ", sign=" + sign
+				+ ", money=" + money + ", openId=" + openId + ", wechatId=" + wechatId + ", qq=" + qq + ", loginTime="
+				+ loginTime + ", ip=" + ip + ", province=" + province + ", city=" + city + ", district=" + district
+				+ ", fans=" + fans + ", likeCount=" + likeCount + ", weight=" + weight + ", createTime=" + createTime
+				+ ", del=" + del + "]";
 	}
 } 

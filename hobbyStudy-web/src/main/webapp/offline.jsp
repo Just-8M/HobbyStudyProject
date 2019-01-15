@@ -71,7 +71,7 @@
     <script src="script/bootstrap/jquery-3.2.1.min.js"></script>
     <script src="script/bootstrap/bootstrap.min.js"></script>
     <!-- 城市选择三级联动 -->
-    <script type="text/javascript"  src="script/model/distpicker.min.js"></script>
+    <script type="text/javascript"  src="plugins/js/distpicker.min.js"></script>
     <!-- 视频背景 -->
     <script src="lib/js/jquery.vidbacking.js"></script>
 

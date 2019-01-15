@@ -28,6 +28,7 @@
                 <span class="video_title">${SingleCourseDetalis.name}</span>
                 <span class="share_btn"></span>
                 <a href="leader.html" class="video_user">
+                <!-- 换成动态的 -->
                     <img src="./images/iconfont/default1.png"  class="profile">
                     <span class="user_name">{{用户昵称}}</span>
                 </a>
@@ -51,7 +52,7 @@
 		                            </div>
 		                            <div class="video_info lf">
 		                                <sapn class="video_name">${classCourse.name}</sapn>
-		                                <span class="user_name">${classCourse.username}</span>
+		                                <span class="user_name">${classCourse.userid}</span>
 		                                <span class="play_num"><i class="glyphicon glyphicon-expand"></i>568</span>
 		                            </div>
 		                        </a>

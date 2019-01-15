@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -62,7 +62,7 @@
 									<a href="login.jsp">登录</a>/<a href="register.jsp">注册</a>
 	                            </c:when>
 	                            <c:otherwise>
-	                                <span><a href="#"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
+	                                <span><a href="${pageContext.request.contextPath}/personCenter?id=${USER_IN_SESSION.id}"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
 									<span><a href="${pageContext.request.contextPath}/login?quit=exit" >退出</a></span>
 	                            </c:otherwise>
 	                        </c:choose>
@@ -374,6 +374,6 @@
 		src="script/bootstrap/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="script/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="script/index.js"></script>
-	<script type="text/javascript" src="script/model/distpicker.min.js"></script>
+	<script type="text/javascript" src="plugins/js/distpicker.min.js"></script>
 </body>
 </html>
