@@ -118,11 +118,11 @@ public class UserController{
 	 * @param
 	 * @return:JSONObject
 	 */
-    @RequestMapping("register2")
-    public JSONObject register2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        JSONObject json = new JSONObject();
+	@RequestMapping(value = "/register2", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+    public JSONObject register2(HttpServletRequest req, HttpServletResponse resp,@Param("email") String email) throws ServletException, IOException{ JSONObject json = new JSONObject();
         try {
-            String email = req.getParameter("email");
+			System.out.println("邮箱邮箱：" + email);
             JavaMailUtil.receiveMailAccount = email; // 给用户输入的邮箱发送邮件
 
             // 1、创建参数配置，用于连接邮箱服务器的参数配置
@@ -146,7 +146,6 @@ public class UserController{
             String html = htmlText.html(code);
             MimeMessage message = JavaMailUtil.creatMimeMessage(session, JavaMailUtil.emailAccount,
                     JavaMailUtil.receiveMailAccount, html);
-
             // 4、根据session获取邮件传输对象
             Transport transport = session.getTransport();
             // 5、使用邮箱账号和密码连接邮箱服务器emailAccount必须与message中的发件人邮箱一致，否则报错
@@ -157,19 +156,66 @@ public class UserController{
             transport.close();
             //  写入session
             req.getSession().setAttribute("code", code);
+            json.put("code_result","验证码发送成功");
         } catch (Exception e) {
             e.printStackTrace();
             req.getSession().setAttribute("error", "邮件发送失败");
+			json.put("code_result","验证码发送失败");
         }
         return json;
-
     }
 	/**
 	 * 
 	 * @Description  验证邮箱验证码 
 	 * @param
 	 */
-	@RequestMapping(value = "MailVerify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/MailVerifyTest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public JSONObject MailVerifyTest(HttpServletRequest req, HttpServletResponse resp,@Param("username")String username,@Param("password")String  password,
+									 @Param("email")String email,@Param("emailCode")String emailCode) {
+		JSONObject json = new JSONObject();
+		String sessionCode = (String) req.getSession().getAttribute("code");
+		System.out.println("注册成功之后保存的session" + sessionCode);
+		//  获取session中的验证码
+		if(sessionCode != null) {
+			//  获取页面提交的验证码
+			String inputCode = emailCode;
+			System.out.println("页面提交的验证码:" + inputCode);
+			if (sessionCode.toLowerCase().equals(inputCode.toLowerCase())) {
+				// 把用户名和密码等一系列信息传入数据库中
+				System.out.println("username:" + username);
+				System.out.println("password:" + password);
+				System.out.println("email:" + email);
+				//  执行插入操作
+				Boolean boo;
+				if (username=="" ||username==null){
+					//  执行邮箱注册，userid就是email
+					boo = userService.insertUser(email,password,email);
+				}else{
+					//  执行自定义用户名注册
+					boo = userService.insertUser(username,password,email);
+					System.out.println("插入boo:" + boo);
+				}
+				if (boo == true) {
+					System.out.println("我注册成功");
+					json.put("RegisterResult", "注册成功");
+				}else {
+					System.out.println("注册失败");
+					json.put("RegisterResult", "注册失败");
+				}
+			}else {
+				//  验证失败
+				json.put("RegisterResult", "注册失败");
+			}
+		}else {
+			//  验证失败
+			json.put("RegisterResult", "注册失败");
+		}
+		//  移除session中的验证码
+		req.getSession().removeAttribute("code");
+		return json;
+	}
+	/*@RequestMapping(value = "/MailVerifyTest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public JSONObject MailVerify(HttpServletRequest req, HttpServletResponse resp,@Param("username")String username,@Param("password")String  password,
 			@Param("email")String email,@Param("emailCode")String emailCode) throws ServletException, IOException {
@@ -214,9 +260,7 @@ public class UserController{
 			//  移除session中的验证码
 			req.getSession().removeAttribute("code");
 		return json;
-
-
-	}
+	}*/
 	@RequestMapping("/login")
 	public String login(@Param("username")String username,@Param("password")String password,
 			@Param("quit")String quit,HttpSession session){

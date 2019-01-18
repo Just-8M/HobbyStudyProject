@@ -113,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="form-control register_btn" id="user_submit">注册</button>
+                                    <button type="button" class="form-control register_btn" id="user_submit">注册</button>
                                 </div>
                             </div>
                         </form>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="form-control register_btn" id="email_register">注册</button>
+                                    <button type="button" class="form-control register_btn" id="email_register">注册</button>
                                 </div>
                             </div>
                         </form>
@@ -419,7 +419,7 @@
         })
     </script>
     <script type="text/javascript">
-	    /* 自定义获取邮箱 */
+	    /* 自定义获取邮箱验证码 */
 	    $(function(){
 	    	$("#send-code-bilndEmail").click(function(){
 	    	    alert("email1:" + $("#bind_email_num").val());
@@ -430,10 +430,10 @@
 						'email':$("#bind_email_num").val(),
 					},
 					'success':function(data){
-						alert("验证码发送成功");
+						alert("自定义获取邮箱验证码发送成功" + data.code_result);
 					},
 					'fail':function(data){
-						alert("验证码发送失败 ")
+						alert("错误 ")
 					}
 				})
 	    	});
@@ -449,10 +449,10 @@
                     'email':$("#email_number").val(),
                 },
                 'success':function(data){
-                    alert("验证码发送成功");
+                    alert("邮箱注册验证码发送成功" + data.code_result);
                 },
                 'fail':function(data){
-                    alert("验证码发送失败 ")
+                    alert("错误 ")
                 }
             })
         });
@@ -465,50 +465,50 @@
 		 var emailCode = $("#email-code").val();
 		 alert(email+"==" + username + "==" + psw +"===" +emailCode);
 		 $.ajax({
-             'url': "${pageContext.request.contextPath}/MailVerify",
-             type: "POST",                   //类型，POST或者GET
-             dataType: 'json',               //数据返回类型，可以是xml、json等
-             data: {                          //数据
+             'url': "${pageContext.request.contextPath}/MailVerifyTest",
+             type: "POST",
+             dataType: 'json',
+             data: {
               	'username' : username,
               	'password' : psw,
               	'email':email,
               	'emailCode':emailCode
               },
-              'success':function (data) {      //成功，回调函数
-                  alert("注册成功");
-                  alert(data.RegisterResult+"点击确认跳转登录界面");
+              'success':function (data) {
+                  alert(data.RegisterResult+"点击确认跳转登录界面" +$.type(data));
                   $(window).attr("location","login.jsp");
               },
-              'error':function (data){          //失败，回调函数
-                  alert("注册失败");
+              'error':function (data){
+                  alert("错误");
               }
           });
 	});
         //  邮箱注册
-        $("#email_register").click(function(){
-            var email = $('#email_number').val();
-            var email_psw = $("#email_psw").val();
-            var emailCode = $("#emailCode").val();
-            alert(email+"==" + email_psw + "===" +emailCode);
-            $.ajax({
-                'url': "${pageContext.request.contextPath}/MailVerify",
-                data: {                          //数据
-                    'email':email,
-                    'password' : email_psw,
-                    'emailCode':emailCode
-                },
-                type: "POST",                   //类型，POST或者GET
-                dataType: 'text/json',               //数据返回类型，可以是xml、json等
-                'success':function (data) {      //成功，回调函数
-                    alert("success")
-                    alert(data.RegisterResult+"点击确认跳转登录界面");
-                    $(window).attr("location","login.jsp");
-                },
-                'error':function (data) {          //失败，回调函数
-                    alert("注册失败");
-                }
+        $(function(){
+            $("#email_register").click(function(){
+                var email = $('#email_number').val();
+                var email_psw = $("#email_psw").val();
+                var emailCode = $("#emailCode").val();
+                alert(email+"==" + email_psw + "===" +emailCode);
+                $.ajax({
+                    type:"POST",
+                    dataType: 'json',
+                    url :"${pageContext.request.contextPath}/MailVerifyTest",
+                    data:{
+                        'email':email,
+                        'password' : email_psw,
+                        'emailCode':emailCode
+                    },
+                    'success':function(data){
+                        alert("邮箱注册成功" + data.RegisterResult + +$.type(data));
+                        $(window).attr("location","login.jsp");
+                    },
+                    'fail':function(data){
+                        alert("错误 ")
+                    }
+                })
             });
-        });
+        })
     </script>
 </body>
 </html>
