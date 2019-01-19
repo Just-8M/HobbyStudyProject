@@ -290,6 +290,12 @@
 		FROM  hs_user
 		WHERE userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
 	</select>
+	<select id="queryEmail"  resultType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM  hs_user
+		WHERE email = #{email,jdbcType=VARCHAR}
+	</select>
 	<!-- 首页推荐讲师 -->
 	<select id="getRecommendTeacher"  parameterType="com.hobbyStudy.entity.User" resultMap="BaseResultMap">
 		SELECT 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>找回密码-趣学网</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forgotPassword.css">
@@ -23,7 +23,7 @@
             <div class="header_content cf">
                 <div class="header_left">
                     <div class="logo_wrap lf">
-                        <a href="index.html">
+                        <a href="${pageContext.request.contextPath}/getIndexPage">
                             <img src="${pageContext.request.contextPath}/images/logo/black_logo_light.png" class="logo_pic">
                         </a>
                     </div>
@@ -61,7 +61,7 @@
                                     <div class="error"></div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="button" class="btn send-code">发送验证码</button>
+                                    <button type="button" class="btn send-code" id="button_code">发送验证码</button>
                                     <div class="error"></div>
                                 </div>
                             </div>
@@ -93,9 +93,11 @@
                                     <div class="error"></div>
                                 </div>
                             </div>
+                            <!--方便后面获取值  -->
+                             <div id="session_userid" style="display: none;">${USER_IN_SESSION.userid}</div>  
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="button" class="form-control confirm_btn" id="confirm">确认修改</button>
+                                    <button type="button" class="form-control confirm_btn" id="confirm_button">确认修改</button>
                                 </div>
                             </div>
                         </form>
@@ -249,6 +251,82 @@
             })
 
         })
+         /* 获取邮箱验证码 */
+    $(function(){
+    	$("#button_code").click(function(){
+    	    alert("email1:" + $("#set_psw_email").val());
+			$.ajax({
+				type:"POST",
+				url :"${pageContext.request.contextPath}/register2?random"+Math.random(),
+				  dataType: 'json',
+				data:{
+					'email':$("#set_psw_email").val(),
+				},
+				'success':function(data){
+					alert(data.code_result);
+				},
+				'error':function(data){
+					alert("错误 ")
+				}
+			})
+    	});
+    })
+    /*点击下一步，进行验证码对比 */
+     $(function(){
+    	$("#next_reset").click(function(){
+    		set_psw_email =  $("#set_psw_email").val();    //  邮箱号
+    		emailCode =  $("#emailCode").val();    //  邮箱验证码
+    	    alert("邮箱号："+set_psw_email + "验证码： " + emailCode);
+			$.ajax({
+				type:"POST",
+				url :"${pageContext.request.contextPath}/modifierPsw",
+				  dataType: 'json',
+				data:{
+					'Email':set_psw_email,
+					'EmailCode':emailCode,
+				},
+				'success':function(data){
+					if (data.modifierPswResult == "true") {
+						/* alert("是同一人") */
+					}else if(data.modifierPswResult =="false"){
+					alert("邮箱和用户不是同一人，请重新输入");
+					
+					}
+				},
+				'error':function(data){
+					alert("错误 ")
+				}
+			})
+    	});
+    })
+     /*点击确认修改 */
+     $(function(){
+    	$("#confirm_button").click(function(){
+    		var userid =  $("#session_userid").text();    //  userid
+    		var psw =  $("#confirm_psw").val();    //  确认密码
+    	    /* alert("账号： ："+userid + "  密码 ：   " + psw); */
+			$.ajax({
+				type:"POST",
+				url :"${pageContext.request.contextPath}/updatePersonPsw",
+				  dataType: 'json',
+				data:{
+					'userid':userid,
+					'newPassword':psw,
+				},
+				 'success':function(data){
+				    	if (data==true) {
+					    	alert('修改成功,请重新登录');
+					    	$(window).attr("location","${pageContext.request.contextPath}/againlogin");
+						}else{
+							alert('修改失败');
+						}
+				    },
+				    'error': function (data) {          // 失败，回调函数
+	                    alert("错误") ;
+	                } 
+			})
+    	});
+    })
     </script>
 </body>
 </html>

@@ -37,10 +37,6 @@ public class UserServiceImpl implements  UserService{
 	public Boolean getByUsernameAndPassword(User user) {
 		return userMapper.getByUsernameAndPassword(user);
 	}
-	@Override
-	public User login(User user) {
-		return userMapper.selectByUsers(user);
-	}
 	/**
 	 * 获取首页推荐5个讲师
 	 */
@@ -106,6 +102,11 @@ public class UserServiceImpl implements  UserService{
 			String district, String title, String sign) {
 		 return userMapper.updatePersonInfor(userid,nickname,gender,province,city,district,title,sign);
 	}
+	// 查询邮箱和用户是否为同一人
+	@Override
+	public Boolean queryUseridAndEmail(String userid, String email) {
+		return userMapper.queryUseridAndEmail(userid,email);
+	}
 	@Override
 	public User selectoldPassword(String userid) {
 		return userMapper.selectoldPassword(userid);
@@ -122,5 +123,10 @@ public class UserServiceImpl implements  UserService{
 	public Boolean insertUser(String username, String password, String email) {
 		return userMapper.insertUser(username,password,email);
 	}
+	@Override
+	public User queryEmail(String email) {
+		return userMapper.queryEmail(email);
+	}
+	
 
 }

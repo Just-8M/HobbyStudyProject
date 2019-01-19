@@ -40,14 +40,16 @@ public interface UserService {
 	 * @return:Boolean
 	 */
 	public Boolean insertUser(String username, String password, String email);
-	/**
-	* @Title: login  
-	* @Description: (登录)  
+
+	/**  
+	* @Title: queryUsernameAndPsw  
+	* @Description: (Login in)  
 	* @param     
 	* @return User  
-	* @throws
-	 */
-	public User login(User users);
+	* @throws  
+	*/  
+	public User queryUsernameAndPsw(String userid, String password);
+	public User queryEmail(String email);
 	/**
 	 * 
 	* @Title: getRecommendTeacher  
@@ -97,15 +99,6 @@ public interface UserService {
 	public User queryPersonDetail(Integer id);
 	
 	/**  
-	* @Title: queryUsernameAndPsw  
-	* @Description: (Login in)  
-	* @param     
-	* @return User  
-	* @throws  
-	*/  
-	public User queryUsernameAndPsw(String userid, String password);
-	
-	/**  
 	* @Title: updateLikeCount  
 	* @Description: (点赞功能)  
 	* @param     
@@ -143,6 +136,13 @@ public interface UserService {
 	 */
 	public User selectoldPassword(String userid);
 	/**
+	 * 
+	 * @Description  查询邮箱和用户是否为同一人 
+	 * @param
+	 * @return:Boolean
+	 */
+	public Boolean queryUseridAndEmail(String userid, String email);
+	/**
 	 * @Description   修改密码
 	 * @param
 	 * @return
@@ -155,5 +155,7 @@ public interface UserService {
 	 * @return:Boolean
 	 */
 	public Boolean queryemail(String email);
+	
+	
 	
 }

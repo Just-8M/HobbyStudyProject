@@ -29,14 +29,6 @@ public interface UserMapper {
 	 * User @throws
 	 */
 	public Boolean getByUsernameAndPassword(User user);
-	/**
-	 * 
-	* @Title: selByUsers  
-	* @Description: (登录)  
-	* @return User  
-	* @throws
-	 */
-	public User selectByUsers(User user);
 
 	/**
 	 * 
@@ -92,13 +84,17 @@ public interface UserMapper {
 	
 	/**  
 	* @Title: queryUsernameAndPsw  
-	* @Description: (Login in)    传递多个参数加上
-	* @return User
+	* @Description: (Login in)  
+	* @param     
+	* 传递多个参数加上@Param
+	* @return User  
 	* @throws  
 	*/  
 	public User queryUsernameAndPsw(@Param("userid") String userid, @Param("password") String password);
+	public User queryEmail(String email);
 //	public User queryUsernameAndPsw(String userid,String password); //  错误
-
+	// 查询邮箱和用户是否为同一人
+	public Boolean queryUseridAndEmail(String userid, String email);
 	
 	/**  
 	* @Title: LikeCount  
@@ -141,4 +137,8 @@ public interface UserMapper {
 	public Boolean queryemail(String email);
 	//  注册
 	public Boolean insertUser(@Param("userid") String username, @Param("password") String password, @Param("email") String email);
+
+	
+
+	
 }

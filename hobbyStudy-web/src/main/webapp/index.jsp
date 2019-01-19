@@ -63,7 +63,7 @@
 	                            </c:when>
 	                            <c:otherwise>
 	                                <span><a href="${pageContext.request.contextPath}/personCenter?id=${USER_IN_SESSION.id}"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
-									<span><a href="${pageContext.request.contextPath}/login?quit=exit" >退出</a></span>
+									<span><a href="${pageContext.request.contextPath}/loginOut" >退出</a></span>
 	                            </c:otherwise>
 	                        </c:choose>
 				</li>

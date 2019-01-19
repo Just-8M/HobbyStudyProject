@@ -24,7 +24,7 @@
                 <div class="emailLogin" id="emailLogin">邮箱验证码登录</div>
                 <div class="underline" id="underline"></div>
             </div>
-           <form action="${pageContext.request.contextPath}/login" method="post" class="loginForm" id="loginForm">
+           <form method="post" class="loginForm" id="loginForm">
                 <ul>
                     <div id="user_way">
                         <li>
@@ -34,7 +34,7 @@
                         </li>
                         <li>
                             <i class="pswIcon"></i>
-                            <input type="password" name="password" placeholder="密码" class="inputBox">
+                            <input type="password" name="password" placeholder="密码"  id="password" class="inputBox">
                             <span id="psw_error"  class="input-error"></span>
                         </li>
                     </div>
@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <i class="verifyIcon"></i>
-                            <input type="text" name="EmailCode" placeholder="动态验证码" class="inputBox" maxlength="6"> 
+                            <input type="text" name="EmailCode" id="EmailCode" placeholder="动态验证码" class="inputBox" maxlength="6"> 
                             <span id="verify_error"  class="input-error"></span>
                         </li>
                     </div>
@@ -58,7 +58,7 @@
                         <span>下次自动登录</span>
                     </li>
                     <li class="loginBtn">
-                        <input type="submit" value="登录" class="loginText" name="btnSubmit">
+                        <input type="button" value="登录" class="loginText" id="loginButton" name="btnSubmit">
                     </li>
                     <li class="agree_document">
                         <span>登录即同意<a href="javascript:;">《趣学网使用协议》</a>和<a href="javascript:;">《隐私权条款》</a></span>
@@ -68,7 +68,7 @@
                         <img src="images/login/wechat.png" class="wechat">
                         <img src="images/login/qq.png" class="qq">
                     </li>
-                    <li class="back"><a href="register.jsp" class="register">没有账号，去注册</a><a href="${pageContext.request.contextPath}/getIndexPage">返回首页<i class="fa fa-chevron-circle-right"></i></li>
+                    <li class="back"><a href="register.jsp" class="register">没有账号，去注册</a><a href="${pageContext.request.contextPath}/getIndexPage">返回首页<i class="fa fa-chevron-circle-right"></i></a></li>
                 </ul>
             </form>         
         </div>
@@ -76,5 +76,59 @@
     <script src="lib/jquery/jquery-3.3.1.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript">
+    /* 获取邮箱验证码 */
+    $(function(){
+    	$("#btn").click(function(){
+    	    alert("email1:" + $("#phoneNumber").val());
+			$.ajax({
+				type:"POST",
+				url :"${pageContext.request.contextPath}/register2?random"+Math.random(),
+				  dataType: 'json',
+				data:{
+					'email':$("#phoneNumber").val(),
+				},
+				'success':function(data){
+					alert(data.code_result);
+				},
+				'fail':function(data){
+					alert("错误 ")
+				}
+			})
+    	});
+    })
+    /* 登录 */
+     $(function(){
+    	$("#loginButton").click(function(){
+    		username =  $("#username").val();    //  用户名
+    		password =  $("#password").val();    //  密码
+    		phoneNumber =  $("#phoneNumber").val();    //  邮箱号
+    		EmailCode =  $("#EmailCode").val();    //  邮箱验证码
+    	    alert("username:" + username + "password:" + password + "   邮箱号："+phoneNumber + "   验证码： " + EmailCode);
+			$.ajax({
+				type:"POST",
+				url :"${pageContext.request.contextPath}/login",
+				  dataType: 'json',
+				data:{
+					'username':username,
+					'password':password,
+					'Email':phoneNumber,
+					'EmailCode':EmailCode,
+				},
+				'success':function(data){
+					if (data.loginResult == "登录成功"  || data.loginResult =="退出成功") {
+					$(window).attr("location","${pageContext.request.contextPath}/getIndexPage");
+					}else if(data.loginResult =="登录失败"){
+						alert(data.loginResult);
+						$(window).attr("location","login.jsp");
+					}
+				},
+				'fail':function(data){
+					alert("错误 ")
+				}
+			})
+    	});
+    })
+    </script>
 </body>
 </html>

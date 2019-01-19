@@ -86,7 +86,7 @@
             margin: -60px 30px;
         }
         .common_header .rightnav li:nth-child(2) a{
-            padding: 0 10px;
+            padding: 0 7px;
         }
         .common_header .shopcart {
         z-index: 99;
@@ -197,16 +197,25 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/recommendIndex">推荐看点</a></li>
                     <li><a href="${pageContext.request.contextPath}/communityCourse?type=0">精彩社区</a></li>
-                    <li><a href="${pageContext.request.contextPath}/offline.jsp">XX学院</a></li>
-                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">XX寻Ta</a></li>
+                    <li><a href="${pageContext.request.contextPath}/offline.jsp">学院</a></li>
+                    <li><a href="${pageContext.request.contextPath}/queryTaBySort">寻Ta</a></li>
                 </ul>
             </div>
             <div class="rightnav cf">
                 <ul>
                     <li><a href="javascript:;">购物车</a><span class="num">0</span></li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/login.jsp">登录</a>/
-                        <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
+                    	<!-- 判断用户是否登录 -->
+	                        <c:choose>
+	                            <c:when test="${USER_IN_SESSION==null}">
+								 <a href="${pageContext.request.contextPath}/login.jsp">登录</a>/
+                       			 <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <span><a href="#"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
+									<span><a href="${pageContext.request.contextPath}/loginOut" >退出</a></span>
+	                            </c:otherwise>
+	                        </c:choose>
                     </li>
                 </ul>
             </div>
