@@ -155,6 +155,13 @@ public interface UserService {
 	 * @return:Boolean
 	 */
 	public Boolean queryemail(String email);
+	/**
+	 * 
+	 * @ToDo:更新被审核者的身份信息
+	   @param user
+	 * @Return :int
+	 */
+	public int updateCheckPeople(User user);
 	
 	
 	

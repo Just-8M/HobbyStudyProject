@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
@@ -14,20 +15,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hobbyStudy.common.utils.mail.JavaMailUtil;
 import com.hobbyStudy.common.utils.mail.RandomUtil;
 import com.hobbyStudy.common.utils.mail.html.htmlText;
+import com.hobbyStudy.common.utils.upload.JsonResult;
+import com.hobbyStudy.common.utils.upload.UploadUtil;
+import com.hobbyStudy.entity.ProveMaterials;
 import com.hobbyStudy.entity.User;
+import com.hobbyStudy.service.ProveMaterialsService;
 import com.hobbyStudy.service.UserService;
 
 import net.sf.json.JSONObject;
@@ -45,10 +54,12 @@ public class UserController {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private ProveMaterialsService ProveMaterialsService;
 	/**
-	 * 
-	 * @Title: doRegister @Description: (Ajax注册检查) @param @return
+	 * @Title: doRegister
+	 * @Description: (Ajax注册检查) 
+	 * @param @return
 	 * JSONObject @throws
 	 */
 	@RequestMapping(value = "/AjaxRegister", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -90,7 +101,6 @@ public class UserController {
 	}
 
 	/**
-	 * 
 	 * @Description 注册时发送邮件验证码
 	 * @param
 	 * @return:JSONObject
@@ -145,7 +155,6 @@ public class UserController {
 	}
 
 	/**
-	 * 
 	 * @Description 验证邮箱验证码
 	 * @param
 	 */
@@ -343,9 +352,11 @@ public class UserController {
 	}
 
 	/**
-	 * 
-	 * @Title: xunTaLikeCount @Description: (寻Ta点赞功能) 传入对象和传入参数值都可以
-	 * ，传入参数只需要在dao层表明参数对应的值 @param @return void @throws
+	 * @Title: xunTaLikeCount 
+	 * @Description: (寻Ta点赞功能) 传入对象和传入参数值都可以，传入参数只需要在dao层表明参数对应的值 
+	 * @param 
+	 * @return void
+	 * @throws
 	 */
 	// 传入对象
 	/*
@@ -424,7 +435,6 @@ public class UserController {
 
 	/**
 	 * 个人信息修改(不包括密码)
-	 * 
 	 * @param userid
 	 * @param title
 	 * @return
@@ -466,4 +476,72 @@ public class UserController {
 			}
 		}
 	}
+	// 首先在controller类里注入事务管理器，name的值为配置文件里的事务管理器的名称
+	@Resource(name = "transactionManager")
+    private DataSourceTransactionManager transactionManager;
+	@RequestMapping("addForm")
+	@ResponseBody
+	public JsonResult<String> addForm(@RequestParam(value="file")MultipartFile pictureFile,HttpServletRequest request,
+			ProveMaterials ProveMaterials,User user,@Param("enterTime") String enterTime,HttpSession session) throws IOException{
+ 		DefaultTransactionDefinition transDefinition = new DefaultTransactionDefinition();
+ 		System.out.println("开启事物之前：" + pictureFile);
+		// 开启新事物
+		transDefinition.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRES_NEW);// 事物隔离级别，开启新事务
+		TransactionStatus transStatus = transactionManager.getTransaction(transDefinition);// 获得事务状态
+		// pictureURL是数据库里picture_url的值，这里用到一个封装的工具类UploadUtil
+		String pictureURL= UploadUtil.imageUpload(pictureFile, request);
+		System.out.println("pictureURL:" + pictureURL);
+        //获取上传时的文件名
+        String pictureName = FilenameUtils.getName(pictureFile.getOriginalFilename());
+        System.out.println("pictureName:" + pictureName);
+        User session_user = (User) session.getAttribute("USER_IN_SESSION");   //  得到登录用户
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        if (session_user != null) {
+	        ProveMaterials.setPic_name(pictureName);   //  设置图片名称
+	        ProveMaterials.setUpdataPeople(session_user.getUserid());   //  上传者姓名
+//	        ProveMaterials.setCheckPeople(session_user.getUserid());    //  设置登录用户的userid
+	        ProveMaterials.setType("0");                 //  审核类型
+	        ProveMaterials.setCreateTime(df.format(new Date()));   //  上传资料时间
+	        System.out.println("ProveMaterials:" + ProveMaterials);
+	        try {
+	        	// 1、 把图片插入到材料表中
+	        	int addResult = ProveMaterialsService.addItem(ProveMaterials); 
+//	        	int a = 1/0;   // 模拟事物中断进行提交
+	        	// 2、 把上传者信息插入到User表中
+	        	user.setUserid(session_user.getUserid());  //把登录User的Userid设置给user
+	        	int updateResult = userService.updateCheckPeople(user);
+	        	transactionManager.commit(transStatus); 	// 提交事务
+	        	
+	        	System.out.println("更新审核人材料：" + updateResult + "===" +"材料表：" + addResult);
+	        	 if (addResult > 0 && updateResult>0 && pictureURL != "") {
+	 	            return new JsonResult<>(200, "上传成功!", null);
+	 	    	}
+	 	            return new JsonResult<>(300, "上传失败", null);
+			} catch (Exception e) {
+				return new JsonResult<>(300, "上传失败", null);
+			}
+		}
+			//  用户登录失效时
+			return new JsonResult<>(300, "上传失败", null);
+	}
+		@RequestMapping("addFormAuthentic")
+		@ResponseBody
+		public JsonResult<String> addFormAuthentic(@RequestParam(value="front_img", required = false)MultipartFile picture1,
+				@RequestParam(value="reverse_img",required = false)MultipartFile picture2,HttpServletRequest request,HttpSession session,
+				ProveMaterials ProveMaterials,User user) throws IOException{
+			System.out.println("picture1：" + picture1 + "picture2:" + picture2);
+			System.out.println("user:" + user.getRealname() +"   " +  user.getIdentity());
+			// pictureURL是数据库里picture_url的值，这里用到一个封装的工具类UploadUtil
+			String pictureURL1= UploadUtil.imageUpload(picture1, request);
+			String pictureURL2= UploadUtil.imageUpload(picture2, request);
+			System.out.println("pictureURL1:" + pictureURL1);
+			System.out.println("pictureURL2:" + pictureURL2);
+			//获取上传时的文件名
+	        String pictureName1 = FilenameUtils.getName(picture1.getOriginalFilename());
+	        String pictureName2 = FilenameUtils.getName(picture2.getOriginalFilename());
+	        System.out.println("pictureName1:" + pictureName1);
+	        System.out.println("pictureName2:" + pictureName2);
+			return null;
+		}
 }

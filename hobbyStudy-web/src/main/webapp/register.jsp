@@ -19,7 +19,7 @@
         <div class="header_wrapper">
             <div class="header cf">
                 <div class="logo lf">
-                    <a href="index.html"><img src="${pageContext.request.contextPath}/images/logo/black_logo_light.png" class="logoIco"></a>
+                    <a href="${pageContext.request.contextPath}/getIndexPage"><img src="${pageContext.request.contextPath}/images/logo/black_logo_light.png" class="logoIco"></a>
                 </div>
                 <div class="register_title lf">
                     账号注册
@@ -500,7 +500,7 @@
                         'emailCode':emailCode
                     },
                     'success':function(data){
-                        alert("邮箱注册成功" + data.RegisterResult + +$.type(data));
+                        alert("邮箱注册成功" + data.RegisterResult +$.type(data));
                         $(window).attr("location","login.jsp");
                     },
                     'fail':function(data){

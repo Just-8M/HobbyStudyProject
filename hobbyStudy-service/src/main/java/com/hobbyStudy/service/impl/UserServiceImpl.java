@@ -127,6 +127,13 @@ public class UserServiceImpl implements  UserService{
 	public User queryEmail(String email) {
 		return userMapper.queryEmail(email);
 	}
+	/* (non-Javadoc)
+	 * @see com.hobbyStudy.service.UserService#updateCheckPeople(com.hobbyStudy.entity.User)
+	 */
+	@Override
+	public int updateCheckPeople(User user) {
+		return userMapper.updateCheckPeople(user);
+	}
 	
 
 }
