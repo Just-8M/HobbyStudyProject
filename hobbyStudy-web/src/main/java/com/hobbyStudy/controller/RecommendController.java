@@ -55,7 +55,7 @@ public class RecommendController {
 		}*/
 		mv.addObject("recommendPhotoSlide", recommendPhotoSlide);
 
-		// 课程分类(一级分类）
+		// 课程分类(一级分类)
 		List<CourseClassifyVO> classifys = classifyBuiness.getAllClassify();
 		List<Course> classifyCourseList = new ArrayList<>();
 		

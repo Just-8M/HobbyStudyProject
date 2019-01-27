@@ -2,6 +2,7 @@ package com.hobbyStudy.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -29,15 +30,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hobbyStudy.business.IClassifyBuiness;
 import com.hobbyStudy.common.utils.mail.JavaMailUtil;
 import com.hobbyStudy.common.utils.mail.RandomUtil;
 import com.hobbyStudy.common.utils.mail.html.htmlText;
 import com.hobbyStudy.common.utils.upload.JsonResult;
 import com.hobbyStudy.common.utils.upload.UploadUtil;
+import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.ProveMaterials;
 import com.hobbyStudy.entity.User;
+import com.hobbyStudy.service.CourseService;
 import com.hobbyStudy.service.ProveMaterialsService;
 import com.hobbyStudy.service.UserService;
+import com.hobbyStudy.vo.CourseClassifyVO;
 
 import net.sf.json.JSONObject;
 
@@ -55,7 +60,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private ProveMaterialsService ProveMaterialsService;
+	private  ProveMaterialsService ProveMaterialsService;
 	/**
 	 * @Title: doRegister
 	 * @Description: (Ajax注册检查) 
@@ -424,7 +429,12 @@ public class UserController {
 		return mv;
 	}
 
-	// 个人中心
+	/**
+	 * @ToDo:个人中心
+	 * @param id
+	 * @return
+	 * @Return :ModelAndView
+	 */
 	@RequestMapping(value = "/personCenter") // 映射路径
 	public ModelAndView personCenter(Integer id) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/PersonCenter.jsp");
@@ -432,7 +442,6 @@ public class UserController {
 		mv.addObject("PersonCenterDetaild", PersonCenterDetail);
 		return mv;
 	}
-
 	/**
 	 * 个人信息修改(不包括密码)
 	 * @param userid
@@ -448,7 +457,6 @@ public class UserController {
 		System.out.println("b：" + boo);
 		return boo;
 	}
-
 	/**
 	 * @Description 修改user密码
 	 * @param
@@ -478,7 +486,7 @@ public class UserController {
 	}
 	// 首先在controller类里注入事务管理器，name的值为配置文件里的事务管理器的名称
 	@Resource(name = "transactionManager")
-    private DataSourceTransactionManager transactionManager;
+    private  DataSourceTransactionManager transactionManager;
 	@RequestMapping("addForm")
 	@ResponseBody
 	public JsonResult<String> addForm(@RequestParam(value="file")MultipartFile pictureFile,HttpServletRequest request,
@@ -525,23 +533,134 @@ public class UserController {
 			//  用户登录失效时
 			return new JsonResult<>(300, "上传失败", null);
 	}
-		@RequestMapping("addFormAuthentic")
-		@ResponseBody
-		public JsonResult<String> addFormAuthentic(@RequestParam(value="front_img", required = false)MultipartFile picture1,
-				@RequestParam(value="reverse_img",required = false)MultipartFile picture2,HttpServletRequest request,HttpSession session,
-				ProveMaterials ProveMaterials,User user) throws IOException{
-			System.out.println("picture1：" + picture1 + "picture2:" + picture2);
-			System.out.println("user:" + user.getRealname() +"   " +  user.getIdentity());
-			// pictureURL是数据库里picture_url的值，这里用到一个封装的工具类UploadUtil
-			String pictureURL1= UploadUtil.imageUpload(picture1, request);
-			String pictureURL2= UploadUtil.imageUpload(picture2, request);
-			System.out.println("pictureURL1:" + pictureURL1);
-			System.out.println("pictureURL2:" + pictureURL2);
-			//获取上传时的文件名
-	        String pictureName1 = FilenameUtils.getName(picture1.getOriginalFilename());
-	        String pictureName2 = FilenameUtils.getName(picture2.getOriginalFilename());
-	        System.out.println("pictureName1:" + pictureName1);
-	        System.out.println("pictureName2:" + pictureName2);
-			return null;
+	@RequestMapping("addFormAuthentic")
+	@ResponseBody
+	public JsonResult<String> addFormAuthentic(@RequestParam(value="front_img", required = false)MultipartFile picture1,
+			@RequestParam(value="reverse_img",required = false)MultipartFile picture2,HttpServletRequest request,HttpSession session,
+			ProveMaterials ProveMaterials,User user) throws IOException{
+		 DefaultTransactionDefinition transDefinition = new DefaultTransactionDefinition();
+		// 开启新事物
+		transDefinition.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRES_NEW);// 事物隔离级别，开启新事务
+		TransactionStatus transStatus = transactionManager.getTransaction(transDefinition);// 获得事务状态
+		
+		System.out.println("picture1：" + picture1 + "picture2:" + picture2);
+		System.out.println("user:" + user.getRealname() +"   " +  user.getIdentity());
+		// pictureURL是数据库里picture_url的值，这里用到一个封装的工具类UploadUtil
+		String pictureURL1= UploadUtil.imageUpload(picture1, request);
+		String pictureURL2= UploadUtil.imageUpload(picture2, request);
+		System.out.println("pictureURL1:" + pictureURL1 + "   pictureURL2:" + pictureURL2);
+		//获取上传时的文件名
+        String pictureName1 = FilenameUtils.getName(picture1.getOriginalFilename());
+        String pictureName2 = FilenameUtils.getName(picture2.getOriginalFilename());
+        System.out.println("pictureName1:" + pictureName1 + "   pictureName2:" + pictureName2);
+
+		 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	     System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+	     User session_user = (User) session.getAttribute("USER_IN_SESSION");   //  得到登录用户
+	     if (session_user != null) {
+	        	ProveMaterials.setPic_name(pictureName1);                    //  设置图片名称
+	        	ProveMaterials.setUpdataPeople(session_user.getUserid());   //  上传者姓名
+	        	ProveMaterials.setType("0");                 //  审核类型
+	 	        ProveMaterials.setCreateTime(df.format(new Date()));   //  上传资料时间
+	 	        System.out.println("ProveMaterials:" + ProveMaterials);
+	 	       try {
+		        	// 1、 把图片插入到材料表中
+		        	int addResult = ProveMaterialsService.addItem(ProveMaterials);
+		        	System.out.println("addResult:" + addResult);
+		        	// 2、 把上传者信息插入到User表中
+		        	user.setUserid(session_user.getUserid());        //把登录User的Userid设置给user
+		        	int updateResult = userService.updateCheckPeople(user);
+		        	System.out.println("updateResult:" + updateResult);
+		        	
+		        	transactionManager.commit(transStatus); 	// 提交事务
+		        	
+		        	System.out.println("更新审核人材料：" + updateResult + "===" +"材料表：" + addResult);
+		        	 if (addResult > 0 && updateResult>0 && pictureURL1 != "") {
+		 	            return new JsonResult<>(200, "上传成功!", null);
+		 	    	}
+		 	            return new JsonResult<>(300, "上传失败", null);
+				} catch (Exception e) {
+					return new JsonResult<>(300, "上传失败", null);
+				}
+			}
+			//  用户登录失效时
+			return new JsonResult<>(300, "上传失败", null);
+	    }
+		
+		/**
+		 * @ToDo:跳转课程管理页面
+		 * @param id
+		 * @Return :ModelAndView
+		 */
+	@RequestMapping( "/courseManger") // 映射路径
+	public ModelAndView courseManger(Integer id) {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderManage.jsp");
+		User leaderManger= userService.queryPersonDetail(id);
+		mv.addObject("leaderManger", leaderManger);
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理Welcome界面
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerWelcome") // 映射路径
+	public ModelAndView userMangerWelcome() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/welcome.jsp");
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理--课程页面
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerCoursePage") // 映射路径
+	public ModelAndView userMangerCoursePage() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/book.jsp");
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理---添加课程
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerAddcourse") // 映射路径
+	public ModelAndView userMangerAddcourse() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/addcourse.jsp");
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理---课程列表
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerCourselist") // 映射路径
+	public ModelAndView userMangerCourselist() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/courselist.jsp");
+		return mv;
+		}
+	
+	/**
+	 * @ToDo:跳转用户管理---审核状态
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangercourselist") // 映射路径
+	public ModelAndView userMangerVerifyTable() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/courselist.jsp");
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理---交易管理订单查询
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerOrder") // 映射路径
+	public ModelAndView userMangerOrder() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/order.jsp");
+		return mv;
+		}
+	/**
+	 * @ToDo:跳转用户管理---账户交易（个人信息）
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/userMangerPersonSetting") // 映射路径
+	public ModelAndView userMangerPersonSetting() {
+		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/personSetting.jsp");
+		return mv;
 		}
 }
