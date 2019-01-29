@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>课程名称</title>
-<link rel="shortcut icon" href="light_favicon@32.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
 <link rel="stylesheet" type="text/css"
 	href="styles/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"

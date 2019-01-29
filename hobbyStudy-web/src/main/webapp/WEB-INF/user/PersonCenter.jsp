@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>账号设置-趣学网</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico" type="image/x-icon">
-   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/personCenter.css">
 </head>
@@ -120,7 +121,7 @@
                             <div class="form-group">
                                 <label for="userName" class="col-sm-2 control-label">用户昵称</label>
                                 <!--方便后面获取值  -->
-                                <div class="userid" style="display: none;">${PersonCenterDetaild.userid}</div>  
+                                <div class="userid" id="Login_userid_display" style="display: none;">${PersonCenterDetaild.userid}</div>  
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="userName" placeholder="{{随机名字}}" maxlength="10">
                                 </div>
@@ -173,8 +174,9 @@
                             </div>
                              <!-- 提交按钮：保存 -->
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-3">
-                                    <button type="button" class="btn  btn-danger" id="user_data_btn">保存</button>
+                                <div class="col-sm-offset-2 col-sm-3 cf">
+                                    <button type="button" class="btn  btn-danger saveInfo lf" id="user_data_btn">保存</button>
+                                    <button type="button" class="btn btn-primary edit lf">编辑</button>
                                 </div>
                             </div>
                         </form>
@@ -457,7 +459,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                        <button type="submit" class="btn btn-primary"  id="Certification_submit">提交审核</button>
+                                        <button type="button" class="btn btn-primary"  id="Certification_submit">提交审核</button>
                                     </div>
                                 </div>
                             </div>
@@ -524,8 +526,9 @@
                                     <span id="img_name"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="button" class="certificate_btn" id="certificate_btn">提交审核</button>
+                            <div class="form-group cf">
+                                <button type="button" class="btn certificate_btn lf" id="certificate_btn">提交审核</button>
+                                <button type="button" class="btn btn-primary edit lf">编辑</button>
                             </div>
                         </form>
                         <div class="col-sm-4">
@@ -552,7 +555,7 @@
                     <div class="right_item_body">
                         <div class="right_item_body">
                             <div class="leaderManage_wrap">
-                                <a href="leaderManage.html" class="btn publish_course">课程管理</a>
+                                <a href="${pageContext.request.contextPath}/courseManger?id=${USER_IN_SESSION.id}" class="btn publish_course">课程管理</a>
                             </div>
                             <!-- 点击开始认证模态框结束 -->
                             <h4>发布须知</h4>
@@ -579,11 +582,12 @@
     <!-- 引入地区插件 -->
     <script src="${pageContext.request.contextPath}/plugins/js/distpicker.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/personCenter.js"></script>
-     <script type="text/javascript">
+    <!-- 修改个人信息 -->
+    <script type="text/javascript">
     $(function () {
     	$('#user_data_btn').click(function() {
-    	var userid = $('.userid').val();
-    	var realName = $('.realName').text();
+    	var userid = $('#Login_userid_display').text();
+    	alert("userid" + userid);
     	var userName = $('#userName').val();
     	var gender = $('#sex  option:selected').val();
     	var eprovinceName = $('#eprovinceName  option:selected').val();
@@ -616,6 +620,7 @@
     	});
     })
     </script>
+    <!-- 修改密码 -->
     <script type="text/javascript">
     $(function () {
     	$('#updatePasswordbutton').click(function() {
@@ -651,12 +656,19 @@
     </script>
     <!-- Ajax进行实名认证 -->
     <script type="text/javascript">
-    	/* $(function(){
+    	 $(function(){
     		  $("#Certification_submit").click(function () {
-    			  var front_img = $("#front_img").attr("src");
-    			  var reverse_img = $("#reverse_img").attr("src");
-    			  alert(typeof front_img);
-    			  alert("front_img:" + front_img);
+    			var front_img = document.getElementById("IdPhoto_front").files[0];       //  js 获取文件对象
+    			var reverse_img = document.getElementById("IdPhoto_reverse").files[0];   //  js 获取文件对象
+    			  alert("front_img:" + front_img + "reverse_img:" + reverse_img);
+  	        	if (typeof (front_img) == "undefined" || front_img.size <= 0) {
+  	        		alert("请选择上传的图片！");
+  	        		return;
+  	        	}
+  	        	if (typeof (reverse_img) == "undefined" || reverse_img.size <= 0) {
+  	        		alert("请选择上传的图片！");
+  	        		return;
+  	        	}
     			  var realName = $("#authenticName").val();   
     			  var Identity = $("#authenticIdCard").val();  
     			  if (realName != "" && Identity != "") {
@@ -695,7 +707,7 @@
     				}
     			  }
     		  })
-    	}) */
+    	}) 
     </script>
     <!-- 学籍认证 -->
      <script>

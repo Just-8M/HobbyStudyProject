@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>全部兴趣课程-趣学网</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="styles/bootstrap/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css">

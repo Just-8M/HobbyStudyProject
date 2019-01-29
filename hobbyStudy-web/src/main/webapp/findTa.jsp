@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>茫茫人海只为寻找Ta</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css">
     <link rel="stylesheet" href="styles/css/findTa.css">

@@ -232,9 +232,9 @@ $(function () {
         } else if (!ck_password.test(psw)) {
             $(this).siblings('.error').show().html(
                 "<i class='icon-error'></i>密码不符合要求，请输入6-20位字母，数字或者下划线");
-        }/*else if(psw != '{{数据库存放的原密码}}') {
+        }else if(psw != '{{数据库存放的原密码}}') {
             $(this).siblings('.error').show().html("<i class='icon-error'></i>原密码错误");
-        }*/else {
+        }else {
             $(this).siblings('.error').hide();
         }
     })
@@ -276,5 +276,38 @@ $(function () {
         } else {
             $(this).siblings('.error').hide();
         }
+    })
+
+    // 学籍认证点击提交审核后该按钮不可点击，而且出现编辑按钮,后台将ajax成功后添加以下代码
+    $('#certificForm .certificate_btn').click(function() {
+        $(this).attr('disabled','disable'); //该按钮鼠标改为不可点击状态
+        // 将表单全部改为不可编辑；
+        $('#certificForm input').attr('disabled','disable'); 
+        $('#certificForm select').attr('disabled','disable'); 
+        $(this).siblings('.edit').css('display','block'); //让编辑按钮出现
+    })
+    // 当点击编辑后，学籍认证表单改为可编辑；
+    $('#certificForm .edit').click(function() {
+        $(this).css('display','none');//让编辑按钮隐藏；
+        $('#certificForm input').removeAttr('disabled'); 
+        $('#certificForm select').removeAttr('disabled'); 
+        $(this).siblings('.certificate_btn').removeAttr('disabled'); //移除提交审核，变为黄色且可点击
+    })
+
+    // 个人信息按钮
+    $('#infoFrom .saveInfo').click(function() {
+        $(this).attr('disabled','disable'); //该按钮鼠标改为不可点击状态
+        // 将表单全部改为不可编辑；
+        $('#infoFrom input').attr('disabled','disable'); 
+        $('#infoFrom select').attr('disabled','disable'); 
+        $('#infoFrom textarea').attr('disabled','disable'); 
+        $(this).siblings('.edit').css('display','block'); //让编辑按钮出现
+    })
+    $('#infoFrom .edit').click(function() {
+        $(this).css('display','none');//让编辑按钮隐藏；
+        $('#infoFrom input').removeAttr('disabled'); 
+        $('#infoFrom select').removeAttr('disabled'); 
+        $('#infoFrom textarea').removeAttr('disabled'); 
+        $(this).siblings('.saveInfo').removeAttr('disabled'); //移除提交审核，变为黄色且可点击
     })
 })

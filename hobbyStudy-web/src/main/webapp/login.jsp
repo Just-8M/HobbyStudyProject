@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>欢迎加入趣学网，快来寻找你的领学者</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
     <link rel="stylesheet" type="text/css" href="common/css/reset.css">
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">    
     <link rel="stylesheet" href="css/login.css">
@@ -104,7 +104,7 @@
     		password =  $("#password").val();    //  密码
     		phoneNumber =  $("#phoneNumber").val();    //  邮箱号
     		EmailCode =  $("#EmailCode").val();    //  邮箱验证码
-    	    alert("username:" + username + "password:" + password + "   邮箱号："+phoneNumber + "   验证码： " + EmailCode);
+    	    /* alert("username:" + username + "password:" + password + "   邮箱号："+phoneNumber + "   验证码： " + EmailCode); */
 			$.ajax({
 				type:"POST",
 				url :"${pageContext.request.contextPath}/login",

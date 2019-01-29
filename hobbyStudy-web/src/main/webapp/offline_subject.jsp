@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>${institution.institutionName}|趣学网学院</title>
-    <link rel="shortcut icon" href="light_favicon@32.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/css/reset.css">
     <link rel="stylesheet" href="styles/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="styles/css/offline_subject.css">

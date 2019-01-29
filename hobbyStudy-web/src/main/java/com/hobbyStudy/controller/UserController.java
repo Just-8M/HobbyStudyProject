@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hobbyStudy.business.IClassifyBuiness;
+import com.hobbyStudy.common.utils.MD5Util;
 import com.hobbyStudy.common.utils.mail.JavaMailUtil;
 import com.hobbyStudy.common.utils.mail.RandomUtil;
 import com.hobbyStudy.common.utils.mail.html.htmlText;
@@ -178,18 +179,19 @@ public class UserController {
 			System.out.println("页面提交的验证码:" + inputCode);
 			if (sessionCode.toLowerCase().equals(inputCode.toLowerCase())) {
 				// 把用户名和密码等一系列信息传入数据库中
+				String Md5Psw = MD5Util.MD5(password);
 				System.out.println("username:" + username);
-				System.out.println("password:" + password);
+				System.out.println("password:" + password +  "  Md5Psw:" + Md5Psw);
 				System.out.println("email:" + email);
 				// 执行插入操作
 				Boolean boo;
 				if (username == "" || username == null) {
 					// 执行邮箱注册，userid就是email
-					boo = userService.insertUser(email, password, email);
+					boo = userService.insertUser(email, Md5Psw, email);
 					System.out.println("邮箱注册成功");
 				} else {
 					// 执行自定义用户名注册
-					boo = userService.insertUser(username, password, email);
+					boo = userService.insertUser(username, Md5Psw, email);
 					System.out.println("插入boo:" + boo);
 				}
 				if (boo == true) {
@@ -223,11 +225,6 @@ public class UserController {
 			@Param("quit") String quit, @Param("Email") String Email, @Param("EmailCode") String EmailCode,
 			HttpSession session, HttpServletRequest req, HttpServletResponse resp) {
 		JSONObject json = new JSONObject();
-		System.out.println("username:" + username);
-		System.out.println("password:" + password);
-		System.out.println("quit:" + quit);
-		System.out.println("Email:" + Email);
-		System.out.println("EmailCode:" + EmailCode);
 		if ("exit".equals(quit)) {
 			System.out.println("quit" + quit);
 			session.removeAttribute("USER_IN_SESSION");
@@ -235,10 +232,11 @@ public class UserController {
 			json.put("loginResult", "退出成功");
 		} else {
 			String userid = username;
-			// 用户名和密码进行注册
+			// 用户名和密码进行登录
 			if (EmailCode == null || EmailCode.equals("")) {
-				User user = userService.queryUsernameAndPsw(userid, password);
-				System.out.println("USER:" + user);
+				String Md5Psw = MD5Util.MD5(password);
+				User user = userService.queryUsernameAndPsw(userid, Md5Psw);
+				System.out.println("USER:" + user + "Md5Psw:" + Md5Psw);
 				if (user != null) {
 					session.setAttribute("USER_IN_SESSION", user);
 					System.out.println("user不为空");
@@ -276,7 +274,6 @@ public class UserController {
 		}
 		return null;
 	}
-
 	/**
 	 * @Description 退出
 	 * @param

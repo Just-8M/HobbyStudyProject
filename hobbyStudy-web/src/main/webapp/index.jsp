@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>趣学网-陪你寻找兴趣伙伴</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/light_favicon@32.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
 <link rel="stylesheet" type="text/css"
 	href="styles/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="styles/bootstrap/font-awesome.min.css">
