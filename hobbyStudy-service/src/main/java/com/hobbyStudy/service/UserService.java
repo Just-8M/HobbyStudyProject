@@ -39,7 +39,7 @@ public interface UserService {
 	 * @param
 	 * @return:Boolean
 	 */
-	public Boolean insertUser(String username, String password, String email);
+	public Boolean insertUser(String username, String Md5Psw, String email);
 
 	/**  
 	* @Title: queryUsernameAndPsw  
@@ -162,6 +162,7 @@ public interface UserService {
 	 * @Return :int
 	 */
 	public int updateCheckPeople(User user);
+	
 	
 	
 	

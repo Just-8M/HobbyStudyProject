@@ -117,5 +117,19 @@ public class CourseServiceImpl implements CourseService {
 	public List<Course> queryNavCategoryCourse(String subClassifyName) {
 		return courseMapper.queryNavCategoryCourse(subClassifyName);
 	}
+	@Override
+	public int addCourse(Course c) {
+		return courseMapper.addCourse(c);
+	}
+
+	@Override
+	public List<Course> queryUserOwnCourse(String userid) {
+		return courseMapper.queryUserOwnCourse(userid);
+	}
+
+	@Override
+	public List<Course> queryCourseName(String name) {
+		return courseMapper.queryCourseName(name);
+	}
 
 }

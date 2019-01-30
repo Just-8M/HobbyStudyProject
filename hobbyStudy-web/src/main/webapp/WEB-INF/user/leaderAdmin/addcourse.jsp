@@ -112,9 +112,9 @@
             </div>
             <!-- 视频简介 -->
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">视频简介</label>
+                <label for="" class="col-sm-2 control-label">课程封面</label>
                 <div class="col-sm-2">
-                    <input type="file" id="uploadmv">
+                    <input type="file" id="uploadmv" name="courseCover">
                     <div class="uploadfile form-control">选择文件</div>
                     <!-- 存放文件名 -->
                     <span class="filename"></span>
@@ -178,7 +178,7 @@
             <div class="form-group">
                 <label for="courseDetail" class="col-sm-2 control-label">课程详情</label>
                 <div class="col-sm-2">
-                    <input type="file" class="form-control" id="courseDetail" multiple>
+                    <input type="file" class="form-control" id="courseDetail" name="courseDetailCover">
                     <div class="uploadfile form-control">选择文件</div>
                 </div>
                 <div class="col-sm-6">
@@ -197,7 +197,7 @@
                     <!-- <input type="number" class="form-control" id="coursePrice"> -->
                     <div class="input-group">
                         <span class="input-group-addon">￥</span>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input type="text" class="form-control"  id="coursePrice"  aria-label="Amount (to the nearest dollar)">
                         <span class="input-group-addon">.00</span>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                     <button type="submit" class="btn btn-default">预览</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="button"  id="addCourseSubmit"  class="btn btn-default">提交</button>
                 </div>
             </div>
         </form>
@@ -457,6 +457,75 @@
                 }
             }
         }
+    </script>
+    <script type="text/javascript">
+	   $(function(){
+	        $("#addCourseSubmit").click(function () {
+	        	var fileObj1 = document.getElementById("uploadmv").files[0];   //  课程封面
+	        	
+	        	var fileObj2 = document.getElementById("courseDetail").files[0];   //  课程详情
+	        	/* if (typeof (fileObj1) == "undefined" || fileObj1.size <= 0) {
+	        		alert("请选择上传的图片！");
+	        		return;
+	        	}
+	        	if (typeof (fileObj2) == "undefined" || fileObj2.size <= 0) {
+	        		alert("请选择上传的图片！");
+	        		return;
+	        	} */
+	        	var courseName = $("#courseName").val();          		/* 课程名称 */
+	        	var courseIntro = $("#courseIntro").val();      		/* 课程简介 */
+	        	var starTime = $("#starTime").val();        		    /* 开课时间 */
+	        	var endTime = $("#endTime").val();        		        /* 结束时间 */
+	        	var totalTime = $("#totalTime").val();        		    /* 课程时长 */
+	        	var schedule = $("#schedule").val();        		    /* 学时安排 */
+	        	var coursePrice = $("#coursePrice").val();        	    /* 课程价格 */
+	        	if (courseName != "") {
+		        	var formFile = new FormData();
+		        	formFile.append("name", courseName);
+		        	formFile.append("brief", courseIntro);
+		        	formFile.append("timespanStart", starTime);
+		        	formFile.append("timespanEnd", endTime);
+		        	formFile.append("time", totalTime); 
+		        	formFile.append("courseSchedule", schedule); 
+		        	formFile.append("price", coursePrice); 
+		        	formFile.append("courseCover", fileObj1); 
+		        	formFile.append("courseDetailCover", fileObj2);
+		        	alert("nihao ")
+		        	var data = formFile;
+		        	$.ajax({
+		        		url : "${pageContext.request.contextPath}/CourseListCntroller/addCourse",
+		        		type : 'post',
+		        		dataType : 'json',
+		        		data : data,
+		        		cache: false,   //上传文件无需缓存
+		        		processData: false,   // 用于对参数进行序列化处理，这里必须设为false
+		        		contentType:false, // 必须
+		        		success : function(data) {
+		        			console.log(data);
+		        			 if (data.state == 200) {
+		        				alert(data.message);
+		        				/* var to = "${pageContext.request.contextPath}/picture/pictureList.do"; */   /* 进行再次请求 */
+		        				/* doPost(to); */
+		        			}
+		        			if(data.state == 300){
+		        				alert("图片上传失败！");
+		        				return;
+		        			}
+		        		}
+		        	}); 
+	        	}else{
+	        		if (realName == "") {
+						alert("请填写真实姓名");
+					}
+	        		if (schoolName == "") {
+						alert("请填写院校名称");
+					}
+	        		if (enterTime == "") {
+						alert("请填写入学时间");
+					}
+	        	}
+	        });
+	    });
     </script>
 </body>
 

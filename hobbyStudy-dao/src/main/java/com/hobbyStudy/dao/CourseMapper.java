@@ -105,6 +105,14 @@ public interface CourseMapper {
 	*/  
 	public List<Course> queryNavCategoryCourse(String subClassifyName);
 
+	//  增加课程
+	public int addCourse(Course c);
+
+	// 查询用户所属的所有课程
+	public List<Course> queryUserOwnCourse(String userid);
+	// 课程列表中的搜索
+	public List<Course> queryCourseName(String name);
+
 	
 		
 	

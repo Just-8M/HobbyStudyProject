@@ -2,7 +2,6 @@ package com.hobbyStudy.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hobbyStudy.business.IClassifyBuiness;
 import com.hobbyStudy.common.utils.MD5Util;
 import com.hobbyStudy.common.utils.mail.JavaMailUtil;
 import com.hobbyStudy.common.utils.mail.RandomUtil;
@@ -43,7 +41,6 @@ import com.hobbyStudy.entity.User;
 import com.hobbyStudy.service.CourseService;
 import com.hobbyStudy.service.ProveMaterialsService;
 import com.hobbyStudy.service.UserService;
-import com.hobbyStudy.vo.CourseClassifyVO;
 
 import net.sf.json.JSONObject;
 
@@ -62,6 +59,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private  ProveMaterialsService ProveMaterialsService;
+	@Autowired
+	private CourseService courseService;
 	/**
 	 * @Title: doRegister
 	 * @Description: (Ajax注册检查) 
@@ -446,7 +445,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/updatePersonInfor") // 映射路径
+	@RequestMapping(value = "/updatePersonInfor") 
 	public Boolean updatePersonInfor(String userid, String nickname, int gender, String province, String city,
 			String district, String title, String sign) {
 		System.out.println("useridL:" + userid + "sign：" + sign);
@@ -460,7 +459,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/updatePersonPsw") // 映射路径
+	@RequestMapping(value = "/updatePersonPsw") 
 	public Boolean updatePersonPsw(String userid, String oldPassword, String newPassword) {
 		System.out.println("oldPassword:" + oldPassword + "    userid：" + userid);
 		Boolean boo;
@@ -481,6 +480,17 @@ public class UserController {
 			}
 		}
 	}
+	/**
+	 * @ToDo:学历认证
+	 * @param pictureFile
+	 * @param request
+	 * @param ProveMaterials
+	 * @param user
+	 * @param enterTime
+	 * @param session
+	 * @throws IOException
+	 * @Return :JsonResult<String>
+	 */
 	// 首先在controller类里注入事务管理器，name的值为配置文件里的事务管理器的名称
 	@Resource(name = "transactionManager")
     private  DataSourceTransactionManager transactionManager;
@@ -528,8 +538,19 @@ public class UserController {
 			}
 		}
 			//  用户登录失效时
-			return new JsonResult<>(300, "上传失败", null);
+			return new JsonResult<>(300, "请进行登录上传", null);
 	}
+	/**
+	 * @ToDo:User实名认证
+	 * @param picture1
+	 * @param picture2
+	 * @param request
+	 * @param session
+	 * @param ProveMaterials
+	 * @param user
+	 * @throws IOException
+	 * @Return :JsonResult<String>
+	 */
 	@RequestMapping("addFormAuthentic")
 	@ResponseBody
 	public JsonResult<String> addFormAuthentic(@RequestParam(value="front_img", required = false)MultipartFile picture1,
@@ -581,9 +602,8 @@ public class UserController {
 				}
 			}
 			//  用户登录失效时
-			return new JsonResult<>(300, "上传失败", null);
+			return new JsonResult<>(300, "请登录之后进行上传", null);
 	    }
-		
 		/**
 		 * @ToDo:跳转课程管理页面
 		 * @param id
@@ -627,12 +647,47 @@ public class UserController {
 	 * @ToDo:跳转用户管理---课程列表
 	 * @Return :ModelAndView
 	 */
-	@RequestMapping("/userMangerCourselist") // 映射路径
-	public ModelAndView userMangerCourselist() {
+	@RequestMapping("/userMangerCourselist")
+	public ModelAndView userMangerCourselist(HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/courselist.jsp");
+		User session_user = (User) session.getAttribute("USER_IN_SESSION");   //  得到登录用户
+		if (session_user != null) {
+			List<Course> courseList = courseService.queryUserOwnCourse(session_user.getUserid());
+			mv.addObject("courseList", courseList);
+		}
+		if (session_user == null) {
+			mv.addObject("courseList", "请您进行登录查询");
+			System.out.println("请您进行登录查询");
+		}
 		return mv;
 		}
-	
+	/**
+	 * @ToDo:课程列表中的搜索
+	 * @param session
+	 * @param name
+	 * @Return :JSONObject
+	 */
+	@RequestMapping(value = "/courseSearch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public JSONObject courseSearch(HttpSession session,String name) {
+		JSONObject json = new JSONObject();
+		User session_user = (User) session.getAttribute("USER_IN_SESSION");  
+		if (session_user != null) {
+			List<Course> searchCourseList = courseService.queryCourseName(name);
+			System.out.println("searchCourseList:" +searchCourseList);
+				if (searchCourseList.isEmpty()) {
+					System.out.println("noCourse");
+					json.put("searchCourseResult", "noCourse");
+				}else{
+					System.out.println("searchCourseList");
+					json.put("searchCourseResult", searchCourseList);
+				}
+			
+		}else{
+			json.put("searchCourseResult", "fail");
+		}
+		return json;
+	}
 	/**
 	 * @ToDo:跳转用户管理---审核状态
 	 * @Return :ModelAndView
@@ -660,4 +715,5 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/personSetting.jsp");
 		return mv;
 		}
+	
 }

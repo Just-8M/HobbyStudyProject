@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,9 +73,11 @@
             <!-- 搜索框 -->
             <div class="search rt">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="请输入课程名">
+                    <input type="text" class="form-control" placeholder="请输入课程名" id="courseSearchInput">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">搜索</button>
+                        <button class="btn btn-default" type="button" id="courseMangerSearch">
+                        	 搜索 
+                        </button>
                     </span>
                 </div>
             </div>
@@ -82,31 +85,42 @@
         </div>
 
         <div class="course-content cf">
-            <ul class="course-list">
+            <ul class="course-list" id="queryResult">
                 <!-- 数据从此处开始循坏 -->
-                <li class="c-item">
-                    <div class="course-pic-wrap">
-                        <a href="javascript:;">
-                            <img src="${pageContext.request.contextPath}/images/logo/black_logo_light.png" class="c-img">
-                        </a>
-                    </div>
-                    <div class="course-info">
-                        <div class="c-title">
-                            <a href="javascript:;">
-                                <p class="c-text">{{课程名字：若名字超过一行则显示...，并且鼠标划过显示title}}</p>
-                            </a>
-                        </div>
-                        <div class="c-author">
-                            <!-- 作者:非真实姓名和用户名/昵称 -->
-                            <i class="glyphicon glyphicon-user"></i>
-                            <span class="c-text">{{作者}}</span>
-                        </div>
-                        <div class="c-time">
-                            <i class="glyphicon glyphicon-time"></i>
-                            <span class="c-text price-num">{{发布时间}}</span>
-                        </div>
-                    </div>
-                </li>
+                <c:choose>
+                	<c:when test="${USER_IN_SESSION == null}">
+                		<div>${courseList}</div>
+                	</c:when>
+                	<c:otherwise>
+                		 <c:forEach items="${courseList}" var="course">
+                			<li class="c-item">
+			                    <div class="course-pic-wrap">
+			                        <a href="javascript:;">
+			                            <img src="${pageContext.request.contextPath}/images/logo/black_logo_light.png" class="c-img">
+			                        </a>
+			                    </div>
+			                    <div class="course-info">
+			                        <div class="c-title">
+			                            <a href="javascript:;">
+			                                <p class="c-text">${course.name}</p>
+			                            </a>
+			                        </div>
+			                        <div class="c-author">
+			                            <!-- 作者:非真实姓名和用户名/昵称 -->
+			                            <i class="glyphicon glyphicon-user"></i>
+			                            <span class="c-text">${course.userid}</span>
+			                        </div>
+			                        <div class="c-time">
+			                            <i class="glyphicon glyphicon-time"></i>
+			                            <span class="c-text price-num">
+			                            	<fmt:formatDate value="${course.createTime}" pattern="yyyy-MM-dd"/>
+			                            </span>
+			                        </div>
+			                    </div>
+                			</li>
+                		</c:forEach>
+                	</c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>
@@ -122,6 +136,45 @@
             })
 
         })
+        /*搜索*/
+ 	   $(function(){
+ 	        $("#courseMangerSearch").click(function () {
+ 	        	var courseSearchName = $("#courseSearchInput").val(); 
+ 	        	
+ 	        	if (courseSearchName != " ") {
+ 	        		alert("ajax:" + courseSearchName)
+ 		        	$.ajax({
+ 						'type':"POST",
+ 						'url' :"${pageContext.request.contextPath}/courseSearch",
+ 						'dataType': 'json',
+ 						data:{
+ 							'name':courseSearchName,
+ 						},
+ 						'success':function(data){
+ 							if (data.searchCourseResult == "fail") {
+ 								alert("请你登录后进行查询")
+ 							}else if (data.searchCourseResult == "noCourse") {
+ 								alert("没有相关课程")
+ 							}else{
+ 								alert("succ" + data.searchCourseResult)
+ 								var data2 = eval(data.searchCourseResult);
+ 	 			                 $('#queryResult').empty();
+ 	 			                	 for(var i in data2){
+ 	 				                	 $('#queryResult').append("<li class='c-item' id=li"+i+">" +
+ 	 				                			 '<div class="course-pic-wrap"><a href="javascript:;"><img class="c-img" src="${pageContext.request.contextPath}/images/logo/black_logo_light.png"></a></div>'+
+ 	 				                			'<div class="course-info"><div class="c-title"><a href="javascript:;"><p class="c-text">'+data2[i].name +'</p></a></div></div>'+
+ 	 				                			'<div class="c-author"><i class="glyphicon glyphicon-user"></i><span class="c-text">'+data2[i].userid+'</span></div>'+
+ 	 				                			'<div class="c-time"><i class="glyphicon glyphicon-time"></i><span class="c-text price-num">'+data2[i].price+'</span></div></div>'+"</li>" );
+ 	 			                     } 
+ 								}
+ 			                }, 
+ 						'fail':function(data){
+ 							alert("系统错误 ");
+ 						}
+ 					});
+ 	        	}
+ 	        });
+ 	    }); 
     </script>
 </body>
 

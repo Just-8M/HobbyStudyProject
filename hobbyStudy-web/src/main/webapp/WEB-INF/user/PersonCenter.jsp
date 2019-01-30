@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -708,9 +707,7 @@
     			  }
     		  })
     	}) 
-    </script>
-    <!-- 学籍认证 -->
-     <script>
+       /* 学籍认证 */
 	   $(function(){
 	        $("#certificate_btn").click(function () {
 	        	var fileObj = document.getElementById("materia").files[0];   //  js 获取文件对象

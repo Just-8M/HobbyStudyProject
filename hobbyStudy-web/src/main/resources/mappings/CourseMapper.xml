@@ -28,6 +28,12 @@
 		<result column="recommend" property="recommend" jdbcType="INTEGER" />
 		<result column="weight" property="weight" jdbcType="INTEGER" />
 		<result column="study_count" property="studyCount" jdbcType="INTEGER" />
+
+		<result column="courseSchedule" property="courseSchedule"
+			jdbcType="VARCHAR" />
+		<result column="timespanStart" property="timespanStart"
+			jdbcType="VARCHAR" />
+		<result column="timespanEnd" property="timespanEnd" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="DATE" />
 
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -39,9 +45,11 @@
 	<sql id="Base_Column_List">
 		id ,name, type, classify, classify_name, sub_classify,
 		sub_classify_name, direction, userid,
-		level, free, price, time, onsale, brief, picture,
+		level, free, price, time, onsale,
+		brief, picture,
 		recommend, weight,
-		study_count, create_time, create_user, update_time,
+		study_count,courseSchedule,timespanStart,timespanEnd, create_time,
+		create_user, update_time,
 		update_user, del
 	</sql>
 
@@ -77,10 +85,11 @@
 			ORDER BY ${sortField} ${sortDirection}
 		</if>
 		<if test="start != null and end != null">
-			LIMIT #{start, jdbcType=INTEGER} , #{end, jdbcType=INTEGER}
+			LIMIT #{start, jdbcType=INTEGER} , #{end,
+			jdbcType=INTEGER}
 		</if>
 	</select>
-	<select id="getTotalItemsCount"  parameterType="com.hobbyStudy.entity.CourseQuery"
+	<select id="getTotalItemsCount" parameterType="com.hobbyStudy.entity.CourseQuery"
 		resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM hs_course
 		<trim prefix="WHERE " prefixOverrides="AND |OR ">
@@ -99,12 +108,12 @@
 			</if>
 		</trim>
 	</select>
-	
+
 	<select id="queryPage" resultMap="BaseResultMap">
-		SELECT 
+		SELECT
 		<include refid="Base_Column_List" />
 		FROM hs_course
-		<trim prefix="WHERE " prefixOverrides="AND |OR "> 
+		<trim prefix="WHERE " prefixOverrides="AND |OR ">
 			AND del = 0
 			<if test="param1.type != null">
 				AND type = #{param1.type, jdbcType=INTEGER}
@@ -113,82 +122,111 @@
 				AND classify = #{param1.classify, jdbcType=INTEGER}
 			</if>
 			<if test="param1.subClassify != null">
-				AND sub_classify = #{param1.subClassify, jdbcType=INTEGER}
+				AND sub_classify = #{param1.subClassify,
+				jdbcType=INTEGER}
 			</if>
 			<if test="param1.onsale != null">
 				AND onsale = #{param1.onsale, jdbcType=INTEGER}
 			</if>
 		</trim>
 		<if test="param2.sortField != null and param2.sortField != ''">
-		ORDER BY ${param2.sortField}  ${param2.sortDirection}
+			ORDER BY ${param2.sortField} ${param2.sortDirection}
 		</if>
-		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER} 
+		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize,
+		jdbcType=INTEGER}
 	</select>
-	<!-- 根据id获取课程详情页-->
-	<select id="getCourseById" parameterType="java.lang.Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<!-- 根据id获取课程详情页 -->
+	<select id="getCourseById" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
 		WHERE id = #{id, jdbcType=INTEGER}
 		AND del = 0
 	</select>
-	<!-- 根据领学者userid查询所属所有课程-->
-	<select id="queryPersonCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<!-- 根据领学者userid查询所属所有课程 -->
+	<select id="queryPersonCourse" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
 		WHERE userid = #{userid, jdbcType=VARCHAR}
 		AND del = 0
 	</select>
-	<!-- 推荐页根据二级分类查询课程-->
-	<select id="queryClassifyCourse"  resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<!-- 推荐页根据二级分类查询课程 -->
+	<select id="queryClassifyCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
-		WHERE  classify_name= #{classifyName, jdbcType=VARCHAR}
+		WHERE classify_name= #{classifyName, jdbcType=VARCHAR}
 		AND del = 0
 	</select>
-	
+
 	<!-- 查询单个课程详情页 -->
-	<select id="querySingleCourseDetalis" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<select id="querySingleCourseDetalis" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
-		WHERE  id= #{id, jdbcType=INTEGER}
+		WHERE id= #{id, jdbcType=INTEGER}
 		AND del = 0
 	</select>
-	
+
 	<!-- 查询精彩课程 -->
 	<!-- Select * From hs_course ORDER BY weight DESC; -->
-	<select id="querySelectionCourse"  resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<select id="querySelectionCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
 		ORDER BY weight DESC
 	</select>
-	
-		<!-- 查询最热课程 -->
-	<select id="queryHottestCourse"  resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+
+	<!-- 查询最热课程 -->
+	<select id="queryHottestCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
 		ORDER BY study_count DESC
 	</select>
-	
-		<!-- 查询最新课程 -->
-	<select id="queryLastestCourse"  resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+
+	<!-- 查询最新课程 -->
+	<select id="queryLastestCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
 		ORDER BY create_time DESC
 	</select>
-	<!-- 查询推荐页的子菜单分类下所有课程  -->
-	<select id="queryNavCategoryCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List"  />
+	<!-- 查询推荐页的子菜单分类下所有课程 -->
+	<select id="queryNavCategoryCourse" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM hs_course
-		WHERE  sub_classify= #{subClassifyName, jdbcType=VARCHAR}
+		WHERE sub_classify= #{subClassifyName, jdbcType=VARCHAR}
 		AND del = 0
 	</select>
-	
+	<!-- 新增课程 -->
+	<insert id="addCourse" parameterType="com.hobbyStudy.entity.Course"
+		flushCache="true" useGeneratedKeys="true">
+		INSERT INTO hs_course(name, userid,price,time,picture,brief,courseSchedule,timespanStart,timespanEnd) 
+		VALUES(#{name},#{userid},#{price},#{time},#{picture},#{brief},#{courseSchedule},#{timespanStart},#{timespanEnd})
+	</insert>
+	<!-- 查询用户所属所有课程 -->
+	<select id="queryUserOwnCourse" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM hs_course
+		WHERE userid= #{userid, jdbcType=VARCHAR}
+		AND del = 0
+	</select>
+	<!-- 查询课程（模糊查询） -->
+	<select id="queryCourseName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM hs_course
+		WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+		AND del = 0
+	</select>
 </mapper>

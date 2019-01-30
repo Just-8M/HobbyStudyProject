@@ -120,16 +120,14 @@ public class UserServiceImpl implements  UserService{
 		return userMapper.queryemail(email);
 	}
 	@Override
-	public Boolean insertUser(String username, String password, String email) {
-		return userMapper.insertUser(username,password,email);
+	public Boolean insertUser(String username, String Md5Psw, String email) {
+		return userMapper.insertUser(username,Md5Psw,email);
 	}
 	@Override
 	public User queryEmail(String email) {
 		return userMapper.queryEmail(email);
 	}
-	/* (non-Javadoc)
-	 * @see com.hobbyStudy.service.UserService#updateCheckPeople(com.hobbyStudy.entity.User)
-	 */
+	
 	@Override
 	public int updateCheckPeople(User user) {
 		return userMapper.updateCheckPeople(user);

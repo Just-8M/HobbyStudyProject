@@ -136,7 +136,7 @@ public interface UserMapper {
 	// 查看邮箱是否 被注册
 	public Boolean queryemail(String email);
 	//  注册
-	public Boolean insertUser(@Param("userid") String username, @Param("password") String password, @Param("email") String email);
+	public Boolean insertUser(@Param("userid") String username, @Param("password") String Md5Psw, @Param("email") String email);
 
 	//  更新审核人上传材料信息
 	public int updateCheckPeople(User user);

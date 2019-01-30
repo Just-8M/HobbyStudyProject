@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +47,16 @@
                     <ul class="status_list">
                         <li class="status_item">
                             <!-- 退出后“用户名”改为“领学者” -->
-                            <a href="javascript:;"><span class="username" style="color:#ff4e00;">${USER_IN_SESSION.userid}</span>,欢迎您！</a>
+                            <a href="javascript:;">
+                            <c:choose>
+                            	<c:when test="${USER_IN_SESSION==null}">
+                            		<a href="${pageContext.request.contextPath}/login.jsp" style="color:#ff4e00;">登录</a>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<span class="username" style="color:#ff4e00;">${USER_IN_SESSION.userid}</span>,欢迎您！
+                            	</c:otherwise>
+                            </c:choose>
+                            </a>
                         </li>
                         <li class="status_item">
                             <a href="${pageContext.request.contextPath}/getIndexPage">前台首页</a>

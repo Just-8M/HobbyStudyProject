@@ -66,7 +66,7 @@ public class CourseNavigationController {
 		/*for (Course c : CourseList) {
 			System.out.println("精选课程         " + c.getName());
 		}*/
-		System.out.println("CourseList==" + CourseList);
+//		System.out.println("CourseList==" + CourseList);
 		mv.addObject("CourseList", CourseList);
 
 		// 获取4门热门课推荐，根据权重（weight）进行排序
@@ -82,16 +82,16 @@ public class CourseNavigationController {
 		courseQuery.setFree(null);// 不分实战和免费类别
 		courseQuery.descSortField("studyCount");// 按照studyCount降序排列
      	List<Course> UpdateCourseList = this.courseService.getList(courseQuery);
-		System.out.println("UpdateCourseList:" + UpdateCourseList);
+//		System.out.println("UpdateCourseList:" + UpdateCourseList);
 	/*	for (Course course1 : UpdateCourseList) {
 			System.out.println("最新课程:" + course1.getName());
 		}*/
 		mv.addObject("UpdateCourseList", UpdateCourseList);
 		// 首页推荐讲师
 		List<User> recommendTeacher = userService.getRecommendTeacher();
-		for (User user : recommendTeacher) {
+		/*for (User user : recommendTeacher) {
 			System.out.println("User:  "   + user.getTitle() + ",,," + user.getId() );
-		}
+		}*/
 		mv.addObject("recommendTeacher", recommendTeacher);
 		return mv;
 	}

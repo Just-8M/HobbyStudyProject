@@ -103,5 +103,26 @@ public interface CourseService {
 	* @throws  
 	*/  
 	public List<Course> queryNavCategoryCourse(String subClassifyName);
+	/**
+	 * @ToDo:领学者增加课程
+	 * @param c
+	 * @return
+	 * @Return :int
+	 */
+	public int addCourse(Course c);
+	/**
+	 * @ToDo:插叙用户所有课程
+	 * @param userid
+	 * @return
+	 * @Return :List<Course>
+	 */
+	public List<Course> queryUserOwnCourse(String userid);
+	/**
+	 * @ToDo:课程列表中的搜索
+	 * @param name
+	 * @return
+	 * @Return :List<Course>
+	 */
+	public List<Course> queryCourseName(String name);
 	
 }
