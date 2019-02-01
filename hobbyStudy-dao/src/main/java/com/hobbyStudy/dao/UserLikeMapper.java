@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserLikeMapper {
 
-	public Boolean insertUserLikeitem(@Param("u_userid") String u_userid, @Param("type") String type, @Param("createTime") String createTime, @Param("creatUser") String creatUser);
+	public Boolean insertUserLikeitem(@Param("u_userid")String u_userid, @Param("type")String type, @Param("createTime")String createTime, @Param("creatUser")String creatUser);
 
 }

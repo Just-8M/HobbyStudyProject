@@ -278,18 +278,13 @@
 	<!-- resultType:声明输出结果的类型，应该填写pojo的全路径 -->
 	<!-- #{}：输入参数的占位符，相当于jdbc的？ -->
 	<!-- 登录 -->
-	<!--  <select id="queryUsernameAndPsw"  parameterType="java.lang.String" resultMap="BaseResultMap">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM hs_user
-		WHERE userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
-	</select>  -->
 	<select id="queryUsernameAndPsw"  resultType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM  hs_user
 		WHERE userid = #{userid,jdbcType=VARCHAR} And password= #{password,jdbcType=VARCHAR}
 	</select>
+	<!-- 查询邮箱是否存在 -->
 	<select id="queryEmail"  resultType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
@@ -361,6 +356,7 @@
 	    district=#{district},title=#{title},sign=#{sign}
         WHERE userid = #{userid}
 	</update> -->
+	<!-- 更新用户信息 -->
 	<update id="updatePersonInfor" parameterType="com.hobbyStudy.entity.User">
 	 UPDATE hs_user  SET
 	    nickname=#{nickname},gender=#{gender},province=#{province},city=#{city},
@@ -391,4 +387,19 @@
 		  </trim>
      WHERE userid = #{userid}
 	</update>
+	
+	<!--  管理员查询所有用户  -->
+	<select id="queryTotalUser"   resultMap="BaseResultMap"> 
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM hs_user
+		WHERE  del = 0
+	</select>
+	<!--管理员搜索用户 -->
+	<select id="queryUserName" resultMap="BaseResultMap"> 
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM hs_user
+		WHERE userid LIKE CONCAT(CONCAT('%', #{userid}), '%') AND del = 0 ;
+	</select>
 </mapper>

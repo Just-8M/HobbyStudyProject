@@ -30,7 +30,7 @@ public interface CourseService {
 	* @return TailPage<Course>  
 	* @throws
 	 */
-	public TailPage<Course> queryCoursePage(Course course, TailPage<Course> page);
+	public TailPage<Course> queryCoursePage(Course course ,TailPage<Course> page);
 	/**
 	 * 
 	* @Title: getById  
@@ -111,18 +111,21 @@ public interface CourseService {
 	 */
 	public int addCourse(Course c);
 	/**
-	 * @ToDo:插叙用户所有课程
+	 * @ToDo:查询用户所有课程
 	 * @param userid
-	 * @return
 	 * @Return :List<Course>
 	 */
 	public List<Course> queryUserOwnCourse(String userid);
+	
+	/**
+	 * @ToDo:查询全部已发布课程
+	 * @Return :List<Course>
+	 */
+	public List<Course> queryTotalCourse(String type);
 	/**
 	 * @ToDo:课程列表中的搜索
 	 * @param name
-	 * @return
 	 * @Return :List<Course>
 	 */
-	public List<Course> queryCourseName(String name);
-	
+	public List<Course> queryCourseName(String name,String type);
 }

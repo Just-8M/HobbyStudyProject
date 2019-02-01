@@ -2,9 +2,12 @@ package com.hobbyStudy.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hobbyStudy.common.utils.page.TailPage;
 import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.CourseQuery;
+
 
 /**  
 * @Description: 课程功能
@@ -27,7 +30,7 @@ public interface CourseMapper {
 	/**
 	*分页获取
 	**/
-	public List<Course> queryPage(Course queryEntity, TailPage<Course> page);
+	public List<Course> queryPage(Course queryEntity , TailPage<Course> page);
 	/**  
 	* @Title: getCourseById  
 	* @Description: (获取课程详情页)  
@@ -95,14 +98,7 @@ public interface CourseMapper {
 	*/  
 	public List<Course> queryLastestCourse();
 
-
-	/**  
-	* @Title: queryNavCategoryCourse  
-	* @Description: (查询推荐页的子菜单分类下所有课程)  
-	* @param     
-	* @return List<Course>  
-	* @throws  
-	*/  
+	// 查询推荐页的子菜单分类下所有课程
 	public List<Course> queryNavCategoryCourse(String subClassifyName);
 
 	//  增加课程
@@ -111,7 +107,10 @@ public interface CourseMapper {
 	// 查询用户所属的所有课程
 	public List<Course> queryUserOwnCourse(String userid);
 	// 课程列表中的搜索
-	public List<Course> queryCourseName(String name);
+	public List<Course> queryCourseName(@Param("name")String name,@Param("type")String type);
+
+	//  查询全部已发布课程
+	public List<Course> queryTotalCourse(String type);
 
 	
 		

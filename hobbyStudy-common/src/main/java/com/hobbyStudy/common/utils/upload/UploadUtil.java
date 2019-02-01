@@ -17,7 +17,7 @@ public class UploadUtil {
 	public static String imageUpload(@RequestParam(value="file") MultipartFile file,HttpServletRequest req){
 		// 获取要上传的目标位置，即是项目的upload文件夹所在的绝对路径
 		//如果添加了tomcat的虚拟映射路径，需要先新建一个upload文件夹
-		String path = req.getSession().getServletContext().getRealPath("/WEB-INF/uoload");
+		String path = req.getSession().getServletContext().getRealPath("/WEB-INF/upload");
 		
 		System.out.println("path:" + path);
 		// 获取文件的扩展名

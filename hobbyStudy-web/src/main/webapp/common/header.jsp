@@ -212,7 +212,7 @@
                        			 <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
 	                            </c:when>
 	                            <c:otherwise>
-	                                <span><a href="#"  style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
+	                                <span><a href="${pageContext.request.contextPath}/personCenter?id=${USER_IN_SESSION.id}" style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
 									<span><a href="${pageContext.request.contextPath}/loginOut" >退出</a></span>
 	                            </c:otherwise>
 	                        </c:choose>

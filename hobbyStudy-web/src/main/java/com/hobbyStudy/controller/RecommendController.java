@@ -76,7 +76,7 @@ public class RecommendController {
 	 * @param @return
 	 * List<RecommendPhotoSlide> @throws
 	 */
-	@RequestMapping(value = "/recommend_navCategory") // 映射路径
+	@RequestMapping(value = "/recommend_navCategory")
 	public ModelAndView recommend_navCategory(String name,HttpServletRequest request) {
 		//  轮番图
 		ModelAndView mv = new ModelAndView("forward:/recommend_navCategory.jsp");

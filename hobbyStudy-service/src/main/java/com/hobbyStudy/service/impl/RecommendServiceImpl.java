@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hobbyStudy.dao.RecommendMapper;
-import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.RecommendPhotoSlide;
 import com.hobbyStudy.service.RecommendService;
 

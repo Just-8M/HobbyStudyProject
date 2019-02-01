@@ -136,7 +136,7 @@ $(document).ready(function () {
         var parentValue = $(this).parent().parent().siblings('span').text();
         console.log(parentValue);
         // 跳转页面并传递参数
-        var url = encodeURI(`./Courselist?parentNav=${parentValue}&presentNav=${value}`);
+        var url = encodeURI(`./CourseListCntroller/Courselist?parentNav=${parentValue}&presentNav=${value}`);
         var enurl = encodeURI(url);
         $(location).attr('href', enurl);
     })

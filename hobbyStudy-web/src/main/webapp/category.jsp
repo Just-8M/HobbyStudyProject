@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <title>全部兴趣课程-趣学网</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
-    <link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/bootstrap/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="styles/css/category.css">
-    <link rel="stylesheet" type="text/css" href="styles/css/paging.css">
-    <link rel="stylesheet" type="text/css" href="styles/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/category.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/paging.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/index.css">
 </head>
 <body>
  <!--引入公共头部-->
@@ -116,7 +116,7 @@
         	<div class="courseList">
         	<c:if test="${!empty page.items}">
         		<c:forEach items="${page.items}" var="pi">
-			        <a href="${pageContext.request.contextPath}/${pi.id}">
+			        <a href="${pageContext.request.contextPath}/courseDetailsController/${pi.id}">
 			            <div class="courseInfo">
 			               <img src="${pi.picture}">
 			                 <a href="course.html">
@@ -130,7 +130,7 @@
 				                         <i class="fa fa-shopping-cart"></i>
 				                   </div>
 			                  </div>
-			                   <div class="courseTeacher"><a href="leader.html"><img src="images/iconfont/default1.png">${pi.userid}</a><span
+			                   <div class="courseTeacher"><a href="leader.html"><img src="${pageContext.request.contextPath}/images/iconfont/default1.png">${pi.userid}</a><span
 			                                class="school">陕西理工大学</span>
 			                   </div>
 			             </div>
@@ -141,8 +141,8 @@
         </div>
     </div>
   <div class="ad ">
-        <a href="javaScript:;"><img src="images/ad/cut.jpg"></a>
-        <a href="javaScript:;"><img src="images/ad/cut.jpg"></a>
+        <a href="javaScript:;"><img src="${pageContext.request.contextPath}/images/ad/cut.jpg"></a>
+        <a href="javaScript:;"><img src="${pageContext.request.contextPath}/images/ad/cut.jpg"></a>
     </div>
     <!-- 分页 -->
        <%@ include file="../common/pages.jsp" %>
@@ -159,8 +159,8 @@
     <div id="fade" class="black_overlay"></div>
     <!--弹框背景设置透明结束-->
 
-    <script type="text/javascript" src="script/bootstrap/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="script/paging.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/bootstrap/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/paging.js"></script>
 
     <script type="text/javascript">
         $(function () {

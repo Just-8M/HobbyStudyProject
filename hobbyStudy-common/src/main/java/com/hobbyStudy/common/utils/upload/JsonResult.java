@@ -6,7 +6,8 @@ package com.hobbyStudy.common.utils.upload;
 import java.io.Serializable;
 
 public class JsonResult<T> implements Serializable {
-	// Serializable将对象的状态保存在存储媒体中以便可以在以后重新创建出完全相同的副本
+	private static final long serialVersionUID = 1L;
+	//  Serializable 将对象的状态保存在存储媒体中以便可以在以后重新创建出完全相同的副本
 	public static final int SUCCESS = 0;
 	public static final int ERROR = 1;
 	public static final int OTHER = 2;

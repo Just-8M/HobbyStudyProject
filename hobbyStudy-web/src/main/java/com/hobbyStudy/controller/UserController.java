@@ -332,7 +332,6 @@ public class UserController {
 		req.getSession().removeAttribute("code");
 		return json;
 	}
-
 	/**
 	 * 
 	 * @Title: queryTaBySort
@@ -345,9 +344,6 @@ public class UserController {
 	public ModelAndView queryTaBySort(User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/findTa.jsp");
 		List<User> userFansList = userService.queryTaBySort(null);
-		for (User u : userFansList) {
-			System.out.println("领学者姓名：" + u.getUserid() + "id :" + u.getId());
-		}
 		mv.addObject("userFansList", userFansList);
 		return mv;
 	}
@@ -388,7 +384,11 @@ public class UserController {
 	}
 
 	/**
-	 * @Title: 寻Ta模块 @Description: (通过学校查询领学者) @param @return List<User> @throws
+	 * @Title: 寻Ta模块 
+	 * @Description: (通过学校查询领学者) 
+	 * @param 
+	 * @return List<User> 
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/Test", method = RequestMethod.POST)
@@ -620,7 +620,7 @@ public class UserController {
 	 * @ToDo:跳转用户管理Welcome界面
 	 * @Return :ModelAndView
 	 */
-	@RequestMapping("/userMangerWelcome") // 映射路径
+	@RequestMapping("/userMangerWelcome")
 	public ModelAndView userMangerWelcome() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/welcome.jsp");
 		return mv;
@@ -629,7 +629,7 @@ public class UserController {
 	 * @ToDo:跳转用户管理--课程页面
 	 * @Return :ModelAndView
 	 */
-	@RequestMapping("/userMangerCoursePage") // 映射路径
+	@RequestMapping("/userMangerCoursePage") 
 	public ModelAndView userMangerCoursePage() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/book.jsp");
 		return mv;
@@ -638,7 +638,7 @@ public class UserController {
 	 * @ToDo:跳转用户管理---添加课程
 	 * @Return :ModelAndView
 	 */
-	@RequestMapping("/userMangerAddcourse") // 映射路径
+	@RequestMapping("/userMangerAddcourse")
 	public ModelAndView userMangerAddcourse() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/user/leaderAdmin/addcourse.jsp");
 		return mv;
@@ -669,11 +669,11 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/courseSearch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public JSONObject courseSearch(HttpSession session,String name) {
+	public JSONObject courseSearch(HttpSession session,String name,String type) {
 		JSONObject json = new JSONObject();
 		User session_user = (User) session.getAttribute("USER_IN_SESSION");  
 		if (session_user != null) {
-			List<Course> searchCourseList = courseService.queryCourseName(name);
+			List<Course> searchCourseList = courseService.queryCourseName(name,type);
 			System.out.println("searchCourseList:" +searchCourseList);
 				if (searchCourseList.isEmpty()) {
 					System.out.println("noCourse");
@@ -686,7 +686,7 @@ public class UserController {
 		}else{
 			json.put("searchCourseResult", "fail");
 		}
-		return json;
+	return json;
 	}
 	/**
 	 * @ToDo:跳转用户管理---审核状态

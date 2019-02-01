@@ -128,8 +128,13 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<Course> queryCourseName(String name) {
-		return courseMapper.queryCourseName(name);
+	public List<Course> queryCourseName(String name,String type) {
+		return courseMapper.queryCourseName(name,type);
+	}
+
+	@Override
+	public List<Course> queryTotalCourse(String type) {
+		return courseMapper.queryTotalCourse(type);
 	}
 
 }

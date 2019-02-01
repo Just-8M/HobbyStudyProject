@@ -1,11 +1,6 @@
 package com.hobbyStudy.service;
 
-import java.util.Date;
 import java.util.List;
-
-import org.springframework.transaction.annotation.Transactional;
-
-import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.User;
 
 /**
@@ -105,7 +100,7 @@ public interface UserService {
 	* @return void  
 	* @throws  
 	*/  
-	public Boolean updateLikeCount(String likeCount, String userid);
+	public Boolean updateLikeCount(String likeCount,String  userid);
 	
 	/**  
 	* @Title: updateLikeCount  
@@ -120,14 +115,14 @@ public interface UserService {
 	 * @param userid
 	 * @param i
 	 */
-	public Boolean insertUserLikeitem(String u_userid, String type, String createTime, String creatUser);
+	public Boolean insertUserLikeitem(String u_userid, String type,String  createTime,String creatUser);
 	/**
 	 * 
 	 * @return 
 	 * @Description   更新个人信息
 	 */
 	public Boolean updatePersonInfor(String userid, String nickname, int gender, String province, String city,
-                                     String district, String title, String sign);
+			String district, String title, String sign);
 	/**
 	 * 
 	 * @Description   判断密码是否和数据库中相等
@@ -162,8 +157,18 @@ public interface UserService {
 	 * @Return :int
 	 */
 	public int updateCheckPeople(User user);
-	
-	
+	/**
+	 * @ToDo:查询所有用户
+	 * @return
+	 * @Return :List<User>
+	 */
+	public List<User> queryTotalUser();
+	/**
+	 * @ToDo:管理员搜索用户
+	 * @param name
+	 * @Return :List<User>
+	 */
+	List<User> queryUserName(String name);
 	
 	
 }

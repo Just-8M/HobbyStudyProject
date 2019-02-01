@@ -3,12 +3,9 @@ package com.hobbyStudy.service.impl;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.hobbyStudy.common.utils.storage.QiniuStorage;
 import com.hobbyStudy.dao.UserLikeMapper;
 import com.hobbyStudy.dao.UserMapper;
 import com.hobbyStudy.entity.User;
@@ -44,11 +41,11 @@ public class UserServiceImpl implements  UserService{
 	public List<User> getRecommendTeacher() {
 		List<User> recomdList = userMapper.getRecommendTeacher();
 		if(CollectionUtils.isNotEmpty(recomdList)){
-			for(User item : recomdList){
-				/*if(StringUtils.isNotEmpty(item.getHeader())){
+			/*for(User item : recomdList){
+				if(StringUtils.isNotEmpty(item.getHeader())){
 					item.setHeader(QiniuStorage.getUrl(item.getHeader()));
-				}*/
-			}
+				}
+			}*/
 		}
 		return recomdList;
 	}
@@ -132,6 +129,14 @@ public class UserServiceImpl implements  UserService{
 	public int updateCheckPeople(User user) {
 		return userMapper.updateCheckPeople(user);
 	}
-	
+	@Override
+	public List<User> queryTotalUser() {
+		return userMapper.queryTotalUser();
+	}
+
+	@Override
+	public List<User> queryUserName(String name) {
+		return userMapper.queryUserName(name);
+	}
 
 }

@@ -242,8 +242,8 @@
 				<!-- foreach循环精选课程 -->
 				 <c:forEach items="${CourseList}" var="courseList">
 						<div class="courseInfo">
-							<img src="${courseList.picture}"> <a href="course.html"><div
-									class="courseTitle">${courseList.name}</div></a>
+							<img src="${courseList.picture}"> 
+							<a href="course.html"><div class="courseTitle">${courseList.name}</div></a>
 							<div class="courseDes">
 								${courseList.brief}<br>
 							</div>

@@ -1,11 +1,14 @@
 package com.hobbyStudy.entity;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 证明材料类 
  * @author shenjin
  */
+@Getter
+@Setter
 public class ProveMaterials {
 
 	private Integer id;       
@@ -17,61 +20,7 @@ public class ProveMaterials {
 	private String createTime;      //创建时间
 	private String checkTime;       //审核时间
 	private Integer del = 0;        //  逻辑删除
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getPic_name() {
-		return pic_name;
-	}
-	public void setPic_name(String pic_name) {
-		this.pic_name = pic_name;
-	}
-	public String getPic_url() {
-		return pic_url;
-	}
-	public void setPic_url(String pic_url) {
-		this.pic_url = pic_url;
-	}
-	public String getUpdataPeople() {
-		return updataPeople;
-	}
-	public void setUpdataPeople(String updataPeople) {
-		this.updataPeople = updataPeople;
-	}
-	public String getCheckPeople() {
-		return checkPeople;
-	}
-	public void setCheckPeople(String checkPeople) {
-		this.checkPeople = checkPeople;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	
-	public String getCreateTime() {
-		return createTime;
-	}
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
-	}
-	public String getCheckTime() {
-		return checkTime;
-	}
-	public void setCheckTime(String checkTime) {
-		this.checkTime = checkTime;
-	}
-	public Integer getDel() {
-		return del;
-	}
-	public void setDel(Integer del) {
-		this.del = del;
-	}
 	@Override
 	public String toString() {
 		return "ProveMaterials [id=" + id + ", pic_name=" + pic_name + ", pic_url=" + pic_url + ", updataPeople="

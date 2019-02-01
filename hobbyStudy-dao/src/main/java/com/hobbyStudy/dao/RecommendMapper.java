@@ -2,7 +2,6 @@ package com.hobbyStudy.dao;
 
 import java.util.List;
 
-import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.RecommendPhotoSlide;
 
 /**  

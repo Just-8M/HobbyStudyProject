@@ -2,7 +2,6 @@ package com.hobbyStudy.controller;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hobbyStudy.business.ICourseDatailsBuiness;
-import com.hobbyStudy.common.utils.storage.QiniuStorage;
 import com.hobbyStudy.entity.Course;
 import com.hobbyStudy.entity.CourseQuery;
 import com.hobbyStudy.entity.User;
@@ -25,6 +23,7 @@ import com.hobbyStudy.vo.CourseSectionsVO;
  * @version V1.0
  */
 @Controller
+@RequestMapping("/courseDetailsController")
 public class CourseDetailsController {
 
 	@Autowired

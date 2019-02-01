@@ -19,6 +19,6 @@ public interface CourseCommentService {
 	* @throws  
 	*/  
 	TailPage<com.hobbyStudy.entity.CourseComment> queryPage(com.hobbyStudy.entity.CourseComment courseComment,
-                                                            TailPage<com.hobbyStudy.entity.CourseComment> page);
+			TailPage<com.hobbyStudy.entity.CourseComment> page);
 
 }

@@ -90,7 +90,7 @@ public interface UserMapper {
 	* @return User  
 	* @throws  
 	*/  
-	public User queryUsernameAndPsw(@Param("userid") String userid, @Param("password") String password);
+	public User queryUsernameAndPsw(@Param("userid")String userid,@Param("password")String password);
 	public User queryEmail(String email);
 //	public User queryUsernameAndPsw(String userid,String password); //  错误
 	// 查询邮箱和用户是否为同一人
@@ -103,7 +103,7 @@ public interface UserMapper {
 	* @return void  
 	* @throws  
 	*/  
-	public Boolean updateLikeCount(@Param("likeCount") String likeCount, @Param("userid") String userid);
+	public Boolean updateLikeCount(@Param("likeCount")String likeCount,@Param("userid")String userid);
 
 	
 	/**  
@@ -126,20 +126,26 @@ public interface UserMapper {
 	 *@param
 	 * @return
 	 */
-	public Boolean updatePersonInfor(@Param("userid") String userid, @Param("nickname") String nickname, @Param("gender") int gender,
-                                     @Param("province") String province, @Param("city") String city,
-                                     @Param("district") String district, @Param("title") String title, @Param("sign") String sign);
+	public Boolean updatePersonInfor(@Param("userid")String userid, @Param("nickname")String nickname, @Param("gender")int gender, 
+			@Param("province")String province,@Param("city") String city,
+			@Param("district")String district, @Param("title")String title,@Param("sign") String sign);
 	//  查询输入密码和数据库是否相等
-	public User selectoldPassword(@Param("userid") String userid);
+	public User selectoldPassword(@Param("userid")String userid);
 	// 修改密码
-	public Boolean updataUserPsw(@Param("userid") String userid, @Param("password") String newPassword);
+	public Boolean updataUserPsw(@Param("userid")String userid,@Param("password")String newPassword);
 	// 查看邮箱是否 被注册
 	public Boolean queryemail(String email);
 	//  注册
-	public Boolean insertUser(@Param("userid") String username, @Param("password") String Md5Psw, @Param("email") String email);
+	public Boolean insertUser(@Param("userid")String username, @Param("password")String Md5Psw, @Param("email")String email);
 
 	//  更新审核人上传材料信息
 	public int updateCheckPeople(User user);
+
+	//  管理员查询所有用户
+	public List<User> queryTotalUser();
+	
+    //  管理员搜索用户
+	public List<User> queryUserName(@Param("userid")String name);
 
 	
 

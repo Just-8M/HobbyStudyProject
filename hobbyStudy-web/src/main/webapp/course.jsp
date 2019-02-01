@@ -9,13 +9,13 @@
 <title>课程名称</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
 <link rel="stylesheet" type="text/css"
-	href="styles/bootstrap/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/styles/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
-	href="styles/bootstrap/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="styles/css/reset.css">
-<link rel="stylesheet" type="text/css" href="styles/css/course.css">
-<link rel="stylesheet" href="styles/css/style.css">
-<link rel="stylesheet" href="styles/css/comment.css">
+	href="${pageContext.request.contextPath}/styles/bootstrap/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/course.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/comment.css">
 <style type="text/css">
 /* 简介、评论、问答    START*/
 .course_tab_wrap_first{
@@ -71,20 +71,20 @@
 	<!-- 说明:私下交易平台不负责 -->
 	<div class="warning">
 		与领学者私下交易造成的任何损失与纠纷，趣学网不承担任何责任，如若有领学者向你提出私下交易，请立即<a href="javascript:;">投诉</a>。
-		<img src="images/iconfont/close_gray.png">
+		<img src="${pageContext.request.contextPath}/images/iconfont/close_gray.png">
 	</div>
 	<!--课程详情页开始-->
 	<div class="coursewrap cf">
 		<div class="courseDetail">
 			<!-- 课程图片或视频缩略图 -->
 			<div class="coursevideo">
-				<img src="images/ad/dance.jpg">
+				<img src="${pageContext.request.contextPath}/images/ad/cut.jpg">
 				<div class="video_btn">播放视频简介</div>
 			</div>
 			<!-- 视频链接  默认隐藏 -->
 			<div class="videolink">
 				<video muted width="600" height="370" controls>
-					<source src="images/video/when-it-rains-it-pours.mp4"
+					<source src="${pageContext.request.contextPath}/images/video/when-it-rains-it-pours.mp4"
 						type="video/mp4">
 					抱歉，该视频暂时无法观看，请您下载最新版浏览器！
 				</video>
@@ -162,8 +162,8 @@
 					                        —— 课程团队
                     	</div>
                     	<div class="course_intro_pic">
-	                        <img src="images/ad/artist-guitar-guitarist-33597.jpg" >
-	                        <img src="images/ad/blonde-blur-close-up-164826.jpg" >
+	                        <img src="${pageContext.request.contextPath}/images/ad/cut.jpg" >
+	                        <img src="${pageContext.request.contextPath}/images/ad/cut.jpg" >
                   	  </div>
                   </div>
 			</div>
@@ -227,9 +227,9 @@
 
 	<!-- 引入公共底部 -->
 	<%@ include file="../common/footer.jsp"%>
-	<script src="script/bootstrap/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="script/model/jquery.flexText.js"></script>
-	<script type="text/javascript" src="script/course.js"></script>
+	<script src="${pageContext.request.contextPath}/script/bootstrap/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/model/jquery.flexText.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/script/course.js"></script>
 	<!-- 评论效果 -->
 	<script type="text/javascript">
 		/**

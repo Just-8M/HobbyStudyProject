@@ -136,19 +136,18 @@
             })
 
         })
-        /*搜索*/
+        /*用户所有课程模糊搜索*/
  	   $(function(){
  	        $("#courseMangerSearch").click(function () {
  	        	var courseSearchName = $("#courseSearchInput").val(); 
- 	        	
  	        	if (courseSearchName != " ") {
- 	        		alert("ajax:" + courseSearchName)
  		        	$.ajax({
  						'type':"POST",
  						'url' :"${pageContext.request.contextPath}/courseSearch",
  						'dataType': 'json',
  						data:{
  							'name':courseSearchName,
+ 							'type':2,
  						},
  						'success':function(data){
  							if (data.searchCourseResult == "fail") {

@@ -221,12 +221,18 @@
 		AND del = 0
 	</select>
 	<!-- 查询课程（模糊查询） -->
-	<select id="queryCourseName" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
+	<select id="queryCourseName" parameterType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM hs_course
 		WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
-		AND del = 0
+		AND del = 0 AND type=#{type}
+	</select>
+	<!-- 查询所有课程 -->
+	<select id="queryTotalCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM hs_course 
+		WHERE type = #{type}
 	</select>
 </mapper>
