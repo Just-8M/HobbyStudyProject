@@ -28,7 +28,7 @@ public class UploadUtil {
 		File targetFile= new File(path,filename);
 		try {
 			if(!targetFile.exists()){
-				//写入文件
+				
 				file.transferTo(targetFile);
 			}
 			return src;

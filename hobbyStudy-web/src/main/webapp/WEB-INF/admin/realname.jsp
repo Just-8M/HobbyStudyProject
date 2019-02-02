@@ -109,7 +109,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                	
+                	<c:forEach items="${realnameSearchResult}" var="cu">
+                		<tr>
+	                        <td>${cu.id}</td>
+	                        <td>${cu.userid}</td>
+	                        <td>${cu.realname}</td>
+	                        <td>610481199508206259</td>
+	                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button></td>
+	                        <td>
+	                            <button class="btn btn-success verify-success">通过</button>
+	                            <button class="btn btn-danger verify-fail">未通过</button>
+	                        </td>
+                        <tr> 
+                	</c:forEach>
+                    <!-- 
                         <td>1</td>
                         <td>{{userID}}</td>
                         <td>{{真实姓名}}</td>
@@ -119,7 +133,7 @@
                             <button class="btn btn-success verify-success">通过</button>
                             <button class="btn btn-danger verify-fail">未通过</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
 

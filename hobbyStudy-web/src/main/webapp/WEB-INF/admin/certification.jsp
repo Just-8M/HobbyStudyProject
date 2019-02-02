@@ -109,26 +109,28 @@
                         <th>用户ID</th>
                         <th>真实姓名</th>
                         <th>院校名称</th>
-                        <th>入学时间</th>
+                        <th>大学编码</th>
                         <th>学历层次</th>
                         <th>学籍证明</th>
                         <th>审核状态</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>{{用户ID}}</td>
-                        <td>{{真实姓名}}</td>
-                        <td>{{院校名称}}</td>
-                        <td>{{入学时间}}</td>
-                        <td>本科</td>
+                <c:forEach items="${certificationSearchResult}" var="csr">
+                	 <tr>
+                        <td>${csr.id}</td>
+                        <td>${csr.userid}</td>
+                        <td>${csr.realname}</td>
+                        <td>${csr.collegeName}</td>
+                        <td>${csr.collegeCode}</td>
+                        <td>${csr.education}</td>
                         <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button></td>
                         <td>
                             <button class="btn btn-success verify-success">通过</button>
                             <button class="btn btn-danger verify-fail">未通过</button>
                         </td>
                     </tr>
+                </c:forEach>
                 </tbody>
             </table>
             <!-- 查看模态框 -->

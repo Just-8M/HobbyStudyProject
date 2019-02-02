@@ -169,6 +169,12 @@ public interface UserService {
 	 * @Return :List<User>
 	 */
 	List<User> queryUserName(String name);
+	/**
+	 * @ToDo:被审核用户
+	 * @param string
+	 * @Return :List<User>
+	 */
+	public List<User> queryUserCheck(String string);
 	
 	
 }

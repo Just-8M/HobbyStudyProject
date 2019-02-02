@@ -1,5 +1,7 @@
 package com.hobbyStudy.service;
 
+import java.util.List;
+
 import com.hobbyStudy.entity.ProveMaterials;
 
 /**
@@ -14,5 +16,12 @@ public interface ProveMaterialsService {
 	 * @Return :int
 	 */
 	int addItem(ProveMaterials proveMaterials);
+
+	/**
+	 * @ToDo:查询所有所有需要被审核资料
+	 * @param type
+	 * @Return :List<ProveMaterials>
+	 */
+	List<ProveMaterials> selectProveMaterials(String type);
 	
 }

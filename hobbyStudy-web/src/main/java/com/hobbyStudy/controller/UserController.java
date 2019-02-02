@@ -516,7 +516,8 @@ public class UserController {
 	        ProveMaterials.setPic_name(pictureName);   //  设置图片名称
 	        ProveMaterials.setUpdataPeople(session_user.getUserid());   //  上传者姓名
 //	        ProveMaterials.setCheckPeople(session_user.getUserid());    //  设置登录用户的userid
-	        ProveMaterials.setType("0");                 //  审核类型
+	        ProveMaterials.setStatus("0");
+	        ProveMaterials.setType("学历认证");                 //  审核类型
 	        ProveMaterials.setCreateTime(df.format(new Date()));   //  上传资料时间
 	        System.out.println("ProveMaterials:" + ProveMaterials);
 	        try {
@@ -578,7 +579,8 @@ public class UserController {
 	     if (session_user != null) {
 	        	ProveMaterials.setPic_name(pictureName1);                    //  设置图片名称
 	        	ProveMaterials.setUpdataPeople(session_user.getUserid());   //  上传者姓名
-	        	ProveMaterials.setType("0");                 //  审核类型
+	        	ProveMaterials.setType("实名认证");//  审核类型
+	        	ProveMaterials.setStatus("0");   // 未审核
 	 	        ProveMaterials.setCreateTime(df.format(new Date()));   //  上传资料时间
 	 	        System.out.println("ProveMaterials:" + ProveMaterials);
 	 	       try {

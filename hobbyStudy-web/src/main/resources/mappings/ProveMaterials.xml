@@ -9,13 +9,14 @@
 		<result column="updataPeople" property="updataPeople"  jdbcType="VARCHAR" />
 		<result column="checkPeople" property="checkPeople"  jdbcType="VARCHAR" />
 		<result column="type" property="type"  jdbcType="VARCHAR" />
-		<result column="creat_time" property="creatTime"  jdbcType="VARCHAR" />
+		<result column="status" property="status"  jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime"  jdbcType="VARCHAR" />
 		<result column="check_time" property="checkTime"  jdbcType="VARCHAR" />
 		<result column="del" property="del"  jdbcType="TINYINT" />
 	</resultMap>
 	
 	<sql id="Base_Column_List"> 
-		id,pic_name,pic_url,updataPeople,checkPeople,type,creat_Time,check_Time,del
+		id,pic_name,pic_url,updataPeople,checkPeople,type,status,create_time,check_time,del
 	</sql>
 	<!-- 插入证明材料   -->
 	<insert id="addItem" parameterType="com.hobbyStudy.entity.ProveMaterials"  flushCache="true" useGeneratedKeys="true">
@@ -35,6 +36,9 @@
 			</if>
 			<if test="type != null ">
 			type,
+			</if>
+			<if test="status != null ">
+			status,
 			</if>
 			<if test="createTime != null">
 			create_time,
@@ -63,6 +67,9 @@
 			<if test="type != null ">
 			#{type, jdbcType=VARCHAR},
 			</if>
+			<if test="status != null ">
+			#{status, jdbcType=VARCHAR},
+			</if>
 			<if test="createTime != null ">
 			#{createTime, jdbcType=VARCHAR},
 			</if>
@@ -74,5 +81,11 @@
 			</if>
 		</trim>
 	</insert>
-    
+    <!-- 查询实名认证审核 -->
+    <select id="selectProveMaterials"  parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM  hs_prove_materials
+		WHERE type=#{type}
+	</select>
 </mapper>

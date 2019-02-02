@@ -1,5 +1,7 @@
 package com.hobbyStudy.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,10 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hobbyStudy.common.utils.MD5Util;
 import com.hobbyStudy.entity.Admin;
+import com.hobbyStudy.entity.AdminOperateLog;
 import com.hobbyStudy.entity.Course;
+import com.hobbyStudy.entity.ProveMaterials;
 import com.hobbyStudy.entity.User;
 import com.hobbyStudy.service.AdminService;
 import com.hobbyStudy.service.CourseService;
+import com.hobbyStudy.service.ProveMaterialsService;
 import com.hobbyStudy.service.UserService;
 
 import net.sf.json.JSONObject;
@@ -40,6 +45,10 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProveMaterialsService proveMaterialsService;
+	
 	/**
 	 * @ToDo:跳转admin登录界面
 	 * @Return :ModelAndView
@@ -65,8 +74,9 @@ public class AdminController {
 		Admin admin = adminService.queryAdminName(adminName);   //  通过adminName查询管理员是否存在
 		System.out.println("admin:" + admin.getPassword());
 		if (Md5Psw.equals(admin.getPassword())) {
-			
 			session.setAttribute("ADMIN_IN_SESSION", admin);  // 登录成功，将管理员信息保存session中
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			adminService.insertOperateRecord(admin.getAdminName(),"登录成功",df.format(new Date()));
 			System.out.println("----admin登录成功-----");
 			json.put("loginResult", "loginSuccess");
 		}else{
@@ -81,8 +91,14 @@ public class AdminController {
 	 */
 	@RequestMapping("/loginOut")
 	public String loginOut(HttpSession session) {
-		session.removeAttribute("ADMIN_IN_SESSION");
-		return "forward:/adminController/adminLogin";
+		
+		Admin admin = (Admin) session.getAttribute("ADMIN_IN_SESSION");
+		if (admin != null) {
+			adminService.insertOperateRecord(admin.getAdminName(),"退出登录"," ");
+			session.removeAttribute("ADMIN_IN_SESSION");
+			return "forward:/WEB-INF/admin/login.jsp";
+		}
+		return "forward:/WEB-INF/admin/login.jsp";
 	}
 	/**
 	 * @ToDo:跳转到后台管理首页
@@ -133,12 +149,24 @@ public class AdminController {
 		return mv;
 	}
 	/**
-	 * @ToDo:跳转realname界面
+	 * @ToDo:跳转realname界面，实名认证审核
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/realname")
 	public ModelAndView realname() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/realname.jsp");
+		List<User> checkUser = userService.queryUserCheck("1");    //  审核人资料
+		for (User u : checkUser) {
+			System.out.println("uuu:" + u.getId());
+		}
+		
+		List<ProveMaterials> proveList =  proveMaterialsService.selectProveMaterials("实名认证");   //  图片资料证明
+		if (!checkUser.isEmpty()) {
+			System.out.println("realnameSearchResult:" + checkUser);
+			mv.addObject("realnameSearchResult", checkUser);
+		}else{
+			mv.addObject("realnameSearchResult", "没有用户需要被审核...");
+		}
 		return mv;
 	}
 	/**
@@ -148,6 +176,13 @@ public class AdminController {
 	@RequestMapping("/certification") 
 	public ModelAndView certification() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/certification.jsp");
+		List<User> checkUser = userService.queryUserCheck("3");    //  审核人资料
+		if (!checkUser.isEmpty()) {
+			System.out.println("certificationSearchResult:" + checkUser);
+			mv.addObject("certificationSearchResult", checkUser);
+		}else{
+			mv.addObject("certificationSearchResult", "没有用户需要被审核...");
+		}
 		return mv;
 	}
 	/**
@@ -166,6 +201,12 @@ public class AdminController {
 	@RequestMapping("/adminerLogs") // 映射路径
 	public ModelAndView adminerLogs() {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/adminerLogs.jsp");
+		List<AdminOperateLog> operateList = adminService.queryAdminOperate();
+		if (!operateList.isEmpty()) {
+			mv.addObject("AdminOperateLog", operateList);
+		}else{
+			mv.addObject("AdminOperateLog", "暂无操作记录");
+		}
 		return mv;
 	}
 	/**

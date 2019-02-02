@@ -147,6 +147,9 @@ public interface UserMapper {
     //  管理员搜索用户
 	public List<User> queryUserName(@Param("userid")String name);
 
+	//  被审核用户
+	public List<User> queryUserCheck(String status);
+
 	
 
 	

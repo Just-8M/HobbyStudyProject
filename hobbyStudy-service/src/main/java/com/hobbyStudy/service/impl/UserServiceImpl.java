@@ -138,5 +138,9 @@ public class UserServiceImpl implements  UserService{
 	public List<User> queryUserName(String name) {
 		return userMapper.queryUserName(name);
 	}
+	@Override
+	public List<User> queryUserCheck(String status) {
+		return userMapper.queryUserCheck(status);
+	}
 
 }

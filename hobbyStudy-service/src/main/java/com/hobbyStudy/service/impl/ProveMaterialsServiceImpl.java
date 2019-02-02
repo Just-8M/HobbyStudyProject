@@ -1,5 +1,7 @@
 package com.hobbyStudy.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,11 @@ public class ProveMaterialsServiceImpl implements ProveMaterialsService{
 	@Override
 	public int addItem(ProveMaterials proveMaterials) {
 		return ProveMaterialsMapper.addItem(proveMaterials);
+	}
+	
+	@Override
+	public List<ProveMaterials> selectProveMaterials(String type) {
+		return ProveMaterialsMapper.selectProveMaterials(type);
 	}
 
 }

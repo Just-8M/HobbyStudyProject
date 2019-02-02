@@ -402,4 +402,11 @@
 		FROM hs_user
 		WHERE userid LIKE CONCAT(CONCAT('%', #{userid}), '%') AND del = 0 ;
 	</select>
+	<!-- 查询被审核用户   -->
+	<select id="queryUserCheck"  parameterType="java.lang.String" resultMap="BaseResultMap"> 
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM hs_user
+		WHERE status = #{status} ;
+	</select>
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,15 +96,21 @@
                         <th>管理员ID</th>
                         <th>操作时间</th>
                         <th>操作记录</th>
+                        <th>登录时间</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>操作者001</td>
-                        <td>XXXX-XX-XX XX:XX:XX</td>
-                        <td>注销用户ID为XXXX的用户；删除了XXXX课程</td>
-                    </tr>
+	                <c:forEach items="${AdminOperateLog}" var="adminlog">
+	                	 <tr>
+	                        <td>${adminlog.id}</td>
+	                        <td>${adminlog.adminName}</td>
+	                        <td>
+	                        	<fmt:formatDate value="${adminlog.createtTme}" pattern="yyyy-MM-dd HH:mm:ss"/>
+	                        </td>
+	                        <td>${adminlog.operateRecord}</td>
+	                        <td>${adminlog.loginTime}</td>
+	                    </tr>
+	                </c:forEach>
                 </tbody>
             </table>
 
