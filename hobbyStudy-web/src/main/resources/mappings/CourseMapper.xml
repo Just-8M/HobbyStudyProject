@@ -235,4 +235,11 @@
 		FROM hs_course 
 		WHERE type = #{type}
 	</select>
+	<!-- 首页模糊查询 -->
+	<select id="queryIndexCourse" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM hs_course 
+		WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+	</select>
 </mapper>

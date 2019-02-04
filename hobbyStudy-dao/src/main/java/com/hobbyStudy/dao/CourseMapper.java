@@ -112,6 +112,10 @@ public interface CourseMapper {
 	//  查询全部已发布课程
 	public List<Course> queryTotalCourse(String type);
 
+	//  首页模糊查询
+	public List<Course> queryIndexCourse(String name);
+	
+
 	
 		
 	

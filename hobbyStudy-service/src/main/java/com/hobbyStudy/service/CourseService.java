@@ -128,4 +128,10 @@ public interface CourseService {
 	 * @Return :List<Course>
 	 */
 	public List<Course> queryCourseName(String name,String type);
+	/**
+	 * @ToDo:首页模糊查询
+	 * @param name
+	 * @Return :List<Course>
+	 */
+	public List<Course> queryIndexCourse(String name);
 }

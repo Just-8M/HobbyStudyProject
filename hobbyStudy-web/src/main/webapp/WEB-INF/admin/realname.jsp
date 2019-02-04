@@ -66,6 +66,16 @@
 </head>
 
 <body>
+	<c:choose>
+		<c:when test="${ realnameSearchResult == 'failLogin'}">
+			<p style="font-size: 30px; color: red" >
+               	您还未登录，请您进行登录后操作
+             </p>
+		</c:when>
+		<c:otherwise>
+		
+		
+	
     <div class="container">
         <!-- 路径导航 -->
         <ol class="breadcrumb">
@@ -123,17 +133,6 @@
 	                        </td>
                         <tr> 
                 	</c:forEach>
-                    <!-- 
-                        <td>1</td>
-                        <td>{{userID}}</td>
-                        <td>{{真实姓名}}</td>
-                        <td>123456XXXXXXXX0000</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button></td>
-                        <td>
-                            <button class="btn btn-success verify-success">通过</button>
-                            <button class="btn btn-danger verify-fail">未通过</button>
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
 
@@ -223,6 +222,8 @@
             })
         })
     </script>
+    </c:otherwise>
+</c:choose>
 </body>
 
 </html>

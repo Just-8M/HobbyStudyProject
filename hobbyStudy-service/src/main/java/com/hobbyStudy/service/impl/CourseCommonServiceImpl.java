@@ -33,4 +33,9 @@ public class CourseCommonServiceImpl implements CourseCommentService {
 		return page;
 	}
 
+	@Override
+	public Integer addCourseComment(CourseComment courseComment) {
+		return courseCommonMapper.addCourseComment(courseComment);
+	}
+
 }

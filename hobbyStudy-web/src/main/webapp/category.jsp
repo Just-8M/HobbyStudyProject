@@ -6,12 +6,10 @@
     <meta charset="UTF-8">
     <title>全部兴趣课程-趣学网</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bootstrap/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/category.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/paging.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/category.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 </head>
 <body>
  <!--引入公共头部-->
@@ -159,9 +157,8 @@
     <div id="fade" class="black_overlay"></div>
     <!--弹框背景设置透明结束-->
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/script/bootstrap/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/script/paging.js"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/common/js/back_top.js"></script>
     <script type="text/javascript">
         $(function () {
 			
@@ -264,7 +261,7 @@
 				if(sort != undefined){
 					params += '&sort='+sort;
 				} 
-				 window.location.href='${pageContext.request.contextPath}/Courselist'+params;
+				 window.location.href='${pageContext.request.contextPath}/CourseListCntroller/Courselist'+params;
 			} 
     </script>
 </body>

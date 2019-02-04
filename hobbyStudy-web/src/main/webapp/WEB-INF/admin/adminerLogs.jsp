@@ -63,6 +63,13 @@
 </head>
 
 <body>
+<c:choose>
+	<c:when test="${AdminOperateLog == 'failLogin'}">
+		<p style="font-size: 30px; color: red" >
+                                 您还未登录，请您进行登录后操作
+         </p>
+	</c:when>
+	<c:otherwise>
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="./main.html">首页</a></li>
@@ -140,6 +147,8 @@
     </div>
 
     <script src="${pageContext.request.contextPath}/admin/lib/jquery/jquery-3.3.1.min.js"></script>
+   </c:otherwise>
+</c:choose>
 </body>
 
 </html>

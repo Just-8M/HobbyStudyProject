@@ -1,0 +1,574 @@
+/*兴趣选择浮框*/
+.choose {
+  width: 1110px;
+  height: 570px;
+  background: #fff;
+  position: fixed;
+  left: 120px;
+  top: 40px;
+  z-index: 99;
+  display: none;
+}
+.choose .modal-title {
+  font-size: 20px;
+}
+.choose .choose_tip {
+  color: #999;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.choose .choose_content {
+  width: 1000px;
+  height: 420px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border: 1px solid red;
+}
+.choose .choose_ok {
+  text-align: center;
+}
+.choose .choose_ok .btn {
+  width: 150px;
+  text-align: center;
+  margin: 20px 35px;
+}
+.choose .choose_ok a {
+  color: #ffc125;
+  font-size: 14px;
+}
+/*头部开始*/
+header {
+  background: #000;
+  position: relative;
+  box-shadow: 0 0 10px #888888;
+}
+header .w {
+  width: 1210px;
+  height: 40px;
+  margin: 0 auto;
+}
+header .location {
+  width: auto;
+  display: inline-block !important;
+  display: inline;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+}
+header .location .current_city {
+  padding-left: 25px;
+}
+header .location .current_city .location_icon {
+  display: block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  background: url('../../images/iconfont/location.png') no-repeat;
+  background-position: 0 -25px;
+  background-size: 100%;
+}
+header .location .current_city .city_name {
+  color: #cfc9c9;
+}
+header .location .current_city .change_city_btn {
+  cursor: pointer;
+  margin-left: 5px;
+}
+header .location .current_city .change_city_btn:hover {
+  color: #ffd700;
+}
+header .location .choose_city {
+  width: auto;
+  position: absolute;
+  top: 10px;
+  left: 290px;
+  display: none;
+}
+header .location .choose_city select,
+header .location .choose_city input {
+  width: 100px;
+  height: 20px;
+  float: left;
+  margin-right: 5px;
+  text-align: center;
+}
+header .location .choose_city input {
+  width: 40px;
+  border-radius: 2px;
+  text-align: center;
+}
+header .location .choose_city input:first-of-type {
+  background: #436EEE;
+  color: #fff;
+}
+header .header_nav {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  float: right;
+}
+header .header_nav li {
+  color: #fff;
+  width: 120px;
+  line-height: 40px;
+  text-align: center;
+  list-style: none;
+  float: left;
+}
+header .header_nav li a {
+  color: #fff;
+  display: inline-block;
+  padding: 0 5px;
+}
+header .header_nav li a i,
+header .header_nav li a i:hover {
+  margin-right: 5px;
+  color: #fff;
+}
+header .header_nav li a:hover {
+  color: #ffd700;
+}
+header .header_nav li span.num {
+  visibility: hidden;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 25px;
+  background: red;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+header .header_nav .login_link {
+  display: block;
+}
+header .header_nav .avatar {
+  display: none;
+}
+header .header_nav .avatar a {
+  color: #ffc125;
+}
+header .header_nav .avatar a img {
+  display: inline-block;
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  border: 1px solid #4A4A4A;
+}
+header .shopcart {
+  display: none;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  position: absolute;
+  margin-left: 660px;
+  z-index: 99;
+  border-radius: 0 0 8px 8px;
+  padding: 5px 10px;
+}
+header .shopcart .mycart {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #969696;
+}
+header .shopcart .mycart .headline {
+  font-size: 16px;
+  font-weight: bold;
+}
+header .shopcart .mycart .cartnum {
+  float: right;
+  color: #424242;
+}
+header .shopcart .nocontent {
+  display: block;
+  text-align: center;
+  height: 180px;
+  background: url('../../images/tipIco/min_light.jpg') no-repeat center;
+  background-size: 100%;
+  padding-top: 160px;
+}
+header .shopcart .nocontent p {
+  font-size: 16px;
+}
+header .shopcart .nocontent p:nth-child(2) {
+  font-size: 14px;
+}
+header .shopcart .nocontent a {
+  color: #e5224c;
+}
+header .shopcart .cartlist {
+  display: none;
+  margin-top: 5px;
+  height: 270px;
+  overflow-y: scroll;
+}
+header .shopcart .cartlist ul li {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+}
+header .shopcart .cartlist ul li img {
+  width: 80px;
+  height: 60px;
+}
+header .shopcart .cartlist ul li .courseinfo {
+  float: right;
+  padding-right: 10px;
+}
+header .shopcart .cartlist ul li .courseinfo a:hover {
+  color: #424242;
+}
+header .shopcart .cartlist ul li .courseinfo .coursename {
+  width: 150px;
+  height: auto;
+  vertical-align: middle;
+  max-height: 55px;
+  font-size: 16px;
+  overflow: hidden;
+}
+header .shopcart .cartlist ul li .courseinfo .price {
+  color: red;
+}
+header .shopcart .cartlist ul li .courseinfo .delete {
+  cursor: pointer;
+  float: right;
+  color: red;
+}
+header .shopcart .cartlist ul li:hover {
+  background: #FFFACD;
+}
+/*头部结束*/
+/*logo和搜索部分开始*/
+.logo {
+  width: 1210px;
+  margin: 0 auto;
+  height: 110px;
+  line-height: 110px;
+}
+.logo .logoImg {
+  height: 80px;
+}
+.logo .search {
+  float: right;
+}
+.logo .search .btn{
+  position: absolute;
+  font-size: 20px;
+  color: #969696;
+  margin-top: -75px;
+  margin-left: 450px;
+  outline: none;
+}
+.logo .search input {
+  width: 500px;
+  height: 50px;
+  border: 1px solid #fdd102;
+  border-radius: 25px;
+  text-indent: 20px;
+}
+/*logo和搜索部分结束*/
+/*导航部分*/
+.main_nav {
+  position: relative;
+  width: 1210px;
+  margin: 0 auto;
+  height: 480px;
+  box-shadow: 0 12px 10px -7px #888888;
+}
+.main_nav .left_nav {
+  width: 220px;
+  height: auto;
+  float: left;
+  color: #fff;
+  font-size: 14px;
+}
+.main_nav .left_nav .nav_title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  background: #fdd102;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+.main_nav .left_nav .nav_menu {
+  padding: 5px 10px;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  background: #424242;
+}
+.main_nav .left_nav .nav_menu i {
+  float: right;
+  line-height: 60px;
+}
+.main_nav .left_nav .nav_menu:hover {
+  background: #5C5C5C;
+}
+.main_nav .right_content {
+  position: absolute;
+  margin-left: 220px;
+  width: 980px;
+}
+.main_nav .right_content .head_link {
+  height: 57px;
+  line-height: 57px;
+  margin-left: 20px;
+}
+.main_nav .right_content .head_link ul li {
+  width: 130px;
+  float: left;
+}
+.main_nav .right_content .head_link ul li a {
+  color: #424242;
+  font-size: 20px;
+}
+.main_nav .right_content .head_link ul li a:hover {
+  color: #ffd700;
+}
+.main_nav .right_content .banner {
+  width: 990px;
+  height: 420px;
+}
+.main_nav .right_content .banner .slide .carousel-inner .item a img {
+  width: 990px;
+  height: 420px;
+}
+.main_nav .right_content .banner .carousel-control.left {
+  background-image: none;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.main_nav .right_content .banner .carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: none;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+.main_nav .right_content .menu_content {
+  display: block;
+  width: 780px;
+  height:418px;
+  background: #fff;
+  position: absolute;
+  margin-top: -435px;
+  border-top: 2px solid #fdd102;
+  border-bottom: 2px solid #fdd102;
+}
+.main_nav .right_content .menu_content .menu_detail {
+  padding: 20px 30px 10px 30px;
+  width: 780px;
+  height: 198px;
+}
+.main_nav .right_content .menu_content .menu_detail .hobby_title {
+  display: block;
+  font-size: 16px;
+  margin: 5px 0;
+  color: #ffc125;
+}
+.main_nav .right_content .menu_content .menu_detail ul li {
+  float: left;
+  width: 80px;
+  text-align: center;
+}
+.main_nav .right_content .menu_content .menu_detail ul li a {
+  color: #424242;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.main_nav .right_content .menu_content .menu_detail ul li a:hover {
+  color: #ffd700;
+}
+.main_nav .right_content .menu_content .ad {
+  height: 220px;
+  width: 780px;
+  background: #FAFAFA;
+  padding: 10px 30px;
+}
+.main_nav .right_content .menu_content .ad a:hover {
+  color: #424242;
+}
+.main_nav .right_content .menu_content .ad .item {
+  width: 220px;
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+.main_nav .right_content .menu_content .ad .item img {
+  width: 220px;
+  height: 120px;
+  border-radius: 8px;
+}
+.main_nav .right_content .menu_content .ad .item .ad_title {
+  display: block;
+  width: 220px;
+  height: auto;
+  padding: 10px;
+}
+.main_nav .right_content .menu_content .ad .item .price {
+  display: block;
+  padding-left: 10px;
+  color: #ffc125;
+}
+/*推荐栏*/
+.recommend {
+  width: 1230px;
+  margin: 0 auto;
+}
+.recommend .addcart {
+  z-index: 1002;
+  display: none;
+  width: 350px;
+  height: 180px;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -120px;
+  margin-left: -150px;
+  border-radius: 8px;
+  text-align: center;
+  padding: 15px 30px;
+}
+.recommend .addcart .success {
+  font-size: 20px;
+  height: 80px;
+  line-height: 80px;
+}
+.recommend .addcart .sure {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 8px;
+  background: #fdd102;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: -110px;
+}
+.recommend .course .title {
+  text-align: center;
+  line-height: 80px;
+  font-size: 24px;
+  color: #000;
+  margin: 5px 0;
+  margin-left: 50px;
+}
+.recommend .course .title img {
+  width: 35px;
+  height: 35px;
+}
+.recommend .course .courseList .courseInfo {
+  float: left;
+  width: 260px;
+  height: 350px;
+  margin: 10px 23px;
+}
+.recommend .course .courseList .courseInfo img {
+  width: 260px;
+  height: 160px;
+  border-radius: 5px;
+}
+.recommend .course .courseList .courseInfo .courseTitle {
+  height: auto;
+  font-size: 16px;
+  color: #424242;
+}
+.recommend .course .courseList .courseInfo .courseTitle:hover {
+  color: #ffd700;
+}
+.recommend .course .courseList .courseInfo .courseDes {
+  width: 260px;
+  min-height: 30px;
+  max-height: 65px;
+  font-size: 14px;
+  color: #969696;
+  margin: 5px 0;
+  overflow: hidden;
+  text-align: justify;
+}
+.recommend .course .courseList .courseInfo .priceWrap {
+  line-height: 30px;
+}
+.recommend .course .courseList .courseInfo .priceWrap .price {
+  display: inline-block;
+  font-size: 16px;
+}
+.recommend .course .courseList .courseInfo .priceWrap .like {
+  display: inline;
+  float: right;
+  cursor: pointer;
+}
+.recommend .course .courseList .courseInfo .priceWrap .like i {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.recommend .course .courseList .courseInfo .courseTeacher {
+  margin-top: 5px;
+  line-height: 30px;
+}
+.recommend .course .courseList .courseInfo .courseTeacher a {
+  font-size: 14px;
+  color: #ffc125;
+}
+.recommend .course .courseList .courseInfo .courseTeacher img {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+.recommend .course .courseList .courseInfo .courseTeacher .school {
+  font-size: 12px;
+  float: right;
+  color: #424242;
+}
+.recommend .leader .title {
+  text-align: center;
+  line-height: 80px;
+  font-size: 24px;
+  color: #000;
+  margin: 5px 0;
+  margin-left: 50px;
+}
+.recommend .leader .title img {
+  width: 35px;
+  height: 35px;
+}
+.recommend .leader .leaderList{
+	height: 220px;
+}
+.recommend .leader .leaderInfo {
+  position: relative;
+  float: left;
+  width: 230px;
+  height: 150px;
+  margin: 7px;
+  border: 1px solid #cccccc;
+  text-align: center;
+  margin-top: 45px;
+}
+.recommend .leader .leaderInfo .leaderImg {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 50px;
+  position: absolute;
+  margin: -50px;
+}
+.recommend .leader .leaderInfo .teacherName {
+  height: 30px;
+  font-size: 16px;
+  color: #ffc125;
+  margin: 50px 0 5px;
+}
+.recommend .leader .leaderInfo .teacherDes {
+  text-align: left;
+  height: 45px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #424242;
+  overflow: hidden;
+}

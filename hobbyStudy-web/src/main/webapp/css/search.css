@@ -1,0 +1,169 @@
+body{
+    background: #f8fafc;
+    /* 隐藏横向滚动条 */
+    overflow-x: hidden !important;
+}
+/* 搜索条 */
+#q_search{
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: #EAEAEA;
+    margin-top: -10px;
+}
+.search_wrapper{
+    margin:40px 0 10px 0;
+}
+.search_wrapper .searchico{
+    position: absolute;
+    font-size: 18px;
+    margin: 12px 5px;
+    color: #d9dde1;
+}
+.search_wrapper .search{
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    text-indent: 40px;
+    border-radius: 4px 0 0 4px;
+}
+.search_btn{
+    width: 80px;
+    height: 50px;
+    border: 0;
+    background: #ffd102;
+    color: #fff;
+    font-size: 20px;
+    white-space: 5px;
+}
+/* 热搜词推荐 */
+.search_hot{
+    width: 100%;
+    height: 40px;
+}
+.search_list .search_word{
+    float: left;
+    min-width: 30px;
+    margin-right: 20px;
+}
+.search_list .search_word a{
+    color: #4d555d;
+}
+.search_list .search_word a:hover{
+    color: #333;
+}
+/* /搜索条 */
+
+/* 左侧内容 */
+
+.result_lists,
+.result_item{
+    width: 100%;
+}
+
+.result_item{
+    min-height: 150px;
+    background: #fff;
+    margin: 20px 0;
+    padding: 15px 30px;
+    border-radius: 8px;
+}
+.course_img_link .course_img{
+    width: 210px;
+    height: 120px;
+}
+.course_detail_wrapper{
+    margin-left: 20px;
+}
+.course_detail_wrapper .course_title{
+    display: block;
+    max-width: 430px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    overflow: hidden;
+}
+/* .course_leader_wrapper{
+    max-width: 430px;
+    overflow: hidden;
+} */
+.leader_info li{
+    float: left;
+    min-width: 30px;
+    max-width: 160px;
+    margin-right: 20px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.leader_info li a{
+    color: #666;
+}
+.course_introduction{
+    width: 430px;
+    margin-top: 10px;
+}
+.introduction{
+    max-height: 90px;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+}
+/* right_content */
+.right_content{
+    padding-left: 30px;
+    margin-top: 20px;
+}
+.search_recommend .search_word{
+    display: block;
+    color: #ffd102;
+    max-width: 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.recommend_lists{
+    width: 100%;
+    margin-top: 15px;
+}
+.recommend_item{
+    width: 100%;
+    height: 140px;
+    background: #fff;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+.recommend_item .leaderProfile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 40px;
+    margin-right: 20px;
+}
+.leaderInfo .leaderName,
+.school{
+    display: block;
+    width: 170px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.leaderName{
+    font-size: 18px;
+}
+.leaderIntro,.school{
+    color: #666;
+    text-align: justify;
+}
+.leaderIntro{
+    width: 170px;
+    height: 60px;
+    overflow: hidden;
+}
+
+
+
+

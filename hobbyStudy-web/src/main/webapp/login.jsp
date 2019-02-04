@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>欢迎加入趣学网，快来寻找你的领学者</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
-    <link rel="stylesheet" type="text/css" href="common/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">    
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
     <div class="content">
@@ -73,9 +73,9 @@
             </form>         
         </div>
     </div>
-    <script src="lib/jquery/jquery-3.3.1.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
     <script type="text/javascript">
     /* 获取邮箱验证码 */
     $(function(){

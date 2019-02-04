@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.annotations.Param;
+import org.apache.log4j.helpers.MDCKeySetExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +32,8 @@ import com.hobbyStudy.entity.User;
 import com.hobbyStudy.service.CourseClassifyService;
 import com.hobbyStudy.service.CourseService;
 import com.hobbyStudy.vo.CourseClassifyVO;
+
+import net.sf.json.JSONObject;
 
 /**
  * @Description: 课程分类列表
@@ -78,7 +82,6 @@ public class CourseListCntroller {
 		}
 		// 循环出一级分类
 		mv.addObject("classifys", classifysList);
-		System.out.println("code:" + code);
 		// 当前分类
 		CourseClassify courseClassify = courseClassifyService.getCode(code);
 
@@ -105,7 +108,6 @@ public class CourseListCntroller {
 		}
 		mv.addObject("curCode", curCode);
 		mv.addObject("curSubCode", curSubCode);
-		System.out.println(" curCode:" + curCode + "   " + " curSubCode:" + curSubCode);
 		// ========================= 分页 ======================
 
 		Course course = new Course();
@@ -131,7 +133,42 @@ public class CourseListCntroller {
 		mv.addObject("page", page);
 		return mv;
 	}
-
+	/**
+	 * @ToDo:根据课程名进行模糊查询
+	 * @param name
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/indexSearchCourse")
+	public ModelAndView indexSearchCourse(String searchInput){
+		ModelAndView mv = new ModelAndView("forward:/search.jsp");
+		List<Course> courseList = courseService.queryIndexCourse(searchInput);
+		if (!courseList.isEmpty()) {
+			mv.addObject("serrchTitle", searchInput);
+			mv.addObject("searchCourse", courseList);
+		}else{
+			mv.addObject("serrchTitle", searchInput);
+			mv.addObject("searchCourse", "fail");
+		}
+		return mv;
+	}
+	/**
+	 * 
+	 * @ToDo:增加课程
+	 * @param picture1
+	 * @param picture2
+	 * @param request
+	 * @param session
+	 * @param user
+	 * @param name
+	 * @param brief
+	 * @param timespanStart
+	 * @param timespanEnd
+	 * @param time
+	 * @param courseSchedule
+	 * @param price
+	 * @throws IOException
+	 * @Return :JsonResult<String>
+	 */
 	@RequestMapping("addCourse")
 	@ResponseBody
 	public JsonResult<String> addCourse(@RequestParam(value = "courseCover", required = false) MultipartFile picture1,

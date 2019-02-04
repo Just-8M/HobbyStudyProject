@@ -5,14 +5,9 @@
 
 	<resultMap id="BaseResultMap" type="com.hobbyStudy.entity.CourseComment" >
 		<id column="id" property="id" jdbcType="INTEGER"/>
-		<result column="username" property="username"  jdbcType="VARCHAR" />
-		<result column="to_username" property="toUsername"  jdbcType="VARCHAR" />
+		<result column="userid" property="userid"  jdbcType="VARCHAR" />
 		<result column="course_id" property="courseId"  jdbcType="INTEGER" />
-		<result column="section_id" property="sectionId"  jdbcType="INTEGER" />
-		<result column="section_title" property="sectionTitle"  jdbcType="VARCHAR" />
 		<result column="content" property="content"  jdbcType="VARCHAR" />
-		<result column="ref_id" property="refId"  jdbcType="INTEGER" />
-		<result column="ref_content" property="refContent"  jdbcType="VARCHAR" />
 		<result column="type" property="type"  jdbcType="INTEGER" />
 		<result column="create_time" property="createTime"  jdbcType="DATE" />
 		<result column="create_user" property="createUser"  jdbcType="VARCHAR" />
@@ -22,8 +17,7 @@
 	</resultMap> 
 
 	<sql id="Base_Column_List">
-		username, to_username, course_id, section_id, section_title, content, 
-		ref_id, ref_content, type, create_time, create_user, update_time, 
+		userid,course_id, content,type, create_time, create_user, update_time, 
 		update_user, del, id 
 	</sql>
 
@@ -36,9 +30,6 @@
 			</if>
 			<if test="courseId != null">
 				AND course_id = #{courseId, jdbcType=INTEGER}
-			</if>
-			<if test="sectionId != null">
-				AND section_id = #{sectionId, jdbcType=INTEGER}
 			</if>
 			AND del = 0
 		</trim> 
@@ -55,12 +46,15 @@
 			<if test="param1.courseId != null">
 				AND course_id = #{param1.courseId, jdbcType=INTEGER}
 			</if>
-			<if test="param1.sectionId != null">
-				AND section_id = #{param1.sectionId, jdbcType=INTEGER}
-			</if>
 			AND del = 0
 		</trim> 
 		ORDER BY id DESC
 		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER} 
 	</select>
+	<!-- 插入操作 -->
+	<insert id="addCourseComment" parameterType="com.hobbyStudy.entity.CourseComment" flushCache="true" useGeneratedKeys="true">
+		INSERT INTO 
+		hs_course_comment(userid, course_id,content,type,create_user) 
+		VALUES(#{userid},#{courseId},#{content},#{type},#{createUser})
+	</insert>
 </mapper>

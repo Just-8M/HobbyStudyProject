@@ -56,6 +56,13 @@
 </head>
 
 <body>
+<c:choose>
+	<c:when test="${queryTotalUser == 'failLogin'}">
+		<p style="font-size: 30px; color: red" >
+                					您还未登录，请您进行登录后操作
+         </p>
+	</c:when>
+	<c:otherwise>
     <div class="container">
         <!-- 路径导航 -->
         <ol class="breadcrumb">
@@ -239,6 +246,8 @@
    	        });
    	    }); 
     </script>
+    	</c:otherwise>
+</c:choose>
 </body>
 
 </html>

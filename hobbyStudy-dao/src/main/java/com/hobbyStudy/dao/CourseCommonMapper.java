@@ -32,5 +32,8 @@ public interface CourseCommonMapper {
 	* @throws  
 	*/  
 	List<CourseComment> queryPageCount(CourseComment courseComment, TailPage<CourseComment> page);
+
+	//  添加评论
+	Integer addCourseComment(CourseComment courseComment);
 	
 }

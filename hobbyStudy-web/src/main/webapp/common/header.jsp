@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>header</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/reset.css">
     <style type="text/css">
         .common_header{ 
             height: 80px;
@@ -207,9 +207,9 @@
                     <li>
                     	<!-- 判断用户是否登录 -->
 	                        <c:choose>
-	                            <c:when test="${USER_IN_SESSION==null}">
-								 <a href="${pageContext.request.contextPath}/login.jsp">登录</a>/
-                       			 <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
+	                            <c:when test="${empty USER_IN_SESSION}">
+									 <a href="${pageContext.request.contextPath}/login.jsp">登录</a>/
+	                       			 <a href="${pageContext.request.contextPath}/register.jsp">注册</a>
 	                            </c:when>
 	                            <c:otherwise>
 	                                <span><a href="${pageContext.request.contextPath}/personCenter?id=${USER_IN_SESSION.id}" style="color:#ff4e00;">${USER_IN_SESSION.userid}</a></span>
@@ -253,7 +253,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/script/bootstrap/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
     //购物车数量
     if( $('.cartlist').css('display') == 'block'){

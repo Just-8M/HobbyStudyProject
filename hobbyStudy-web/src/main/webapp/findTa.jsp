@@ -95,7 +95,7 @@
 	<%@ include file="../common/footer.jsp"%>
 	<!--底部信息栏结束-->
 
-    <script src="script/bootstrap/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/jquery/jquery-3.1.1.min.js"></script>
     
     <script type="text/javascript">
     $(function() {

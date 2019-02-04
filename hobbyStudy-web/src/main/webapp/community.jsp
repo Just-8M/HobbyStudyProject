@@ -111,7 +111,7 @@
    <!--底部信息栏开始-->
 	<%@ include file="../common/footer.jsp"%>
 	<!-- 底部信息结束 -->
-    <script src="script/bootstrap/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/jquery/jquery-3.3.1.min.js"></script>
     <!-- 回到顶部 -->
     <script src="script/back_top.js"></script>
     <script type="text/javascript">

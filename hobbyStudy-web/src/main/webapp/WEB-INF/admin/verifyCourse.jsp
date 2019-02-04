@@ -110,52 +110,60 @@
         </section>
 
         <section class="content">
-            <table class="table table-bordered" style="text-align:center;">
-                <thead class="table-title">
-                    <tr>
-                        <th><input type="checkbox" id="selectAll"><span>全选</span></th>
-                        <th>序号</th>
-                        <th>课程名称</th>
-                        <th>课程作者</th>
-                        <th>课程价格</th>
-                        <th>提交时间</th>
-                        <th>课程详情</th>
-                        <th>审核状态</th>
-                    </tr>
-                </thead>
-                <tbody id="course_tbody">
-                	 <c:choose>
-	                	<c:when test="${totalCourse == 'noCourse'}">
-	                		<p style="font-size: 30px;">
-	                			没有审核通过相关课程
-	                		</p>
-	                	</c:when>
-	                	<c:otherwise>
-	                		<c:forEach items="${totalCourse}" var="tc">
-			                	 <tr>
-			                        <td>
-			                            <input type="checkbox">
-			                        </td>
-			                        <td>${tc.id}</td>
-			                        <td>${tc.name}</td>
-			                        <td>${tc.userid}</td>
-			                        <td>${tc.price}</td>
-			                        <td>
-			                        	<fmt:formatDate value="${tc.createTime}"  pattern="yyyy-MM-dd HH:mm:ss"/>
-			                        	
-			                        </td>
-			                        <td><button class="btn btn-primary">查看</button></td>
-			                         <td>
-			                            <button class="btn btn-success verify-success">通过</button>
-			                            <button class="btn btn-danger verify-fail">未通过</button>
-	                       			 </td>
-			                    </tr>
-	               		   </c:forEach>
-	                	</c:otherwise>
-                	</c:choose>
-                </tbody>
-            </table>
-
+        <c:choose>
+        	 <c:when test="${totalCourse == 'failLogin'}">
+        		<p style="font-size: 30px; color: red" >
+                	您还未登录，请您进行登录后操作
+                </p>
+        	</c:when>
+        	<c:otherwise>
+	            <table class="table table-bordered" style="text-align:center;">
+	                <thead class="table-title">
+	                    <tr>
+	                        <th><input type="checkbox" id="selectAll"><span>全选</span></th>
+	                        <th>序号</th>
+	                        <th>课程名称</th>
+	                        <th>课程作者</th>
+	                        <th>课程价格</th>
+	                        <th>提交时间</th>
+	                        <th>课程详情</th>
+	                        <th>审核状态</th>
+	                    </tr>
+	                </thead>
+	                <tbody id="course_tbody">
+	                	 <c:choose>
+		                	<c:when test="${totalCourse == 'noCourse'}">
+		                		<p style="font-size: 30px;">
+		                			没有审核通过相关课程
+		                		</p>
+		                	</c:when>
+		                	<c:otherwise>
+		                		<c:forEach items="${totalCourse}" var="tc">
+				                	 <tr>
+				                        <td>
+				                            <input type="checkbox">
+				                        </td>
+				                        <td>${tc.id}</td>
+				                        <td>${tc.name}</td>
+				                        <td>${tc.userid}</td>
+				                        <td>${tc.price}</td>
+				                        <td>
+				                        	<fmt:formatDate value="${tc.createTime}"  pattern="yyyy-MM-dd HH:mm:ss"/>
+				                        	
+				                        </td>
+				                        <td><button class="btn btn-primary">查看</button></td>
+				                         <td>
+				                            <button class="btn btn-success verify-success">通过</button>
+				                            <button class="btn btn-danger verify-fail">未通过</button>
+		                       			 </td>
+				                    </tr>
+		               		   </c:forEach>
+		                	</c:otherwise>
+	                	</c:choose>
+	                </tbody>
+	            </table>
+          </c:otherwise>
+		</c:choose>
             <!-- 分页 -->
             <nav aria-label="Page navigation">
                 <ul class="pagination">

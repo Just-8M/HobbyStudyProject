@@ -36,11 +36,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<!-- 不带下拉框的消息通知 -->
 					<!-- <li>
-						<a href="#"><i class="glyphicon glyphicon-bell"></i><span class="badge">42</span></a>
+						<a href="#"><i class="glyphicon glyphicon-bell"></i><span class="badge">1</span></a>
 					</li> -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<i class="glyphicon glyphicon-bell"></i><span class="badge">42</span>
+							<i class="glyphicon glyphicon-bell"></i><span class="badge">2</span>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">消息内容1会不会换行呢？最大宽度为多少呢?再长点</a></li>

@@ -8,14 +8,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>课程名称</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/bootstrap/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/course.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/comment.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/course.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/comment.css">
 <style type="text/css">
 /* 简介、评论、问答    START*/
 .course_tab_wrap_first{
@@ -227,9 +223,9 @@
 
 	<!-- 引入公共底部 -->
 	<%@ include file="../common/footer.jsp"%>
-	<script src="${pageContext.request.contextPath}/script/bootstrap/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/model/jquery.flexText.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/script/course.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/common/js/back_top.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/course.js"></script>
 	<!-- 评论效果 -->
 	<script type="text/javascript">
 		/**
@@ -267,7 +263,7 @@
 			var courseId = ${(course.id)}
 			/* alert("123"); */
 			;//课程id
-			var url = '${pageContext.request.contextPath}/courseComment';
+			var url = '${pageContext.request.contextPath}/courseCommentController/courseComment?courseId'+courseId;
 			$("#commentQA").load(url, {
 				'courseId' : courseId,
 				'type' : type,

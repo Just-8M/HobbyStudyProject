@@ -34,11 +34,10 @@ public class CourseDetailsController {
 	private UserService userService;
 
 	/**
-	 * @Title: courseDatails
 	 * @Description: (课程详情页功能)
-	 * @param
 	 * @return ModelAndView
-	 * @throws @PathVariable:
+	 * @throws 
+	 * @PathVariable:
 	 *             带占位符的 URL 是 Spring3.0 新增的功能 通过 @PathVariable 可以将 URL
 	 *             中占位符参数绑定到控制器处理方法的入参中： URL 中的 {xxx}
 	 *             占位符可以通过@PathVariable(“xxx“) 绑定到操作方法的入参中。
@@ -76,6 +75,15 @@ public class CourseDetailsController {
 		courseQuery.setSubClassify(course.getSubClassify());
 		List<Course> recomdCourseList = this.detailsCourseService.getList(courseQuery);
 		mv.addObject("recomdCourseList", recomdCourseList);
+		return mv;
+	}
+	/**
+	 * @ToDo:未登录进行登录页面跳转
+	 * @Return :ModelAndView
+	 */
+	@RequestMapping("/login")
+	public ModelAndView login(){
+		ModelAndView mv = new ModelAndView("forward:/login.jsp");
 		return mv;
 	}
 }

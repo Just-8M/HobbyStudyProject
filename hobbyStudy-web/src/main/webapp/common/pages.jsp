@@ -37,8 +37,7 @@
 </style>
 </head>
 <body>
-	<c:if
-		test="${!empty (page.pageTotalCount) && page.pageTotalCount gt 1}">
+	<c:if  test="${!empty (page.pageTotalCount) && page.pageTotalCount gt 1}">
 		<div class="page_div clearfix">
 			<c:if test="${! empty (page.firstPage)}">
 				<!-- 结果:True/False -->

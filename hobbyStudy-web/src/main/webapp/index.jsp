@@ -8,11 +8,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>趣学网-陪你寻找兴趣伙伴</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo/light_favicon@32.ico">
-<link rel="stylesheet" type="text/css"
-	href="styles/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="styles/bootstrap/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="styles/css/reset.css">
-<link rel="stylesheet" type="text/css" href="styles/css/index.css">
+<link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/iconmoon/tipIco/style.css">
 </head>
 <body>
 	<!--兴趣选择弹框-->
@@ -124,8 +123,12 @@
 	<div class="logo">
 		<img src="images/logo/logo_light_black.png" class="logoImg">
 		<div class="search">
-			<i class="fa fa-search"></i> <input type="search"
-				placeholder="请输入课程名或者关键词，如吉他...">
+				<form action="${pageContext.request.contextPath}/CourseListCntroller/indexSearchCourse" method="post" accept-charset="UTF-8">
+					<input type="search" placeholder="请输入课程名或者关键词，如吉他..."  name="searchInput">
+					<button type="submit" class="btn btn-link">
+						<i class="glyphicon glyphicon-search search-ico"></i>
+					</button>
+				</form>
 		</div>
 	</div>
 	<!--logo ending-->
@@ -370,10 +373,9 @@
 	<!--弹框背景设置透明结束-->
 
 	<a href="javascript:;" class="backtop" title="回到顶部" id="backtop"></a>
-	<script type="text/javascript"
-		src="script/bootstrap/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="script/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="script/index.js"></script>
-	<script type="text/javascript" src="plugins/js/distpicker.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugins/js/distpicker.min.js"></script>
 </body>
 </html>

@@ -123,14 +123,20 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/verifyCourse")
-	public ModelAndView verifyCourse(String type) {
+	public ModelAndView verifyCourse(String type,HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/verifyCourse.jsp");
-		List<Course> totalCourse = courseService.queryTotalCourse(type);
-		if (!totalCourse.isEmpty()) {
-			mv.addObject("totalCourse", totalCourse);
+		Admin session_admin =  (Admin) session.getAttribute("ADMIN_IN_SESSION");  
+		if (session_admin != null) {
+			List<Course> totalCourse = courseService.queryTotalCourse(type);
+			if (!totalCourse.isEmpty()) {
+				mv.addObject("totalCourse", totalCourse);
+			}else{
+				mv.addObject("totalCourse", "noCourse");
+			}
 		}else{
-			mv.addObject("totalCourse", "noCourse");
+			mv.addObject("totalCourse", "failLogin");
 		}
+		
 		return mv;
 	}
 	/**
@@ -138,13 +144,18 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/userlist")
-	public ModelAndView userlist() {
+	public ModelAndView userlist(HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/userlist.jsp");
-		List<User> totalUser = userService.queryTotalUser();
-		if (!totalUser.isEmpty()) {
-			mv.addObject("queryTotalUser", totalUser);
+		Admin session_admin =  (Admin) session.getAttribute("ADMIN_IN_SESSION"); 
+		if (session_admin != null) {
+			List<User> totalUser = userService.queryTotalUser();
+			if (!totalUser.isEmpty()) {
+				mv.addObject("queryTotalUser", totalUser);
+			}else{
+				mv.addObject("queryTotalUser", "noUser");
+			}
 		}else{
-			mv.addObject("queryTotalUser", "noUser");
+			mv.addObject("queryTotalUser", "failLogin");
 		}
 		return mv;
 	}
@@ -153,20 +164,26 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/realname")
-	public ModelAndView realname() {
+	public ModelAndView realname(HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/realname.jsp");
-		List<User> checkUser = userService.queryUserCheck("1");    //  审核人资料
-		for (User u : checkUser) {
-			System.out.println("uuu:" + u.getId());
+		Admin session_admin =  (Admin) session.getAttribute("ADMIN_IN_SESSION");  
+		if (session_admin!= null) {
+			List<User> checkUser = userService.queryUserCheck("1");    //  审核人资料
+			for (User u : checkUser) {
+				System.out.println("uuu:" + u.getId());
+			}
+			
+			List<ProveMaterials> proveList =  proveMaterialsService.selectProveMaterials("实名认证");   //  图片资料证明
+			if (!checkUser.isEmpty()) {
+				System.out.println("realnameSearchResult:" + checkUser);
+				mv.addObject("realnameSearchResult", checkUser);
+			}else{
+				mv.addObject("realnameSearchResult", "没有用户需要被审核...");
+			}
+		}else{
+			mv.addObject("realnameSearchResult", "failLogin");
 		}
 		
-		List<ProveMaterials> proveList =  proveMaterialsService.selectProveMaterials("实名认证");   //  图片资料证明
-		if (!checkUser.isEmpty()) {
-			System.out.println("realnameSearchResult:" + checkUser);
-			mv.addObject("realnameSearchResult", checkUser);
-		}else{
-			mv.addObject("realnameSearchResult", "没有用户需要被审核...");
-		}
 		return mv;
 	}
 	/**
@@ -174,15 +191,21 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/certification") 
-	public ModelAndView certification() {
+	public ModelAndView certification(HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/certification.jsp");
-		List<User> checkUser = userService.queryUserCheck("3");    //  审核人资料
-		if (!checkUser.isEmpty()) {
-			System.out.println("certificationSearchResult:" + checkUser);
-			mv.addObject("certificationSearchResult", checkUser);
+		Admin session_admin =  (Admin) session.getAttribute("ADMIN_IN_SESSION");  
+		if (session_admin!= null) {
+			List<User> checkUser = userService.queryUserCheck("3");    //  审核人资料
+			if (!checkUser.isEmpty()) {
+				System.out.println("certificationSearchResult:" + checkUser);
+				mv.addObject("certificationSearchResult", checkUser);
+			}else{
+				mv.addObject("certificationSearchResult", "没有用户需要被审核...");
+			}
 		}else{
-			mv.addObject("certificationSearchResult", "没有用户需要被审核...");
+			mv.addObject("certificationSearchResult", "failLogin");
 		}
+		
 		return mv;
 	}
 	/**
@@ -199,13 +222,18 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/adminerLogs") // 映射路径
-	public ModelAndView adminerLogs() {
+	public ModelAndView adminerLogs(HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/adminerLogs.jsp");
-		List<AdminOperateLog> operateList = adminService.queryAdminOperate();
-		if (!operateList.isEmpty()) {
-			mv.addObject("AdminOperateLog", operateList);
+		Admin session_admin =  (Admin) session.getAttribute("ADMIN_IN_SESSION");  
+		if (session_admin != null) {
+			List<AdminOperateLog> operateList = adminService.queryAdminOperate();
+			if (!operateList.isEmpty()) {
+				mv.addObject("AdminOperateLog", operateList);
+			}else{
+				mv.addObject("AdminOperateLog", "暂无操作记录");
+			}
 		}else{
-			mv.addObject("AdminOperateLog", "暂无操作记录");
+			mv.addObject("AdminOperateLog", "failLogin");
 		}
 		return mv;
 	}
@@ -214,14 +242,18 @@ public class AdminController {
 	 * @Return :ModelAndView
 	 */
 	@RequestMapping("/publishCourse")
-	public ModelAndView publishCourse(String type) {
+	public ModelAndView publishCourse(String type,HttpSession session) {
 		ModelAndView mv = new ModelAndView("forward:/WEB-INF/admin/publishCourse.jsp");
-		List<Course> totalCourse = courseService.queryTotalCourse(type);
-		System.out.println("totalCourse:" + totalCourse);
-		if (!totalCourse.isEmpty()) {
-			mv.addObject("totalCourse", totalCourse);
+		Admin admin =(Admin) session.getAttribute("ADMIN_IN_SESSION");
+		if (admin != null) {
+			List<Course> totalCourse = courseService.queryTotalCourse(type);
+			if (!totalCourse.isEmpty()) {
+				mv.addObject("totalCourse", totalCourse);
+			}else{
+				mv.addObject("totalCourse", "noCourse");
+			}
 		}else{
-			mv.addObject("totalCourse", "noCourse");
+			mv.addObject("totalCourse", "failLogin");
 		}
 		return mv;
 	}

@@ -1,6 +1,9 @@
 package com.hobbyStudy.service;
 
+import java.util.List;
+
 import com.hobbyStudy.common.utils.page.TailPage;
+import com.hobbyStudy.entity.CourseComment;
 
 /**  
 * @Description: TODO  
@@ -20,5 +23,12 @@ public interface CourseCommentService {
 	*/  
 	TailPage<com.hobbyStudy.entity.CourseComment> queryPage(com.hobbyStudy.entity.CourseComment courseComment,
 			TailPage<com.hobbyStudy.entity.CourseComment> page);
+
+	/**
+	 * @ToDo:添加课程评论
+	 * @param content
+	 * @Return :List<CourseComment>
+	 */
+	Integer addCourseComment(CourseComment courseComment);
 
 }

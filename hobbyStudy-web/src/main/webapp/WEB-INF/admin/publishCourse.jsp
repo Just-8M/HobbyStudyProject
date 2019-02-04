@@ -125,7 +125,14 @@
                 		</p>
                 	</c:when>
                 	<c:otherwise>
-                		<c:forEach items="${totalCourse}" var="tc">
+                		<c:choose>
+                			<c:when test="${totalCourse == 'failLogin'}">
+                				<p style="font-size: 30px; color: red" >
+                					您还未登录，请您进行登录后操作
+                				</p>
+                			</c:when>
+                			<c:otherwise>
+                				<c:forEach items="${totalCourse}" var="tc">
 		                	 <tr>
 		                        <td>
 		                            <input type="checkbox">
@@ -142,6 +149,8 @@
 		                        <td><button class="btn btn-danger unpublish">下架</button></td>
 		                    </tr>
                		   </c:forEach>
+                			</c:otherwise>
+                		</c:choose>
                 	</c:otherwise>
                 </c:choose>
                 </tbody>

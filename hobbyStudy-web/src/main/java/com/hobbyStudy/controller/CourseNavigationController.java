@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hobbyStudy.business.IClassifyBuiness;
 import com.hobbyStudy.common.utils.CourseEnum;
 import com.hobbyStudy.entity.Course;
-import com.hobbyStudy.entity.CourseClassify;
 import com.hobbyStudy.entity.CoursePhotoSlide;
 import com.hobbyStudy.entity.CourseQuery;
 import com.hobbyStudy.entity.User;
@@ -37,7 +36,7 @@ public class CourseNavigationController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "getIndexPage")
+	@RequestMapping("getIndexPage")
 	public ModelAndView getIndexPage() {
 		ModelAndView mv = new ModelAndView("forward:/index.jsp");
 		// 加载轮播

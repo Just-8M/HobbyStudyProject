@@ -1,7 +1,8 @@
 package com.hobbyStudy.entity;
 
 
-import com.hobbyStudy.common.utils.BaseEntity;
+import java.util.Date;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,17 +15,16 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class CourseComment extends BaseEntity{
-	
-	private static final long serialVersionUID = 1L;
-	private String username;     //  用户username
-	private String toUsername;   // 评论对象username
-	private Long courseId;       // 课程id
-	private Long sectionId;      // 章节id
-	private String sectionTitle; // 章节标题
+public class CourseComment{
+	private Integer id;
+	private String userid;     // 用户userid
+	private Integer courseId;       // 评论课程id
 	private String content;      // 评论内容
-	private Long refId;          // 引用id
-	private String refContent;   // 引用内容
-	private Integer type;        // 类型：0-评论；1-答疑QA
+	private Integer type;        // 类型：0：评论、1：问答
+	private Date createTime;     //  创建时间
+	private String createUser;   //  创建人(username)
+	private Date updateTime;     //  更新时间（删除时间）
+	private String updateUser;    // 更新时间（删除者）
+	private Integer del = 0;      // 逻辑删除
 }
 

@@ -137,4 +137,9 @@ public class CourseServiceImpl implements CourseService {
 		return courseMapper.queryTotalCourse(type);
 	}
 
+	@Override
+	public List<Course> queryIndexCourse(String name) {
+		return courseMapper.queryIndexCourse(name);
+	}
+
 }
